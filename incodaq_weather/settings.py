@@ -123,3 +123,18 @@ STATIC_URL = '/static/'
 
 
 AUTH_USER_MODEL = 'expanded_user.custom_user'
+
+LOGIN_REDIRECT_URL = 'index'
+LOGOUT_REDIRECT_URL = 'index'
+
+
+
+#Path settings for dev or production:
+if DEBUG == True:
+    STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+
+else:
+    PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+    STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
+
+
