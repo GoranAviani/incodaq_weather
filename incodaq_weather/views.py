@@ -8,6 +8,6 @@ def index(request):
 #   return render(request,'index.html')
 
    if request.user.is_authenticated:
-      return redirect('dashboard')
+      return render(request,'index.html')
    else:
       return render(request,'index.html')
