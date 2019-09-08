@@ -1,0 +1,48 @@
+<!-- templates/registration/login.html -->
+{% extends 'base.html' %}
+{% block title %}Login{% endblock %}
+{% block content %}
+ <!-- Main container start -->
+ <section id="main-container">
+  <div class="container">
+    <div class="row">
+    </div>
+    <!-- Content row  end -->
+    <div class="gap-40">    
+    </div>
+    <div class="row">
+      <div>
+        <div class="row">
+          <div class="margine-10-lr">
+            <h2 class="text-center">Log in</h2>
+          </div>  
+        </div>
+        <form method="post">
+          {% csrf_token %}
+          <div class="row margine-10-lr">
+            <div>
+              <label>Username</label>
+              <input type="text" name="username" class="form-control" placeholder="Username">
+              <!--<div class="form-control">{{form.username}}</div> -->
+            </div>  
+          </div>
+          <div class="form-group  margine-10-lr">
+            <label>Password</label>
+            <input type="password" name="password" class="form-control" placeholder="Password">
+            <!-- {{form.password}} -->
+          </div>
+          <div class="text-left col-lg-6 col-md-6 col-xs-6"><br>
+            <button class="btn btn-primary solid blank margine-10-lr" type="submit">Log in with username and password</button> 
+          </div>
+          <div class="text-right col-lg-6 col-md-6 col-xs-6"><br>
+            <a href="{% url 'index'%}" class='btn btn-primary solid blank margine-10-lr' >Back to Index</a>
+          </div>
+          <div class="text-left col-lg-6 col-md-6 col-xs-6"><br>
+            <a class="btn btn-primary solid blank margine-10-lr" href="">Login with Google</a>
+          </div>
+        </form>
+      </div>
+    </div>    
+  </div><!--/ container end -->
+</section><!--/ Main container end -->
+{% endblock %}
