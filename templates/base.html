@@ -27,7 +27,7 @@
 {% if user.is_authenticated %}
                 Username: {{user.username}}
 {% else %}
-              <li><a href="{% url 'login' %}" class="dropdown-toggle">Log in</a></li>
+              <li><a href="{% url 'login' %}" >Log in</a></li>
             
           {% endif %}  
 
@@ -35,5 +35,13 @@
 </nav> 
 
 
+
+
+
+    <main>
+    {% block content %}
+   
+    {% endblock %}
+  </main>
 </body>
 </html>
