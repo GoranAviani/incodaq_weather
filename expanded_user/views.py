@@ -19,13 +19,13 @@ from django.contrib.auth import (
 
 def sign_up_user(request):
     if request.method == 'POST':
-        signup_form = user_signup_form(request.POST)
+        signup_form_data = user_signup_form(request.POST)
         
-        if signup_form.is_valid():
-            form = signup_form.save()
+        if signup_form_data.is_valid():
+            form = signup_form_data.save()
             form.refresh_from_db()
             form.save()
-            raw_password = signup_form.cleaned_data.get('password1')
+            raw_password = signup_form_data.cleaned_data.get('password1')
             form_login = authenticate(username=form.username, password=raw_password)
             login(request, form_login)
             registrationStatus = "You have succesfully registered and have been automatically logged in"
@@ -36,27 +36,27 @@ def sign_up_user(request):
 
             #Try to get all possible reasons for errors on registration and show them to user
             try:
-                usernameError = signup_form.errors["username"]
+                usernameError = signup_form_data.errors["username"]
             except:
                 usernamelError = ""
             try:
-                emailError = signup_form.errors["email"]
+                emailError = signup_form_data.errors["email"]
             except:
                 emailError = ""
             try:
-                passwordError = signup_form.errors["password2"]
+                passwordError = signup_form_data.errors["password2"]
             except:
                 passwordError = ""
 
-            signup_form = user_signup_form()
+            signup_form_data = user_signup_form()
             registrationStatus = usernameError + emailError + passwordError
             statusColor = "red"
-            return render(request, 'signup.html', {'signup_form': signup_form, 'registrationStatus':registrationStatus, 'statusColor': statusColor})
+            return render(request, 'signup.html', {'signup_form_data': signup_form_data, 'registrationStatus':registrationStatus, 'statusColor': statusColor})
     else:
-        signup_form = user_signup_form()
+        signup_form_data = user_signup_form()
         registrationStatus = "Please fill the fields located bellow to register"
         statusColor = "green"
-        return render(request, 'signup.html', {'signup_form': signup_form, 'registrationStatus':registrationStatus, 'statusColor': statusColor})
+        return render(request, 'signup.html', {'signup_form_data': signup_form_data, 'registrationStatus':registrationStatus, 'statusColor': statusColor})
 
 
 
