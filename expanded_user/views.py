@@ -34,8 +34,22 @@ def sign_up_user(request):
             return render(request, 'dashboard.html', {'dashboardStatus':registrationStatus, 'statusColor': statusColor})
 
         else:
+
+            try:
+                usernameError = signup_form.errors["username"]
+            except:
+                usernamelError = ""
+            try:
+                emailError = signup_form.errors["email"]
+            except:
+                emailError = ""
+            try:
+                passwordError = signup_form.errors["password2"]
+            except:
+                passwordError = ""
+
             signup_form = user_signup_form()
-            registrationStatus = "Some fields are not properly fileld out, please try again"
+            registrationStatus = usernameError + emailError + passwordError
             statusColor = "red"
             return render(request, 'signup.html', {'signup_form': signup_form, 'registrationStatus':registrationStatus, 'statusColor': statusColor})
 
