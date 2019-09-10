@@ -9,6 +9,14 @@ from .forms import (
     
 )
 
+from django.contrib.auth import (
+    update_session_auth_hash,
+    authenticate, #user = authenticate(username=user.username, password=raw_password)
+    login,
+  
+)
+
+
 def sign_up_user(request):
     if request.method == 'POST':
         signup_form = user_signup_form(request.POST)
