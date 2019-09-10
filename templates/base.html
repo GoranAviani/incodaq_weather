@@ -26,8 +26,11 @@
 
 {% if user.is_authenticated %}
                 Username: {{user.username}}
+              <li><a href="{% url 'logout' %}" >Logout</a></li>
+              
 {% else %}
               <li><a href="{% url 'login' %}" >Log in</a></li>
+
             
           {% endif %}  
 
