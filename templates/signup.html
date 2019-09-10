@@ -17,6 +17,7 @@
             <h2 class="text-center">Register</h2>
           </div>  
         </div>
+        <small style="color: {{statusColor}}">message: {{ registrationStatus }}</small>
         <form method="post">
           {% csrf_token %}
           <div class="row margine-10-lr">
