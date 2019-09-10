@@ -28,13 +28,13 @@ def sign_up_user(request):
             raw_password = signup_form.cleaned_data.get('password1')
             form_login = authenticate(username=form.username, password=raw_password)
             login(request, form_login)
-            registrationStatus = "You have succesfully registered and automatically logged in"
+            registrationStatus = "You have succesfully registered and have been automatically logged in"
             statusColor = "green"
-            #return redirect('dashboard')
             return render(request, 'dashboard.html', {'dashboardStatus':registrationStatus, 'statusColor': statusColor})
 
         else:
 
+            #Try to get all possible reasons for errors on registration and show them to user
             try:
                 usernameError = signup_form.errors["username"]
             except:
@@ -52,10 +52,9 @@ def sign_up_user(request):
             registrationStatus = usernameError + emailError + passwordError
             statusColor = "red"
             return render(request, 'signup.html', {'signup_form': signup_form, 'registrationStatus':registrationStatus, 'statusColor': statusColor})
-
     else:
         signup_form = user_signup_form()
-        registrationStatus = "Please try again fill fields bellow to register"
+        registrationStatus = "Please fill the fields located bellow to register"
         statusColor = "green"
         return render(request, 'signup.html', {'signup_form': signup_form, 'registrationStatus':registrationStatus, 'statusColor': statusColor})
 
