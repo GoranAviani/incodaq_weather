@@ -6,7 +6,7 @@ from django.views import generic
 from django.shortcuts import redirect
 from .forms import (
     user_signup_form,
-    
+    user_profile_form,
 )
 
 from django.contrib.auth import (
