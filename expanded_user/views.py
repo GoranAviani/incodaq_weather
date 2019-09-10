@@ -58,3 +58,17 @@ def sign_up_user(request):
         statusColor = "green"
         return render(request, 'signup.html', {'signup_form': signup_form, 'registrationStatus':registrationStatus, 'statusColor': statusColor})
 
+
+
+def edit_user_profile(request):
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            profile_form_data = user_profile_form(request.POST, instance = request.user)
+            if profile_form_data.is_valid():
+                profile_form_data.save()
+                return redirect('dashboard')
+        else:
+            profile_form_data = user_profile_form(instance=request.user)
+            return render (request, 'expanded_user/edit_user_profile.html', {'profile_form_data' : profile_form_data})
+    else:
+        return render(request,'index.html')
