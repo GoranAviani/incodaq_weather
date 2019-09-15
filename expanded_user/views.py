@@ -90,8 +90,21 @@ def edit_user_password(request):
                 update_session_auth_hash(request, password_form_data.user)
                 return render(request,'expanded_user/change_user_password_done.html')
             else:
+                
+                try:
+                    oldPasswordError = password_form_data.errors["old_password"]
+                except:
+                    oldPasswordError = ""
+                try:
+                    newPasswordError = password_form_data.errors["new_password2"]
+                except:
+                    newPasswordError = ""
+
+
                 password_form_data = PasswordChangeForm(user = request.user)
-                return render (request, 'expanded_user/change_user_password.html', {'password_form_data' : password_form_data})
+                changePasswordStatus = oldPasswordError + newPasswordError
+                statusColor = "red"
+                return render (request, 'expanded_user/change_user_password.html', {'password_form_data' : password_form_data, 'changePasswordStatus' : changePasswordStatus, 'statusColor': statusColor})
         else:
             password_form_data = PasswordChangeForm(user = request.user)
             changePasswordStatus = "Hey " + request.user.username + ", please fill the fields bellow to change your password."
