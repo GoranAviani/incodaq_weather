@@ -43,3 +43,8 @@ class user_profile_form(forms.ModelForm):
 )
 
 
+#class custom_user_change_form - form used in the admin interface to change a user’s information and permissions.
+class custom_user_change_form(UserChangeForm):
+   class Meta:
+        model = custom_user
+        fields = ('username', 'email')
