@@ -94,7 +94,7 @@ def edit_user_password(request):
                 return render (request, 'expanded_user/change_user_password.html', {'password_form_data' : password_form_data})
         else:
             password_form_data = PasswordChangeForm(user = request.user)
-            changePasswordStatus = "Please fill the fields bellow to change your password."
+            changePasswordStatus = "Hey " + request.user.username + ", please fill the fields bellow to change your password."
             statusColor = "green"
             return render (request, 'expanded_user/change_user_password.html', {'password_form_data' : password_form_data, 'changePasswordStatus': changePasswordStatus, 'statusColor': statusColor })
     else:
