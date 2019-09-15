@@ -16,7 +16,7 @@ def dashboard(request):
       return render(request, 'dashboard.html')
    else:
         #if user is not authenticated inform him of that
-        return render(request, 'otherPages/not_authenticaded.html')
+        return render(request, 'other_pages/not_authenticaded.html')
 
 
 
