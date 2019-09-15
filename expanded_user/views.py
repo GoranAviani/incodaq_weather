@@ -82,19 +82,21 @@ def edit_user_profile(request):
 def edit_user_password(request):
     if request.user.is_authenticated:
         if request.method == 'POST':
-            #PasswordChangeForm  is inbuilt in Django
             password_form_data = PasswordChangeForm(data = request.POST, user = request.user)  
+            #PasswordChangeForm  is inbuilt in Django
             currentUser = request.user
             if password_form_data.is_valid():
                 password_form_data.save()
-                update_session_auth_hash(request, password_form_data.user) 
+                update_session_auth_hash(request, password_form_data.user)
                 return render(request,'expanded_user/change_user_password_done.html')
             else:
                 password_form_data = PasswordChangeForm(user = request.user)
                 return render (request, 'expanded_user/change_user_password.html', {'password_form_data' : password_form_data})
         else:
             password_form_data = PasswordChangeForm(user = request.user)
-            return render (request, 'expanded_user/change_user_password.html', {'password_form_data' : password_form_data})
+            changePasswordStatus = "Please fill the fields bellow to change your password."
+            statusColor = "green"
+            return render (request, 'expanded_user/change_user_password.html', {'password_form_data' : password_form_data, 'changePasswordStatus': changePasswordStatus, 'statusColor': statusColor })
     else:
         return render(request,'index.html') 
 
