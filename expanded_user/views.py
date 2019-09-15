@@ -72,3 +72,24 @@ def edit_user_profile(request):
             return render (request, 'expanded_user/edit_user_profile.html', {'profile_form_data' : profile_form_data})
     else:
         return render(request,'index.html')
+
+
+
+    def edit_user_password(request):
+        if request.user.is_authenticated:
+            if request.method == 'POST':
+                change_password_form = PasswordChangeForm(data = request.POST, user = request.user) #PasswordChangeForm is inbuilt in Django
+                currentUser = request.user
+                if change_password_form.is_valid():
+                    change_password_form.save()
+                    update_session_auth_hash(request, change_password_form.user) 
+                    return render(request,'expanded_user/change_user_password_done.html')
+                else:
+                    change_password_form=PasswordChangeForm(user = request.user)
+                    return render (request, 'expanded_user/change_user_password.html', {'change_password_form' : change_password_form})
+            else:
+                change_password_form=PasswordChangeForm(user = request.user)
+                return render (request, 'expanded_user/change_user_password.html', {'change_password_form' : change_password_form})
+        else:
+            return render(request,'index.html') 
+
