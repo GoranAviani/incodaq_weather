@@ -41,3 +41,5 @@ class user_profile_form(forms.ModelForm):
             'userCity',
             'userAddress',
 )
+
+

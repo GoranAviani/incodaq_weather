@@ -7,6 +7,7 @@ from django.shortcuts import redirect
 from .forms import (
     user_signup_form,
     user_profile_form,
+    
 )
 
 from django.contrib.auth import (
@@ -15,6 +16,9 @@ from django.contrib.auth import (
     login,
   
 )
+
+
+from django.contrib.auth.forms import PasswordChangeForm
 
 
 def sign_up_user(request):
@@ -75,21 +79,22 @@ def edit_user_profile(request):
 
 
 
-    def edit_user_password(request):
-        if request.user.is_authenticated:
-            if request.method == 'POST':
-                change_password_form = PasswordChangeForm(data = request.POST, user = request.user) #PasswordChangeForm is inbuilt in Django
-                currentUser = request.user
-                if change_password_form.is_valid():
-                    change_password_form.save()
-                    update_session_auth_hash(request, change_password_form.user) 
-                    return render(request,'expanded_user/change_user_password_done.html')
-                else:
-                    change_password_form=PasswordChangeForm(user = request.user)
-                    return render (request, 'expanded_user/change_user_password.html', {'change_password_form' : change_password_form})
+def edit_user_password(request):
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            #PasswordChangeForm  is inbuilt in Django
+            password_form_data = PasswordChangeForm(data = request.POST, user = request.user)  
+            currentUser = request.user
+            if password_form_data.is_valid():
+                password_form_data.save()
+                update_session_auth_hash(request, password_form_data.user) 
+                return render(request,'expanded_user/change_user_password_done.html')
             else:
-                change_password_form=PasswordChangeForm(user = request.user)
-                return render (request, 'expanded_user/change_user_password.html', {'change_password_form' : change_password_form})
+                password_form_data = PasswordChangeForm(user = request.user)
+                return render (request, 'expanded_user/change_user_password.html', {'password_form_data' : password_form_data})
         else:
-            return render(request,'index.html') 
+            password_form_data = PasswordChangeForm(user = request.user)
+            return render (request, 'expanded_user/change_user_password.html', {'password_form_data' : password_form_data})
+    else:
+        return render(request,'index.html') 
 
