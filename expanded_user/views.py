@@ -88,7 +88,15 @@ def edit_user_password(request):
             if password_form_data.is_valid():
                 password_form_data.save()
                 update_session_auth_hash(request, password_form_data.user)
-                return render(request,'expanded_user/change_user_password_done.html')
+                
+                changePasswordStatus = "You have succesfully changed your password."
+                statusColor = "green"
+                return render(request, 'dashboard.html', {'dashboardStatus':changePasswordStatus, 'statusColor': statusColor})
+                
+                #To be removed after the review
+                #return render(request,'expanded_user/change_user_password_done.html')
+            
+            
             else:
                 
                 try:
