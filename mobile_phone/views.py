@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 # Create your views here.
 from .forms import (
@@ -34,7 +34,7 @@ def edit_user_phone(request):
                     form = user_phone_form_data.save(commit=False)
                     form.userMobilePhone = request.user
                     form.save()
-            return redirect('edit_mobile_phone')
+            return redirect('dashboard')
         else:
             try:
                 found_u_p_data = user_phone.objects.get(userMobilePhone=request.user)

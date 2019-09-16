@@ -1,16 +1,25 @@
-<!-- templates/index.html -->
-{% extends 'base.html' %}
-
+% extends 'base.html' %}
 
 {% block content %}
-This is a dashboard
-<small style="color: {{statusColor}}">message: {{ dashboardStatus }}</small>
-        
-<li><a href="{% url 'edit_user_profile' %}" >Edit user profile</a></li>
-<li><a href="{% url 'edit_user_password' %}" >Edit user password</a></li>
-<h3 class="widget-title"><a href="{% url 'edit_mobile_phone' %}" class="btn btn-primary solid ">edit_mobile_phone</a></h3>	
 
+<div class="container margin-30-top">
+<form method="post">
+    {% csrf_token %}
+    Username: {{user.username}}
+    <br/>
+  
+    Mobile phone country code: * {{user_phone_form_data.phoneCountryCode}}
+    <br/>
+    Mobile phone number: * {{user_phone_form_data.phoneNumber}} 
+    <br/>
+    Do you want to receive weather SMS to your mobile: **  {{user_phone_form_data.sendWeatherSMS}} 
+    <br/>
+    Set your time to receive weather forecast: *** {{user_phone_form_data.timeWeatherSMS}} 
+    <br/>
 
+    <button type="submit" class="btn btn-primary solid width-100 hover-black-text" >Save</button>
+
+</form>
 <h3 class="widget-title"><a href="{% url 'send_daily_forecast_to_user' %}" class="btn btn-primary solid ">Send daily forecast</a></h3>	
 
 <div class="col-md-12 col-sm-12 col-xs-12 footer-widget footer-about-us " align="center">
@@ -31,4 +40,5 @@ Please make sure you use UTC/GMT time due to current forecast time resctrictions
 
 
 </div>
+
 {% endblock %}
