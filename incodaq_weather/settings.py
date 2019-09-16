@@ -39,6 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'expanded_user.apps.ExpandedUserConfig',
+    'mobile_phone.apps.MobilePhoneConfig',
+    'weather.apps.WeatherConfig',
+    'api_relay.apps.ApiRelayConfig',
 ]
 
 MIDDLEWARE = [

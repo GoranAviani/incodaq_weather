@@ -24,4 +24,9 @@ urlpatterns = [
 
     path('users/', include('django.contrib.auth.urls')),
     path('users/', include('expanded_user.urls')),
+
+
+    path('user_phone/', include('mobile_phone.urls')),
+    path('weather_app/', include('weather.urls')),
+
 ]
