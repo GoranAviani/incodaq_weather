@@ -13,7 +13,8 @@ class custom_user(AbstractUser):
 
 
     def __str__(self):
-        return self.email
+        #return self.email
+        return u"%s %s %s" % (self.username, self.email, self.userCountry)
 
 
 
