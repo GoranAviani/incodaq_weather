@@ -4,8 +4,10 @@
 
 {% block content %}
 This is a dashboard
-<small style="color: {{statusColor}}">message: {{ dashboardStatus }}</small>
-        
+{% if dashboardStatus %}
+<small style="color: {{statusColor}}"> message: {{ dashboardStatus }}</small>
+{% endif %}    
+
 <li><a href="{% url 'edit_user_profile' %}" >Edit user profile</a></li>
 <li><a href="{% url 'edit_user_password' %}" >Edit user password</a></li>
 <h3 class="widget-title"><a href="{% url 'edit_mobile_phone' %}" class="btn btn-primary solid ">edit_mobile_phone</a></h3>	
