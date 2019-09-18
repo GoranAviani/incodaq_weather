@@ -2,7 +2,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from mobile_phone.models import user_phone
-from expanded_user.models import custom_user
+from mobile_phone.models import user_phone
 
 def index(request):
 #   return render(request,'index.html')
@@ -20,12 +20,10 @@ def dashboard(request):
       # is_superuser, last_login, last_name, logentry, password, userAddress, userCity, 
       # userCountry, userMobileNumber, user_permissions, user_phone, username
       user1 = request.user
-      user = custom_user.objects.filter(id=request.user.id)
+      ###user = user_phone.objects.get(userMobilePhone=request.user)
+      found_u_p_data = user_phone.objects.get(userMobilePhone=request.user) 
      
-     
-     # userMobileNumber = user.userMobileNumber
-     # queryUserNote = note.objects.filter(noteUser=request.user).order_by('-noteTimestamp')
-   
+    
    
       dashboardStatus = "Hi, welcome to your dashboard."
       statusColor = "green"
@@ -34,8 +32,11 @@ def dashboard(request):
       {
       'dashboardStatus':dashboardStatus,
       'statusColor': statusColor,
-      #'userMobileNumber': userMobileNumber,
-     # 'queryUserNote': queryUserNote,
+      #'hasMobileNumber': hasMobileNumber,
+      #'hasCityCountry': hasCityCountry,
+      #'hasAddress': hasAddress,
+      #'isMobileValidated': isMobileValidated,
+      #'sendWeatherSMS'
       })
 
 
