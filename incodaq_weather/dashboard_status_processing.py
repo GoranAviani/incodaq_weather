@@ -18,10 +18,23 @@ def dashboard_status_processing(**kwargs):
         hasAddress = False
    
     try:
-        found_u_p_data = user_phone.objects.get(userMobilePhone=user1) 
-        hasMobileNumber = True
-        isMobileValidated = True
-        wantsToReceiveWeatherSMS = True
+        found_u_p_data = user_phone.objects.get(userMobilePhone=user1)
+        if found_u_p_data.phoneNumber is not None:
+            hasMobileNumber = True
+        else:
+            hasMobileNumber = False
+
+        if found_u_p_data.isMobileValidated is not False:
+            isMobileValidated = True
+        else:
+            isMobileValidated = False
+
+        if found_u_p_data.wantsToReceiveWeatherSMS is not False:
+            wantsToReceiveWeatherSMS = True
+        else:
+            wantsToReceiveWeatherSMS = False
+
+
     except:
         hasMobileNumber = False
         isMobileValidated = False
