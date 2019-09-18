@@ -23,15 +23,19 @@ def dashboard_status_processing(**kwargs):
             hasMobileNumber = True
         else:
             hasMobileNumber = False
-
         isMobileValidated = found_u_p_data.isMobileValidated 
         wantsToReceiveWeatherSMS = found_u_p_data.wantsToReceiveWeatherSMS 
 
+        if ((found_u_p_data.timeWeatherSMS is not None) and (found_u_p_data.timeWeatherSMS is not "")):
+            isForecastTimeSet = True
+        else:
+            isForecastTimeSet = False
 
     except:
         hasMobileNumber = False
         isMobileValidated = False
         wantsToReceiveWeatherSMS = False
+        isForecastTimeSet = False
         
        
-    return hasMobileNumber, hasCityCountry, hasAddress, isMobileValidated, wantsToReceiveWeatherSMS
+    return hasMobileNumber, hasCityCountry, hasAddress, isMobileValidated, wantsToReceiveWeatherSMS, isForecastTimeSet
