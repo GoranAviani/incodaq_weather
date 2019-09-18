@@ -8,9 +8,9 @@ from .models import user_phone
 
 
 class user_mobile_admin (admin.ModelAdmin):
-    list_display = ("phoneCountryCode" , "phoneNumber" , "isMobileValidated","sendWeatherSMS")
-    list_filter = ("phoneCountryCode", "phoneNumber" , "isMobileValidated","sendWeatherSMS")
-    search_fields= ("phoneCountryCode","phoneNumber", "isMobileValidated","sendWeatherSMS")
+    list_display = ("phoneCountryCode" , "phoneNumber" , "isMobileValidated","wantsToReceiveWeatherSMS")
+    list_filter = ("phoneCountryCode", "phoneNumber" , "isMobileValidated","wantsToReceiveWeatherSMS")
+    search_fields= ("phoneCountryCode","phoneNumber", "isMobileValidated","wantsToReceiveWeatherSMS")
 
 
 admin.site.register(user_phone, user_mobile_admin)

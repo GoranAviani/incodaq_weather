@@ -36,7 +36,7 @@ def dashboard(request):
       #'hasCityCountry': hasCityCountry,
       #'hasAddress': hasAddress,
       #'isMobileValidated': isMobileValidated,
-      #'sendWeatherSMS'
+      #'wantsToReceiveWeatherSMS'
       })
 
 

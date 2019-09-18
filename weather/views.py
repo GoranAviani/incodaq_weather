@@ -87,7 +87,7 @@ def check_user_forecast_time(user_phone_instance):
     return "sendSMS", "Weater forecast time is OK."
 
 def get_mobile_phone(user_phone_instance):
-    if (user_phone_instance.isMobileValidated == True and user_phone_instance.sendWeatherSMS == True):
+    if (user_phone_instance.isMobileValidated == True and user_phone_instance.wantsToReceiveWeatherSMS == True):
         #print(user_phone_instance)
         if (user_phone_instance.phoneCountryCode != None and user_phone_instance.phoneCountryCode != None):
             phoneCountryCode = user_phone_instance.phoneCountryCode

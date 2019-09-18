@@ -21,7 +21,7 @@ class Migration(migrations.Migration):
                 ('phoneCountryCode', models.CharField(max_length=6)),
                 ('phoneNumber', models.CharField(max_length=12)),
                 ('isMobileValidated', models.BooleanField(default=False)),
-                ('sendWeatherSMS', models.BooleanField(default=False)),
+                ('wantsToReceiveWeatherSMS', models.BooleanField(default=False)),
                 ('timeWeatherSMS', models.CharField(max_length=5)),
                 ('userMobilePhone', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL, unique=True)),
             ],

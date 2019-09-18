@@ -9,7 +9,7 @@ class user_phone(models.Model):
     phoneCountryCode = models.CharField(max_length=6)
     phoneNumber = models.CharField(max_length=12)
     isMobileValidated = models.BooleanField(default = False)
-    sendWeatherSMS = models.BooleanField(default = False)
+    wantsToReceiveWeatherSMS = models.BooleanField(default = False)
     timeWeatherSMS = models.CharField(max_length=5)
 
     def __str__(self):

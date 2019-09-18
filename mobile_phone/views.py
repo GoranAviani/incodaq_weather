@@ -21,10 +21,10 @@ def edit_user_phone(request):
                 if user_phone_form_data.is_valid():
                     user_phone.objects.filter(userMobilePhone=request.user).update(phoneCountryCode=user_phone_form_data["phoneCountryCode"].data
                     , phoneNumber=user_phone_form_data["phoneNumber"].data
-                    , sendWeatherSMS=user_phone_form_data["sendWeatherSMS"].data
+                    , wantsToReceiveWeatherSMS=user_phone_form_data["wantsToReceiveWeatherSMS"].data
                     , timeWeatherSMS=user_phone_form_data["timeWeatherSMS"].data
                     )
-                    #, sendWeatherSMS=user_mobile_phone_form["sendWeatherSMS"].data)
+                    #, wantsToReceiveWeatherSMS=user_mobile_phone_form["wantsToReceiveWeatherSMS"].data)
                 #else goes to  else: try: except: bellow because either  way (succes or failure) 
                 # it gets redirected return redirect('edit_mobile_phone' 
             except:
@@ -41,7 +41,7 @@ def edit_user_phone(request):
                 data = {'userMobilePhone':found_u_p_data.userMobilePhone 
                 ,'phoneCountryCode': found_u_p_data.phoneCountryCode 
                 ,"phoneNumber": found_u_p_data.phoneNumber
-                ,"sendWeatherSMS": found_u_p_data.sendWeatherSMS
+                ,"wantsToReceiveWeatherSMS": found_u_p_data.wantsToReceiveWeatherSMS
                 ,"timeWeatherSMS": found_u_p_data.timeWeatherSMS
                 }
                 user_phone_form_data = user_mobile_phone_form(initial=data)
