@@ -2,7 +2,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from mobile_phone.models import user_phone
-from mobile_phone.models import user_phone
+from .dashboard_status_processing import dashboard_status_processing
 
 def index(request):
 #   return render(request,'index.html')
@@ -15,28 +15,23 @@ def dashboard(request):
    if request.user.is_authenticated:
       
 
-  
-      #Choices are: date_joined, email, first_name, groups, id, is_active, is_staff, 
-      # is_superuser, last_login, last_name, logentry, password, userAddress, userCity, 
-      # userCountry, userMobileNumber, user_permissions, user_phone, username
-      user1 = request.user
-      ###user = user_phone.objects.get(userMobilePhone=request.user)
-      found_u_p_data = user_phone.objects.get(userMobilePhone=request.user) 
-     
+      user1 = {"user1": request.user}
+      hasMobileNumber, hasCityCountry, hasAddress, isMobileValidated, wantsToReceiveWeatherSMS = dashboard_status_processing(**user1)
+      
     
    
-      dashboardStatus = "Hi, welcome to your dashboard."
+      dashboardStatus = "Hi there " + request.user.username +", welcome to your dashboard."
       statusColor = "green"
   
       return render(request, 'dashboard.html', 
       {
       'dashboardStatus':dashboardStatus,
       'statusColor': statusColor,
-      #'hasMobileNumber': hasMobileNumber,
-      #'hasCityCountry': hasCityCountry,
-      #'hasAddress': hasAddress,
-      #'isMobileValidated': isMobileValidated,
-      #'wantsToReceiveWeatherSMS'
+      'hasMobileNumber': hasMobileNumber,
+      'hasCityCountry': hasCityCountry,
+      'hasAddress': hasAddress,
+      'isMobileValidated': isMobileValidated,
+      'wantsToReceiveWeatherSMS': wantsToReceiveWeatherSMS
       })
 
 

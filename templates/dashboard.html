@@ -7,6 +7,23 @@ This is a dashboard
 {% if dashboardStatus %}
 <small style="color: {{statusColor}}"> message: {{ dashboardStatus }}</small>
 {% endif %}    
+</br>
+Statuses:</br>
+
+hasMobileNumber: {{ hasMobileNumber }} </br>
+hasCityCountry: {{ hasCityCountry }} </br>
+hasAddress: {{ hasAddress }} </br>
+isMobileValidated: {{ isMobileValidated }} </br>
+wantsToReceiveWeatherSMS: {{ wantsToReceiveWeatherSMS }} </br>
+
+
+
+
+
+
+
+
+
 
 <li><a href="{% url 'edit_user_profile' %}" >Edit user profile</a></li>
 <li><a href="{% url 'edit_user_password' %}" >Edit user password</a></li>
