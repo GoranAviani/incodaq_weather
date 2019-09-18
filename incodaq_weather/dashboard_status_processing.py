@@ -1,6 +1,6 @@
-from django.contrib.auth.models import User
+
 from django.shortcuts import render
-from django.http import HttpResponse
+from mobile_phone.models import user_phone
 
 def dashboard_status_processing(**kwargs):
  
@@ -18,7 +18,7 @@ def dashboard_status_processing(**kwargs):
         hasAddress = False
    
     try:
-        found_u_p_data = user_phone.objects.get(userMobilePhone=request.user) 
+        found_u_p_data = user_phone.objects.get(userMobilePhone=user1) 
         hasMobileNumber = True
         isMobileValidated = True
         wantsToReceiveWeatherSMS = True
