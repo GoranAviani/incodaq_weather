@@ -9,9 +9,13 @@ def dashboard_status_processing(**kwargs):
 
     if (user1.userCity is not None and user1.userCountry is not None):
         hasCityCountry = True
+        hasCityCountryMessage = "All is ok here"
+        hasCityCountryStatusColor = "Green"
     else:
         hasCityCountry = False
-   
+        hasCityCountryMessage = "City is a required field to receive weather forecast"
+        hasCityCountryStatusColor = "Red"
+
     if user1.userAddress is not None:
         hasAddress = True
     else:
@@ -38,4 +42,4 @@ def dashboard_status_processing(**kwargs):
         isForecastTimeSet = False
         
        
-    return hasMobileNumber, hasCityCountry, hasAddress, isMobileValidated, wantsToReceiveWeatherSMS, isForecastTimeSet
+    return hasMobileNumber, hasCityCountry, hasCityCountryMessage, hasCityCountryStatusColor, hasAddress, isMobileValidated, wantsToReceiveWeatherSMS, isForecastTimeSet
