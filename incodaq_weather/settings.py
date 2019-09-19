@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'mobile_phone.apps.MobilePhoneConfig',
     'weather.apps.WeatherConfig',
     'api_relay.apps.ApiRelayConfig',
+    'django_countries',
 ]
 
 MIDDLEWARE = [
