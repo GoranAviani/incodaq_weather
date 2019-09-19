@@ -161,7 +161,8 @@ def send_daily_forecast(user, typeOfRequest):
     stringToSend =""
     userAddress = user.userAddress
     userCity = user.userCity
-    userCountry = user.userCountry
+    #CountryField object from the django-countries app. Defined in extended user model
+    userCountry = user.userCountry.name
     
     if (userCity != None and userCountry != None):
         if userAddress != None:
