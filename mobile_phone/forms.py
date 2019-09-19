@@ -1,8 +1,7 @@
 from django import forms
 from .models import user_phone
+from incodaq_weather.choice import FORECAST_HOURS
 
-FORECAST_HOURS= [("07:30","07:30"),("08:00","08:00"),("08:30","08:30"),
-("09:00","09:00"),("09:30","09:30")]
 
 class user_mobile_phone_form(forms.ModelForm):
     #userMobilePhone = forms.CharField(label='', widget=forms.TextInput(attrs={'readonly':'readonly','class':'form-control'}))
