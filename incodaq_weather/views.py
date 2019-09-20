@@ -17,11 +17,12 @@ def dashboard(request):
 
       user1 = {"user1": request.user}
       hasMobileNumber, hasCityCountry, hasCityCountryMessage, hasCityCountryStatusColor, 
-      hasAddress, isMobileValidated, wantsToReceiveWeatherSMS, isForecastTimeSet = dashboard_status_processing(**user1)
+      hasAddress, isMobileValidated, wantsToReceiveWeatherSMS,
+       isForecastTimeSet = dashboard_status_processing(**user1)
       
     
    
-      dashboardStatus = "Hi there " + request.user.username +", welcome to your dashboard."
+      dashboardStatus = "Hi there " + request.user.username + ", welcome to your dashboard."
       statusColor = "green"
   
       return render(request, 'dashboard.html', 

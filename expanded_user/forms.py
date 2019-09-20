@@ -23,8 +23,10 @@ class user_signup_form(UserCreationForm):
 
 
 class user_profile_form(forms.ModelForm):
-    username = forms.CharField(label='', widget=forms.TextInput(attrs={'readonly':'readonly','class':'form-control'}))
-    email = forms.EmailField(label='', widget=forms.TextInput(attrs={'class':'form-control'}))
+    username = forms.CharField(label='', widget=forms.TextInput(
+        attrs={'readonly':'readonly','class':'form-control'}))
+    email = forms.EmailField(label='', widget=forms.TextInput(
+        attrs={'class':'form-control'}))
     class Meta:
         model = custom_user
         fields = (
