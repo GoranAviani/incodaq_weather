@@ -11,7 +11,7 @@ This is a dashboard
 Statuses:</br>
 
 hasMobileNumber: {{ hasMobileNumber }} </br>
-hasCityCountry: {{ hasCityCountry }}   <small style="color: {{hasCityCountryStatusColor}}"> {{ hasCityCountryMessage }}</small></br>
+hasCityCountry: {{ hasCityCountry }}  {% if hasCityCountryMessage %} <small style="color: {{hasCityCountryStatusColor}}"> {{ hasCityCountryMessage }}</small>{% endif %}   </br>
 hasAddress: {{ hasAddress }} </br>
 isMobileValidated: {{ isMobileValidated }} </br>
 wantsToReceiveWeatherSMS: {{ wantsToReceiveWeatherSMS }} </br>
