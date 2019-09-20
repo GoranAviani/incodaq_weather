@@ -10,12 +10,12 @@ This is a dashboard
 </br>
 Statuses:</br>
 
-hasMobileNumber: {{ hasMobileNumber }} </br>
-hasCityCountry: {{ hasCityCountry }}  {% if hasCityCountryMessage %} <small style="color: {{hasCityCountryStatusColor}}"> {{ hasCityCountryMessage }}</small>{% endif %}   </br>
-hasAddress: {{ hasAddress }} </br>
-isMobileValidated: {{ isMobileValidated }} </br>
-wantsToReceiveWeatherSMS: {{ wantsToReceiveWeatherSMS }} </br>
-isForecastTimeSet : {{ isForecastTimeSet }} </br>
+hasMobileNumber: {{ hasMobileNumber }} {% if hasMobileNumberMessage %} <small style="color: {{hasMobileNumberStatusColor}}"> {{ hasMobileNumberMessage }}</small>{% endif %}  </br>
+hasCityCountry: {{ hasCityCountry }}  {% if hasCityCountryMessage %} <small style="color: {{hasCityCountryStatusColor}}"> {{ hasCityCountryMessage }}</small>{% endif %} </br>
+hasAddress: {{ hasAddress }} {% if hasAddressMessage %} <small style="color: {{hasAddressStatusColor}}"> {{ hasAddressMessage }}</small>{% endif %} </br>
+isMobileValidated: {{ isMobileValidated }} {% if isMobileValidatedMessage %} <small style="color: {{isMobileValidatedStatusColor}}"> {{ isMobileValidatedMessage }}</small>{% endif %} </br>
+wantsToReceiveWeatherSMS: {{ wantsToReceiveWeatherSMS }} {% if wantsToReceiveWeatherSMSMessage %} <small style="color: {{wantsToReceiveWeatherSMSStatusColor}}"> {{ wantsToReceiveWeatherSMSMessage }}</small>{% endif %} </br>
+isForecastTimeSet : {{ isForecastTimeSet }} {% if isForecastTimeSetMessage %} <small style="color: {{isForecastTimeSetStatusColor}}"> {{ isForecastTimeSetMessage }}</small>{% endif %} </br>
 
 
 
