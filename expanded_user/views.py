@@ -40,15 +40,15 @@ def sign_up_user(request):
 
             #Try to get all possible reasons for errors on registration and show them to user
             try:
-                usernameError = signup_form_data.errors["username"]
+                usernameError = ["Username" + signup_form_data.errors["username"][0]]
             except:
                 usernameError = ""
             try:
-                emailError = signup_form_data.errors["email"]
+                emailError = ["Email: " + signup_form_data.errors["email"][0]]
             except:
                 emailError = ""
             try:
-                passwordError = signup_form_data.errors["password2"]
+                passwordError = ["Password: " + signup_form_data.errors["password2"][0]]
             except:
                 passwordError = ""
 
