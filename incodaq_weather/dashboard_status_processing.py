@@ -8,7 +8,7 @@ def dashboard_status_processing(**kwargs):
 
     if (user1.userCity is not None and (len(user1.userCountry.name)>1) ):
         hasCityCountry = True
-        hasCityCountryMessage = "All is ok here"
+        hasCityCountryMessage = "City and Country are inputed"
         hasCityCountryStatusColor = "Green"
     else:
         hasCityCountry = False
