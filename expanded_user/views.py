@@ -42,7 +42,7 @@ def sign_up_user(request):
             try:
                 usernameError = signup_form_data.errors["username"]
             except:
-                usernamelError = ""
+                usernameError = ""
             try:
                 emailError = signup_form_data.errors["email"]
             except:
@@ -54,6 +54,7 @@ def sign_up_user(request):
 
             signup_form_data = user_signup_form()
             registrationStatus = usernameError + emailError + passwordError
+
             statusColor = "red"
             return render(request, 'signup.html', {'signup_form_data': signup_form_data, 'registrationStatus':registrationStatus, 'statusColor': statusColor})
     else:
