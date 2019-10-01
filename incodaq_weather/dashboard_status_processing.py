@@ -54,7 +54,12 @@ def dashboard_status_processing(**kwargs):
             isMobileValidatedStatusColor = "red"
 
         wantsToReceiveWeatherSMS = found_u_p_data.wantsToReceiveWeatherSMS 
-            
+        if wantsToReceiveWeatherSMS:
+            wantsToReceiveWeatherSMSMessage = "You have selected to receive forecast text messages"
+            wantsToReceiveWeatherSMSStatusColor = "green"
+        else:
+            wantsToReceiveWeatherSMSMessage = "To receive messages select that inside your mobile configuration"
+            wantsToReceiveWeatherSMSStatusColor = "red"    
 
 
     except:
@@ -72,5 +77,5 @@ def dashboard_status_processing(**kwargs):
         hasCityCountry, hasCityCountryMessage, hasCityCountryStatusColor, \
         hasAddress, hasAddressMessage, hasAddressStatusColor, \
         isMobileValidated, isMobileValidatedMessage, isMobileValidatedStatusColor, \
-        wantsToReceiveWeatherSMS, \
+        wantsToReceiveWeatherSMS, wantsToReceiveWeatherSMSMessage, wantsToReceiveWeatherSMSStatusColor, \
         isForecastTimeSet, isForecastTimeSetMessage, isForecastTimeSetStatusColor \
