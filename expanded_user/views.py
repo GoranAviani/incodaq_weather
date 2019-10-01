@@ -59,7 +59,7 @@ def sign_up_user(request):
             return render(request, 'signup.html', {'signup_form_data': signup_form_data, 'registrationStatus':registrationStatus, 'statusColor': statusColor})
     else:
         signup_form_data = user_signup_form()
-        registrationStatus = "Please fill the fields located bellow to register"
+        registrationStatus = ["Please fill the fields located bellow to register"]
         statusColor = "green"
         return render(request, 'signup.html', {'signup_form_data': signup_form_data, 'registrationStatus':registrationStatus, 'statusColor': statusColor})
 
