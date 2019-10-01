@@ -15,9 +15,10 @@ def dashboard(request):
    if request.user.is_authenticated:
       
 
-      user1 = {"user1": request.user}
-      hasMobileNumber, hasCityCountry, hasCityCountryMessage, \
-      hasCityCountryStatusColor, hasAddress, isMobileValidated, \
+      user1 = {"user1": request.user} 
+      hasMobileNumber, hasMobileNumberMessage, hasMobileNumberStatusColor, \
+      hasCityCountry, hasCityCountryMessage, hasCityCountryStatusColor, \
+      hasAddress, isMobileValidated, \
       wantsToReceiveWeatherSMS, isForecastTimeSet = dashboard_status_processing(**user1)
       
     
@@ -30,6 +31,8 @@ def dashboard(request):
       'dashboardStatus':dashboardStatus,
       'statusColor': statusColor,
       'hasMobileNumber': hasMobileNumber,
+      'hasMobileNumberMessage': hasMobileNumberMessage,
+      'hasMobileNumberStatusColor': hasMobileNumberStatusColor,
       'hasCityCountry': hasCityCountry,
       'hasCityCountryMessage': hasCityCountryMessage,
       'hasCityCountryStatusColor': hasCityCountryStatusColor,
