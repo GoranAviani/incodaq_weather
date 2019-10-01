@@ -10,6 +10,21 @@ from .models import (
 
 from expanded_user.models import custom_user
 
+def is_mobile_still_validated(found_u_p_data, phoneNumber):
+    if phoneNumber.isdigit():
+
+        if len(phoneNumber) < 4:
+            return False
+        
+        if found_u_p_data.phoneNumber != phoneNumber:
+            return False
+            
+        return True
+    else:
+        return False    
+    
+
+    
 def edit_user_phone(request):
     if request.user.is_authenticated:
         if request.method == 'POST':
@@ -19,11 +34,16 @@ def edit_user_phone(request):
                 #if this user is found in user phone model ergo already has his phone number here
                 found_u_p_data = user_phone.objects.get(userMobilePhone=request.user) 
                 if user_phone_form_data.is_valid():
+                    
+                    #Simple check should the phone still be validated: Sto see if user has changed a phone number or is it
+                    # wrong is some other sence, if so he can no longer have a validated number
+                    isMobileStillValidated = is_mobile_still_validated(found_u_p_data, user_phone_form_data["phoneNumber"].data)
+
                     user_phone.objects.filter(userMobilePhone=request.user).update(phoneCountryCode=user_phone_form_data["phoneCountryCode"].data
                     , phoneNumber=user_phone_form_data["phoneNumber"].data
                     , wantsToReceiveWeatherSMS=user_phone_form_data["wantsToReceiveWeatherSMS"].data
                     , timeWeatherSMS=user_phone_form_data["timeWeatherSMS"].data
-                    )
+                    , isMobileValidated = isMobileStillValidated)
                     #, wantsToReceiveWeatherSMS=user_mobile_phone_form["wantsToReceiveWeatherSMS"].data)
                 #else goes to  else: try: except: bellow because either  way (succes or failure) 
                 # it gets redirected return redirect('edit_mobile_phone' 
