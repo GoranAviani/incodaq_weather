@@ -42,15 +42,15 @@ def sign_up_user(request):
             try:
                 usernameError = ["Username" + signup_form_data.errors["username"][0]]
             except:
-                usernameError = ""
+                usernameError = []
             try:
                 emailError = ["Email: " + signup_form_data.errors["email"][0]]
             except:
-                emailError = ""
+                emailError = []
             try:
                 passwordError = ["Password: " + signup_form_data.errors["password2"][0]]
             except:
-                passwordError = ""
+                passwordError = []
 
             signup_form_data = user_signup_form()
             registrationStatus = usernameError + emailError + passwordError
