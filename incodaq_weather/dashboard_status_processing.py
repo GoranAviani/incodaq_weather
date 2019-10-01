@@ -22,12 +22,10 @@ def dashboard_status_processing(**kwargs):
    
     try:
         found_u_p_data = user_phone.objects.get(userMobilePhone=user1)
-        if found_u_p_data.phoneNumber is not None:
+        if found_u_p_data.phoneNumber is not None and len(found_u_p_data.phoneNumber) != 0:
             hasMobileNumber = True
             hasMobileNumberMessage = "You have inputed a mobile number"
             hasMobileNumberStatusColor = "green"
-            isMobileValidated = found_u_p_data.isMobileValidated 
-            wantsToReceiveWeatherSMS = found_u_p_data.wantsToReceiveWeatherSMS 
             
 
         else:
@@ -39,9 +37,21 @@ def dashboard_status_processing(**kwargs):
         else:
             isForecastTimeSet = False
 
+        isMobileValidated = found_u_p_data.isMobileValidated 
+        if isMobileValidated:
+            isMobileValidatedMessage = "your mobile phone has been validated"
+            isMobileValidatedStatusColor = "green"
+        else:
+            isMobileValidatedMessage = "Your mobile phone is not validated"
+            isMobileValidatedStatusColor = "red"
+
+        wantsToReceiveWeatherSMS = found_u_p_data.wantsToReceiveWeatherSMS 
+            
+
+
     except:
         hasMobileNumber = False
-        hasMobileNumberMessage = "Something has gone wrong and we can not see your phone number"
+        hasMobileNumberMessage = "Something went wrong and we can not see if you have a phone number"
         hasMobileNumberStatusColor = "red"
         isMobileValidated = False
         wantsToReceiveWeatherSMS = False
@@ -51,4 +61,5 @@ def dashboard_status_processing(**kwargs):
     return hasMobileNumber, hasMobileNumberMessage, hasMobileNumberStatusColor,\
         hasCityCountry, hasCityCountryMessage, hasCityCountryStatusColor, \
             hasAddress, \
-            isMobileValidated, wantsToReceiveWeatherSMS, isForecastTimeSet
+            isMobileValidated, isMobileValidatedMessage, isMobileValidatedStatusColor, \
+                wantsToReceiveWeatherSMS, isForecastTimeSet \

@@ -18,7 +18,7 @@ def dashboard(request):
       user1 = {"user1": request.user} 
       hasMobileNumber, hasMobileNumberMessage, hasMobileNumberStatusColor, \
       hasCityCountry, hasCityCountryMessage, hasCityCountryStatusColor, \
-      hasAddress, isMobileValidated, \
+      hasAddress, isMobileValidated, isMobileValidatedMessage, isMobileValidatedStatusColor, \
       wantsToReceiveWeatherSMS, isForecastTimeSet = dashboard_status_processing(**user1)
       
     
@@ -38,6 +38,9 @@ def dashboard(request):
       'hasCityCountryStatusColor': hasCityCountryStatusColor,
       'hasAddress': hasAddress,
       'isMobileValidated': isMobileValidated,
+       'isMobileValidatedMessage': isMobileValidatedMessage, 
+       'isMobileValidatedStatusColor': isMobileValidatedStatusColor,
+      
       'wantsToReceiveWeatherSMS': wantsToReceiveWeatherSMS,
       'isForecastTimeSet': isForecastTimeSet,
       })
