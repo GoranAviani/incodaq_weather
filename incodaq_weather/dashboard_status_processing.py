@@ -17,8 +17,12 @@ def dashboard_status_processing(**kwargs):
 
     if user1.userAddress is not None:
         hasAddress = True
+        hasAddressMessage = "Address is inputed"
+        hasAddressStatusColor = "green"
     else:
         hasAddress = False
+        hasAddressMessage = "Address is required to receive a more precise forecast"
+        hasAddressStatusColor = "yellow"
    
     try:
         found_u_p_data = user_phone.objects.get(userMobilePhone=user1)
@@ -62,6 +66,6 @@ def dashboard_status_processing(**kwargs):
        
     return hasMobileNumber, hasMobileNumberMessage, hasMobileNumberStatusColor,\
         hasCityCountry, hasCityCountryMessage, hasCityCountryStatusColor, \
-            hasAddress, \
-            isMobileValidated, isMobileValidatedMessage, isMobileValidatedStatusColor, \
+        hasAddress, hasAddressMessage, hasAddressStatusColor, \
+        isMobileValidated, isMobileValidatedMessage, isMobileValidatedStatusColor, \
                 wantsToReceiveWeatherSMS, isForecastTimeSet \
