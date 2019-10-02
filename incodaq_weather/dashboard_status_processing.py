@@ -70,7 +70,11 @@ def dashboard_status_processing(**kwargs):
         isMobileValidatedMessage ="Someting went wrong and we cant confirm if the phone number is validated" 
         isMobileValidatedStatusColor = "red"
         wantsToReceiveWeatherSMS = False
+        wantsToReceiveMessage = "Something went wrong please contact our support"
+        wantsToReceiveStatusColor = "red"
         isForecastTimeSet = False
+        isForecastTimeSetMessage = "Something went wrong please contact our support"
+        isForecastTimeSetStatusColor = "red"
         
        
     return hasMobileNumber, hasMobileNumberMessage, hasMobileNumberStatusColor,\
