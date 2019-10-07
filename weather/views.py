@@ -10,6 +10,7 @@ import time
 import datetime
 from incodaq_weather.processing import *
 
+from tasks import send_daily_forecast_celery
 
 # Create your views here.
 
@@ -202,7 +203,7 @@ def send_daily_forecast(user, typeOfRequest):
             
             #send him a text message with weather forecast
             send_sms_message_api(userMobileNumber, processedForecastMessage)
-            return statusMessage
+            #return statusMessage
     else:
         return "To use the weather forecast feature the user needs to have a city and country inputed in the user profile secton."
 
@@ -218,6 +219,7 @@ def send_daily_forecast_to_all(request):
     users = custom_user.objects.all()
     typeOfRequest = "autoWeatherRequest"
     for user in users:
+        send_daily_forecast_celery(user, typeOfRequest)
         statusMessage = send_daily_forecast(user, typeOfRequest)
         #status message is not really used for now but can be used to print a list 
         #of users and who got sms and who not with a reason why not
