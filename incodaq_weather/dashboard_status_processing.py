@@ -63,6 +63,7 @@ def dashboard_status_processing(**kwargs):
 
 
     except:
+        #model instances are still not created
         hasMobileNumber = False
         hasMobileNumberMessage = "Something went wrong and we can not see if you have a phone number"
         hasMobileNumberStatusColor = "red"
