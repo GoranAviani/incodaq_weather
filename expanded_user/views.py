@@ -21,6 +21,8 @@ from django.contrib.auth import (
 from django.contrib.auth.forms import PasswordChangeForm
 from weather.views import get_string_for_forecast
 from api_relay.views import get_user_lat_long_api
+from .models import custom_user
+
 
 def sign_up_user(request):
     if request.method == 'POST':
@@ -96,13 +98,17 @@ def edit_user_profile(request):
                     # if lat long are in the model delete them because he 
                     # has not got enough info to have lat and long saved
                     #save all other users data and redirect dashboard
-
-                    profile_form_data.save()
-                    return redirect('dashboard')
-                
-                #else: 
-                  # profile_form_data = user_profile_form(instance=request.user)
-                  #  return render (request, 'expanded_user/edit_user_profile.html', {'profile_form_data' : profile_form_data})
+                    try:
+                        profile_form_data.save()
+                        custom_user.objects.filter(pk=request.user.pk).update(
+                        userLatitude=""
+                        ,userLongitude=""
+                        )
+                        return redirect('dashboard')
+                    except:
+                        #saves didnt work,dont save anything and send message to user
+                        profile_form_data = user_profile_form(instance=request.user)
+                        return render (request, 'expanded_user/edit_user_profile.html', {'profile_form_data' : profile_form_data})
         else:
             profile_form_data = user_profile_form(instance=request.user)
             return render (request, 'expanded_user/edit_user_profile.html', {'profile_form_data' : profile_form_data})
