@@ -39,8 +39,10 @@ def sign_up_user(request):
             registrationStatus = "You have succesfully registered and have been automatically logged in"
             statusColor = "green"
             user1 = {"user1": request.user} 
-            dashboardStatus = {}
-            dashboardStatus["dashboardStatus"] = [dashboardStatus, statusColor] 
+            
+            #TODO on variable
+            dashboardStatus = {"dashboardStatus": registrationStatus}
+            statusColor = {"statusColor": statusColor} 
             
             
             dashboardStatusMessage,dashboardStatusColor,hasMobileNumber, hasMobileNumberMessage, hasMobileNumberStatusColor, \
@@ -49,7 +51,7 @@ def sign_up_user(request):
             isMobileValidated, isMobileValidatedMessage, isMobileValidatedStatusColor, \
             wantsToReceiveWeatherSMS, wantsToReceiveWeatherSMSMessage, wantsToReceiveWeatherSMSStatusColor, \
             isForecastTimeSet, isForecastTimeSetMessage, isForecastTimeSetStatusColor \
-            = dashboard_status_processing(**user1, **dashboardStatus)
+            = dashboard_status_processing(**user1, **dashboardStatus, **statusColor)
             
             return render(request, 'dashboard.html',
             {

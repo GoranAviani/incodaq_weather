@@ -81,11 +81,10 @@ def dashboard_status_processing(**kwargs):
         isForecastTimeSetStatusColor = "red"
         
     try:
-        dashboardStatus = kwargs["dashboardStatus"]
-        dashboardStatusMessage = dashboardStatus[0]
-        dashboardStatusColor = dashboardStatus[1]
+        dashboardStatusMessage = kwargs["dashboardStatus"]
+        dashboardStatusColor = kwargs["statusColor"]
     except:
-        dashboardStatusMessage = "Hi there, welcome to your dashboard."
+        dashboardStatusMessage = "Hi, welcome to your dashboard."
         dashboardStatusColor = "green"
 
 
