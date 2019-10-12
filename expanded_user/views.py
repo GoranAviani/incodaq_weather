@@ -19,6 +19,9 @@ from django.contrib.auth import (
 
 
 from django.contrib.auth.forms import PasswordChangeForm
+from weather.views import get_string_for_forecast
+from api_relay.views import get_user_lat_long_api
+from .models import custom_user
 
 
 def sign_up_user(request):
@@ -69,9 +72,43 @@ def edit_user_profile(request):
     if request.user.is_authenticated:
         if request.method == 'POST':
             profile_form_data = user_profile_form(request.POST, instance = request.user)
-            if profile_form_data.is_valid():
-                profile_form_data.save()
-                return redirect('dashboard')
+            if profile_form_data.is_valid(): 
+                dataDict = profile_form_data.data.dict() #queryDict to python dict
+                userAddress = dataDict["userAddress"]
+                userCity = dataDict["userCity"]
+                userCountry = dataDict["userCountry"]
+
+                stringForAPILatLong = get_string_for_forecast(userAddress, userCity, userCountry)
+                if stringForAPILatLong != "failure":
+                    #make api call to get users lat long and if success save it into model
+                    apiStatus, userLat, userLong = get_user_lat_long_api(stringForAPILatLong)
+                    if apiStatus != "failure":
+                        #all checks are succesfull, save userlat,long to model with
+                        #new user data and redirect to dashboard
+                        manualForm = profile_form_data.save(commit=False)
+                        manualForm.userLatitude = userLat
+                        manualForm.userLongitude = userLong
+                        manualForm.save()
+                        return redirect('dashboard')
+                    else: 
+                        #api call didnt work,dont save anything and send message to user
+                        profile_form_data = user_profile_form(instance=request.user)
+                        return render (request, 'expanded_user/edit_user_profile.html', {'profile_form_data' : profile_form_data})
+                else:
+                    # if lat long are in the model delete them because he 
+                    # has not got enough info to have lat and long saved
+                    #save all other users data and redirect dashboard
+                    try:
+                        profile_form_data.save()
+                        custom_user.objects.filter(pk=request.user.pk).update(
+                        userLatitude=""
+                        ,userLongitude=""
+                        )
+                        return redirect('dashboard')
+                    except:
+                        #saves didnt work,dont save anything and send message to user
+                        profile_form_data = user_profile_form(instance=request.user)
+                        return render (request, 'expanded_user/edit_user_profile.html', {'profile_form_data' : profile_form_data})
         else:
             profile_form_data = user_profile_form(instance=request.user)
             return render (request, 'expanded_user/edit_user_profile.html', {'profile_form_data' : profile_form_data})
@@ -121,4 +158,3 @@ def edit_user_password(request):
             return render (request, 'expanded_user/change_user_password.html', {'password_form_data' : password_form_data, 'changePasswordStatus': changePasswordStatus, 'statusColor': statusColor })
     else:
         return render(request,'index.html') 
-

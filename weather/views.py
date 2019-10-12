@@ -159,11 +159,11 @@ def get_user_mobile_and_check_time(user, typeOfRequest):
 
 def get_string_for_forecast(userAddress, userCity, userCountry):
     stringToSend =""
-    if ((userCity != None) and (len(userCountry) > 1)):
-        if userAddress != None:
-            stringToSend = str(userAddress) + "," + str(userCity)+ "," + str(userCountry)
+    if ((userCity != None) and (len(userCity) > 1) and (len(userCountry) > 1)):
+        if ((userAddress != None) and (len(userAddress) > 1)):
+            return str(userAddress) + "," + str(userCity)+ "," + str(userCountry)
         else:
-            stringToSend = str(userCity) + "," + str(userCountry)
+            return str(userCity) + "," + str(userCountry)
     else: 
         return "failure"
     
@@ -193,10 +193,12 @@ def send_daily_forecast(user, typeOfRequest):
             #all user checks have passed and he is to receive his forecast sms
             
             #return users latitude and longitude from his address - api call
-            userLat, userLong = get_user_lat_long_api(stringForAPIForecast)
+            apiStatus, userLat, userLong = get_user_lat_long_api(stringForAPIForecast)
+            #TODO use apistatus var, save it to statuse message if failed. also add it for all api calls
             #print(userLat)
             #print(userLong)
-                
+
+
             #return weather forecast for his lat and long
             weatherForecast = get_user_weather_forecast_api(userLat, userLong)
            

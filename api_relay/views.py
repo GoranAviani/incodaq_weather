@@ -18,11 +18,13 @@ def get_user_lat_long_api(stringToSend):
         'q': stringToSend,
         'format': 'json'}}
     result = make_request_params(**apiUrl, **apiEndpoint, **params)
-    #get here lat and long
-    userLat = result[0]["lat"]
-    userLon = result[0]["lon"]
-    return userLat, userLon
-
+    
+    try:
+        userLat = result[0]["lat"]
+        userLon = result[0]["lon"]
+        return "success", userLat, userLon
+    except:
+        return "failure","",""
 
 def get_user_weather_forecast_api(userLen, userLong):
     
