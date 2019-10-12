@@ -16,7 +16,8 @@ def dashboard(request):
       
 
       user1 = {"user1": request.user} 
-      hasMobileNumber, hasMobileNumberMessage, hasMobileNumberStatusColor, \
+      
+      dashboardStatusMessage,dashboardStatusColor,hasMobileNumber, hasMobileNumberMessage, hasMobileNumberStatusColor, \
       hasCityCountry, hasCityCountryMessage, hasCityCountryStatusColor, \
       hasAddress,hasAddressMessage, hasAddressStatusColor, \
       isMobileValidated, isMobileValidatedMessage, isMobileValidatedStatusColor, \
@@ -25,35 +26,31 @@ def dashboard(request):
          = dashboard_status_processing(**user1)
       
     
-   
-      dashboardStatus = "Hi there " + request.user.username + ", welcome to your dashboard."
-      statusColor = "green"
-  
-      return render(request, 'dashboard.html', 
+      return render(request, 'dashboard.html',
       {
-      'dashboardStatus':dashboardStatus,
-      'statusColor': statusColor,
-      'hasMobileNumber': hasMobileNumber,
-      'hasMobileNumberMessage': hasMobileNumberMessage,
-      'hasMobileNumberStatusColor': hasMobileNumberStatusColor,
-      'hasCityCountry': hasCityCountry,
-      'hasCityCountryMessage': hasCityCountryMessage,
-      'hasCityCountryStatusColor': hasCityCountryStatusColor,
-      'hasAddress': hasAddress,
-      'hasAddressMessage': hasAddressMessage,
-      'hasAddressStatusColor': hasAddressStatusColor,
-      'isMobileValidated': isMobileValidated,
-       'isMobileValidatedMessage': isMobileValidatedMessage, 
-       'isMobileValidatedStatusColor': isMobileValidatedStatusColor,
-      
-      'wantsToReceiveWeatherSMS': wantsToReceiveWeatherSMS,
-      "wantsToReceiveWeatherSMSMessage": wantsToReceiveWeatherSMSMessage, 
-      "wantsToReceiveWeatherSMSStatusColor": wantsToReceiveWeatherSMSStatusColor,
+         'dashboardStatus':dashboardStatusMessage,
+         'statusColor': dashboardStatusColor,
+         'hasMobileNumber': hasMobileNumber,
+         'hasMobileNumberMessage': hasMobileNumberMessage,
+         'hasMobileNumberStatusColor': hasMobileNumberStatusColor,
+         'hasCityCountry': hasCityCountry,
+         'hasCityCountryMessage': hasCityCountryMessage,
+         'hasCityCountryStatusColor': hasCityCountryStatusColor,
+         'hasAddress': hasAddress,
+         'hasAddressMessage': hasAddressMessage,
+         'hasAddressStatusColor': hasAddressStatusColor,
+         'isMobileValidated': isMobileValidated,
+         'isMobileValidatedMessage': isMobileValidatedMessage, 
+         'isMobileValidatedStatusColor': isMobileValidatedStatusColor,
+         
+         'wantsToReceiveWeatherSMS': wantsToReceiveWeatherSMS,
+         "wantsToReceiveWeatherSMSMessage": wantsToReceiveWeatherSMSMessage, 
+         "wantsToReceiveWeatherSMSStatusColor": wantsToReceiveWeatherSMSStatusColor,
 
-      'isForecastTimeSet': isForecastTimeSet,
-      'isForecastTimeSetMessage': isForecastTimeSetMessage,
-      'isForecastTimeSetStatusColor': isForecastTimeSetStatusColor
-      })
+         'isForecastTimeSet': isForecastTimeSet,
+         'isForecastTimeSetMessage': isForecastTimeSetMessage,
+         'isForecastTimeSetStatusColor': isForecastTimeSetStatusColor
+         })
 
 
    else:

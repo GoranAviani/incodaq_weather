@@ -80,8 +80,16 @@ def dashboard_status_processing(**kwargs):
         isForecastTimeSetMessage = "Something went wrong please contact our support"
         isForecastTimeSetStatusColor = "red"
         
-       
-    return hasMobileNumber, hasMobileNumberMessage, hasMobileNumberStatusColor,\
+    try:
+        dashboardStatus = kwargs["dashboardStatus"]
+        dashboardStatusMessage = dashboardStatus[0]
+        dashboardStatusColor = dashboardStatus[1]
+    except:
+        dashboardStatusMessage = "Hi there, welcome to your dashboard."
+        dashboardStatusColor = "green"
+
+
+    return dashboardStatusMessage,dashboardStatusColor,hasMobileNumber, hasMobileNumberMessage, hasMobileNumberStatusColor,\
         hasCityCountry, hasCityCountryMessage, hasCityCountryStatusColor, \
         hasAddress, hasAddressMessage, hasAddressStatusColor, \
         isMobileValidated, isMobileValidatedMessage, isMobileValidatedStatusColor, \

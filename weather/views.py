@@ -180,8 +180,6 @@ def send_daily_forecast(user, typeOfRequest):
     
     if stringForAPIForecast != "failure":
         userMobileStatus, statusMessage, userMobileNumber = get_user_mobile_and_check_time(user, typeOfRequest)
-        #print(userMobileStatus)
-        #print(userMobileNumber)
 
         #if userForecastTimeList not "now" or in the last 2 hours (processig time was long)
         # then dont send because its still not the time do send sms
@@ -194,10 +192,7 @@ def send_daily_forecast(user, typeOfRequest):
             
             #return users latitude and longitude from his address - api call
             apiStatus, userLat, userLong = get_user_lat_long_api(stringForAPIForecast)
-            #TODO use apistatus var, save it to statuse message if failed. also add it for all api calls
-            #print(userLat)
-            #print(userLong)
-
+            #TODO use apistatus var, save it to statuse message. also add it for all api calls
 
             #return weather forecast for his lat and long
             weatherForecast = get_user_weather_forecast_api(userLat, userLong)

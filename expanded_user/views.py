@@ -22,7 +22,7 @@ from django.contrib.auth.forms import PasswordChangeForm
 from weather.views import get_string_for_forecast
 from api_relay.views import get_user_lat_long_api
 from .models import custom_user
-
+from incodaq_weather.dashboard_status_processing import dashboard_status_processing
 
 def sign_up_user(request):
     if request.method == 'POST':
@@ -35,9 +35,47 @@ def sign_up_user(request):
             raw_password = signup_form_data.cleaned_data.get('password1')
             form_login = authenticate(username=form.username, password=raw_password)
             login(request, form_login)
+            
             registrationStatus = "You have succesfully registered and have been automatically logged in"
             statusColor = "green"
-            return render(request, 'dashboard.html', {'dashboardStatus':registrationStatus, 'statusColor': statusColor})
+            user1 = {"user1": request.user} 
+            dashboardStatus = {}
+            dashboardStatus["dashboardStatus"] = [dashboardStatus, statusColor] 
+            
+            
+            dashboardStatusMessage,dashboardStatusColor,hasMobileNumber, hasMobileNumberMessage, hasMobileNumberStatusColor, \
+            hasCityCountry, hasCityCountryMessage, hasCityCountryStatusColor, \
+            hasAddress,hasAddressMessage, hasAddressStatusColor, \
+            isMobileValidated, isMobileValidatedMessage, isMobileValidatedStatusColor, \
+            wantsToReceiveWeatherSMS, wantsToReceiveWeatherSMSMessage, wantsToReceiveWeatherSMSStatusColor, \
+            isForecastTimeSet, isForecastTimeSetMessage, isForecastTimeSetStatusColor \
+            = dashboard_status_processing(**user1, **dashboardStatus)
+            
+            return render(request, 'dashboard.html',
+            {
+                'dashboardStatus':dashboardStatusMessage,
+                'statusColor': dashboardStatusColor,
+                'hasMobileNumber': hasMobileNumber,
+                'hasMobileNumberMessage': hasMobileNumberMessage,
+                'hasMobileNumberStatusColor': hasMobileNumberStatusColor,
+                'hasCityCountry': hasCityCountry,
+                'hasCityCountryMessage': hasCityCountryMessage,
+                'hasCityCountryStatusColor': hasCityCountryStatusColor,
+                'hasAddress': hasAddress,
+                'hasAddressMessage': hasAddressMessage,
+                'hasAddressStatusColor': hasAddressStatusColor,
+                'isMobileValidated': isMobileValidated,
+                'isMobileValidatedMessage': isMobileValidatedMessage, 
+                'isMobileValidatedStatusColor': isMobileValidatedStatusColor,
+                
+                'wantsToReceiveWeatherSMS': wantsToReceiveWeatherSMS,
+                "wantsToReceiveWeatherSMSMessage": wantsToReceiveWeatherSMSMessage, 
+                "wantsToReceiveWeatherSMSStatusColor": wantsToReceiveWeatherSMSStatusColor,
+
+                'isForecastTimeSet': isForecastTimeSet,
+                'isForecastTimeSetMessage': isForecastTimeSetMessage,
+                'isForecastTimeSetStatusColor': isForecastTimeSetStatusColor
+                })
 
         else:
 
