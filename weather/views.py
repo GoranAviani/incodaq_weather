@@ -157,20 +157,28 @@ def get_user_mobile_and_check_time(user, typeOfRequest):
     #statusMessage = "Forecast time for this user is not now or is in wrong format. "
     return status, statusMessageWeather, resuresultMobileNumber
 
-#the actual sending of the forecast
-def send_daily_forecast(user, typeOfRequest):
+def get_string_for_forecast(userAddress, userCity, userCountry):
     stringToSend =""
-    userAddress = user.userAddress
-    userCity = user.userCity
-    #CountryField object from the django-countries app. Defined in extended user model
-    userCountry = user.userCountry.name
-    
     if ((userCity != None) and (len(userCountry) > 1)):
         if userAddress != None:
             stringToSend = str(userAddress) + "," + str(userCity)+ "," + str(userCountry)
         else:
             stringToSend = str(userCity) + "," + str(userCountry)
+    else: 
+        return "failure"
+    
+    return stringToSend
 
+#the actual sending of the forecast
+def send_daily_forecast(user, typeOfRequest):
+    userAddress = user.userAddress
+    userCity = user.userCity
+    #CountryField object from the django-countries app. Defined in extended user model
+    userCountry = user.userCountry.name
+    
+    stringForAPIForecast = get_string_for_forecast(userAddress, userCity, userCountry)
+    
+    if stringForAPIForecast != "failure":
         userMobileStatus, statusMessage, userMobileNumber = get_user_mobile_and_check_time(user, typeOfRequest)
         #print(userMobileStatus)
         #print(userMobileNumber)
@@ -185,8 +193,7 @@ def send_daily_forecast(user, typeOfRequest):
             #all user checks have passed and he is to receive his forecast sms
             
             #return users latitude and longitude from his address - api call
-            #userLong = get_user_lat_long(stringToSend)
-            userLat, userLong = get_user_lat_long_api(stringToSend)
+            userLat, userLong = get_user_lat_long_api(stringForAPIForecast)
             #print(userLat)
             #print(userLong)
                 
