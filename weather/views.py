@@ -160,7 +160,7 @@ def get_user_mobile_and_check_time(user, typeOfRequest):
 def get_string_for_forecast(userAddress, userCity, userCountry):
     stringToSend =""
     if ((userCity != None) and (len(userCountry) > 1)):
-        if userAddress != None:
+        if ((userAddress != None) and (len(userAddress) > 1)):
             stringToSend = str(userAddress) + "," + str(userCity)+ "," + str(userCountry)
         else:
             stringToSend = str(userCity) + "," + str(userCountry)
