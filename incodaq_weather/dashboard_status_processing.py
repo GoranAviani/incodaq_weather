@@ -67,7 +67,8 @@ def dashboard_status_processing(**kwargs):
        
 
     except:
-        #model instances are still not created there fore default values (false) will apply
+        #model instances are still not created therefore default values (set as false in the 
+        # begginig of this function) will apply
         pass
         
     #Display custom dashboard message if there is any       
