@@ -6,80 +6,72 @@ def dashboard_status_processing(**kwargs):
  
     user1 = kwargs["user1"]
 
+    #Dashboard default values are false.
+    hasCityCountry = False
+    hasCityCountryMessage = "City and Country are required fields for weather forecast"
+    hasCityCountryStatusColor = "Red"
+   
+    hasAddress = False
+    hasAddressMessage = "Address is required to receive a more precise forecast"
+    hasAddressStatusColor = "yellow"
+
+    hasMobileNumber = False
+    hasMobileNumberMessage = "Your account has no mobile number"
+    hasMobileNumberStatusColor = "red"
+
+    isForecastTimeSet = False
+    isForecastTimeSetMessage = "Forecast time is not set"
+    isForecastTimeSetStatusColor = "red"
+
+    isMobileValidated = False
+    isMobileValidatedMessage = "Your mobile phone is not validated"
+    isMobileValidatedStatusColor = "red"
+
+    wantsToReceiveWeatherSMS = False
+    wantsToReceiveWeatherSMSMessage = "To receive messages select that inside your mobile configuration"
+    wantsToReceiveWeatherSMSStatusColor = "red"    
+
     if (user1.userCity is not None and (len(user1.userCountry.name)>1) ):
         hasCityCountry = True
         hasCityCountryMessage = "City and Country are inputed"
         hasCityCountryStatusColor = "Green"
-    else:
-        hasCityCountry = False
-        hasCityCountryMessage = "City and Country are required fields for weather forecast"
-        hasCityCountryStatusColor = "Red"
+
 
     if user1.userAddress is not None:
         hasAddress = True
         hasAddressMessage = "Address is inputed"
         hasAddressStatusColor = "green"
-    else:
-        hasAddress = False
-        hasAddressMessage = "Address is required to receive a more precise forecast"
-        hasAddressStatusColor = "yellow"
-   
+
+   #Check mobile number, forecast time etc only if instance of user_phone object exist
     try:
         found_u_p_data = user_phone.objects.get(userMobilePhone=user1)
         if found_u_p_data.phoneNumber is not None and len(found_u_p_data.phoneNumber) != 0:
             hasMobileNumber = True
             hasMobileNumberMessage = "You have inputed a mobile number"
             hasMobileNumberStatusColor = "green"
-            
 
-        else:
-            hasMobileNumber = False
-            hasMobileNumberMessage = "Your account has no mobile number"
-            hasMobileNumberStatusColor = "red"
         if ((found_u_p_data.timeWeatherSMS is not None) and (found_u_p_data.timeWeatherSMS is not "")):
             isForecastTimeSet = True
             isForecastTimeSetMessage = "Forecast time is set"
             isForecastTimeSetStatusColor = "green"
-        else:
-            isForecastTimeSet = False
-            isForecastTimeSetMessage = "Forecast time is not set"
-            isForecastTimeSetStatusColor = "red"
 
         isMobileValidated = found_u_p_data.isMobileValidated 
         if isMobileValidated:
             isMobileValidatedMessage = "your mobile phone has been validated"
             isMobileValidatedStatusColor = "green"
-        else:
-            isMobileValidatedMessage = "Your mobile phone is not validated"
-            isMobileValidatedStatusColor = "red"
-
+       
         wantsToReceiveWeatherSMS = found_u_p_data.wantsToReceiveWeatherSMS 
         if wantsToReceiveWeatherSMS:
             wantsToReceiveWeatherSMSMessage = "You have selected to receive forecast text messages"
             wantsToReceiveWeatherSMSStatusColor = "green"
-        else:
-            wantsToReceiveWeatherSMSMessage = "To receive messages select that inside your mobile configuration"
-            wantsToReceiveWeatherSMSStatusColor = "red"    
-
+       
 
     except:
-        #model instances are still not created
-        hasMobileNumber = False
-        hasMobileNumberMessage = "Something went wrong and we can not see if you have a phone number"
-        hasMobileNumberStatusColor = "red"
-
-        isMobileValidated = False
-        isMobileValidatedMessage ="Someting went wrong and we cant confirm if the phone number is validated" 
-        isMobileValidatedStatusColor = "red"
-
-        wantsToReceiveWeatherSMS = False
-        wantsToReceiveWeatherSMSMessage = "Something went wrong please contact our support"
-        wantsToReceiveWeatherSMSStatusColor = "red"
-
-        isForecastTimeSet = False
-        isForecastTimeSetMessage = "Something went wrong please contact our support"
-        isForecastTimeSetStatusColor = "red"
+        #model instances are still not created therefore default values (set as false in the 
+        # begginig of this function) will apply
+        pass
         
+    #Display custom dashboard message if there is any       
     try:
         dashboardStatusMessage = kwargs["dashboardStatus"]
         dashboardStatusColor = kwargs["statusColor"]
