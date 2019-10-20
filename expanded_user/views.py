@@ -129,12 +129,21 @@ def edit_user_profile(request):
                         manualForm.userLatitude = userLat
                         manualForm.userLongitude = userLong
                         manualForm.save()
+                        #User data succesfully saved.
                         return redirect('dashboard')
                     else: 
                         #api call didnt work,dont save anything, return do dashboard and send message to user
-                        # Something went wrong with retrieving forecast location data. Please try again or contact support.
+                        # 
+                        userProfileMessage = "Something went wrong with retrieving forecast location data. Please try again or contact support."
+                        messageColor = "red"
                         profileFormData = user_profile_form(instance=request.user)
-                        return render (request, 'expanded_user/edit_user_profile.html', {'profileFormData' : profileFormData})
+                        return render (request,'expanded_user/edit_user_profile.html', 
+                        {'profileFormData' : profileFormData
+                        ,'userProfileMessage': userProfileMessage
+                        ,'messageColor': messageColor
+                        })
+
+                
                 else:
                     # if lat long are in the model delete them because he 
                     # has not got enough info to have lat and long saved
@@ -146,11 +155,18 @@ def edit_user_profile(request):
                         userLatitude=""
                         ,userLongitude=""
                         )
+                        
                         return redirect('dashboard')
                     except:
                         #saves didnt work,dont save anything and send message to user
+                        userProfileMessage = "Not enough data for the forecast. Data was not properly saved. Please try again or contact support."
+                        messageColor = "red"
                         profileFormData = user_profile_form(instance=request.user)
-                        return render (request, 'expanded_user/edit_user_profile.html', {'profileFormData' : profileFormData})
+                        return render (request,'expanded_user/edit_user_profile.html', 
+                        {'profileFormData' : profileFormData
+                        ,'userProfileMessage': userProfileMessage
+                        ,'messageColor': messageColor
+                        })
             else:
                 #Form was not validated. Return a proper message to the user.
                 userProfileMessage = "Data was not properly validated. Please try again."
