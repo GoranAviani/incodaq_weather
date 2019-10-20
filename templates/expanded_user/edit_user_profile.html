@@ -2,8 +2,12 @@
 
 {% block content %}
 
-<div class="container margin-30-top">test = profile_form_data
+<div class="container margin-30-top">
 <form method="post">
+{% if userProfileMessage %}
+<small style="color: {{messageColor}}"> {{ userProfileMessage }}</small>
+{% endif %}
+<br/>
     {% csrf_token %}
     Username: {{profile_form_data.username}}
     <br/>

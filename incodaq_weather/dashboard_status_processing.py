@@ -76,7 +76,7 @@ def dashboard_status_processing(**kwargs):
         dashboardStatusMessage = kwargs["dashboardStatus"]
         dashboardStatusColor = kwargs["statusColor"]
     except:
-        dashboardStatusMessage = "Hi, welcome to your dashboard."
+        dashboardStatusMessage = "Hello and welcome to your dashboard."
         dashboardStatusColor = "green"
 
 

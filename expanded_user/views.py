@@ -131,13 +131,15 @@ def edit_user_profile(request):
                         manualForm.save()
                         return redirect('dashboard')
                     else: 
-                        #api call didnt work,dont save anything and send message to user
+                        #api call didnt work,dont save anything, return do dashboard and send message to user
+                        # Something went wrong with retrieving forecast location data. Please try again or contact support.
                         profile_form_data = user_profile_form(instance=request.user)
                         return render (request, 'expanded_user/edit_user_profile.html', {'profile_form_data' : profile_form_data})
                 else:
                     # if lat long are in the model delete them because he 
                     # has not got enough info to have lat and long saved
                     #save all other users data and redirect dashboard
+                    #Send a message: Not enough data needed for weather forecast
                     try:
                         profile_form_data.save()
                         custom_user.objects.filter(pk=request.user.pk).update(
@@ -149,9 +151,28 @@ def edit_user_profile(request):
                         #saves didnt work,dont save anything and send message to user
                         profile_form_data = user_profile_form(instance=request.user)
                         return render (request, 'expanded_user/edit_user_profile.html', {'profile_form_data' : profile_form_data})
+            else:
+                #Form was not validated. Return a proper message to the user.
+                userProfileMessage = "Data was not properly validated. Please try again."
+                messageColor = "red"
+                profile_form_data = user_profile_form(instance=request.user)
+                return render (request,'expanded_user/edit_user_profile.html', 
+                {'profile_form_data' : profile_form_data
+                ,'userProfileMessage': userProfileMessage
+                ,'messageColor': messageColor
+                })
+        
+        
         else:
+            #Opening the form
+            userProfileMessage = "Here you can save location that will be used to determine your forecast."
+            messageColor = "green"
             profile_form_data = user_profile_form(instance=request.user)
-            return render (request, 'expanded_user/edit_user_profile.html', {'profile_form_data' : profile_form_data})
+            return render (request,'expanded_user/edit_user_profile.html', 
+            {'profile_form_data' : profile_form_data
+            ,'userProfileMessage': userProfileMessage
+            ,'messageColor': messageColor
+            })
     else:
         return render(request,'index.html')
 

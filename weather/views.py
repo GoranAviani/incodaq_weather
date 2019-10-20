@@ -23,8 +23,6 @@ def check_if_time_to_send_sms(userForecastTimeList):
     nowMinutes = nowTime.minute
     userHours = int(userForecastTimeList[0])
     userMinutes = int(userForecastTimeList[1])
-
-
     
     if (userHours == nowHours):
         pass 
@@ -44,7 +42,6 @@ def check_if_time_to_send_sms(userForecastTimeList):
     
     
     
-
 def check_user_weather_SMS_time_format(usersWeatherSMSTimeList):
     #check if [0] us between 0 and 24 and if [1] is 0 or 30, if inside
     #these parameters it is ok, if not the time is wrong
