@@ -14,16 +14,17 @@ from .tasks import *
 
 # Create your views here.
 
-def check_if_time_to_send_sms(userForecastTimeList):
+def check_if_time_to_send_sms(userForecastTimeList, userTimeZone):
     #if time not to send sms return "DontSendSMS"
     # if time to send sms has passed by 29 minutes then send the sms (assuming it takes 29 minutes ti send all sms)
     #if it didnt pass then it is now or will be sent in the next cronjon (every 30 minutes cron job runs)
     nowTime = datetime.datetime.now()
     nowHours = nowTime.hour
     nowMinutes = nowTime.minute
-    userHours = int(userForecastTimeList[0])
+    userHours = int(userForecastTimeList[0]) - int(userTimeZone)
     userMinutes = int(userForecastTimeList[1])
-    
+
+
     if (userHours == nowHours):
         pass 
     else:
@@ -67,14 +68,16 @@ def check_user_weather_SMS_time_format(usersWeatherSMSTimeList):
     return "sendSMS", usersWeatherSMSTimeList
 
 
-def check_user_forecast_time(user_phone_instance):
+def check_user_forecast_time(user_phone_instance, user):
     usersWeatherSMSTime = user_phone_instance.timeWeatherSMS
+    userTimeZone = user.userTimeZone
     charForSplit = ":" #time hours and minutes are splitted by :
+    #TODO splitting by char and checking hour and minutes is not needed now
     status, usersWeatherSMSTimeList= split_by_char(usersWeatherSMSTime, charForSplit)
     if status != "error":
         status, usersWeatherSMSTimeList = check_user_weather_SMS_time_format(usersWeatherSMSTimeList)
         if status != "error":
-            status = check_if_time_to_send_sms(usersWeatherSMSTimeList)
+            status = check_if_time_to_send_sms(usersWeatherSMSTimeList, userTimeZone)
             if status == "DontSendSMS":
                 return "DontSendSMS", "Time set for weather forecast is not now."
         else:
@@ -143,7 +146,7 @@ def get_user_mobile_and_check_time(user, typeOfRequest):
         status = "SendSMS"
         statusMessageWeather = "Mobile Phone approved. Forecast time check is skipped for manual weather request."
     else:
-        status, statusMessageWeather = check_user_forecast_time(user_phone_instance)
+        status, statusMessageWeather = check_user_forecast_time(user_phone_instance, user)
     
     if status != "DontSendSMS":
         status, statusMessageMobile, resuresultMobileNumber = get_mobile_phone(user_phone_instance)
