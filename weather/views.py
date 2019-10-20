@@ -168,22 +168,12 @@ def get_string_for_forecast(userAddress, userCity, userCountry):
 
 #the actual sending of the forecast
 def send_daily_forecast(user, typeOfRequest):
-    #userAddress = user.userAddress
     userCity = user.userCity
     userLat = user.userLatitude
     userLong = user.userLongitude
-    #CountryField object from the django-countries app. Defined in extended user model
-    #userCountry = user.userCountry.name
 
-    
-    #Not used except for checking if user has enough because edit_user_profile is used when saving users profile.
-    #lat long are also determined there and saved in users model.
-    # TODO remove
-    #stringForAPIForecast = get_string_for_forecast(userAddress, userCity, userCountry)
-    
     if ((userLat != None) and (userLong != None)):
         userMobileStatus, statusMessage, userMobileNumber = get_user_mobile_and_check_time(user, typeOfRequest)
-
         #if userForecastTimeList not "now" or in the last 2 hours (processig time was long)
         # then dont send because its still not the time do send sms
         #else the time is now so please send sms to user
@@ -192,14 +182,6 @@ def send_daily_forecast(user, typeOfRequest):
             return statusMessage # user mobile is not approved /does not want to receive sms
         else:
             #all user checks have passed and he is to receive his forecast sms
-            
-            # NOT user because now the data is saved in users model
-            #return users latitude and longitude from his address - api call
-            #apiStatus, userLat, userLong = get_user_lat_long_api(stringForAPIForecast)
-            #TODO use apistatus var, save it to statuse message. also add it for all api calls
-            # TODO remove
-
-
             #return weather forecast for his lat and long
             try:
                 weatherForecast = get_user_weather_forecast_api(userLat, userLong)
@@ -219,7 +201,7 @@ def send_daily_forecast(user, typeOfRequest):
                 send_sms_message_api(userMobileNumber, processedForecastMessage)
                 return statusMessage
             except:
-                return "Something went wrong with sending SMS messages. Plese contact support."
+                return "Something went wrong with sending the SMS messages. Plese contact support."
             
     else:
         return "To use the weather forecast feature the user needs to have a minimum of a city and country saved in the user profile."
