@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from .models import custom_user
-
+from incodaq_weather.choice import WORLD_TIME_ZONES
 
 class user_signup_form(UserCreationForm):
     username = forms.CharField(label='', widget=forms.TextInput(attrs={'class':'form-control'}))
@@ -27,6 +27,8 @@ class user_profile_form(forms.ModelForm):
         attrs={'readonly':'readonly','class':'form-control'}))
     email = forms.EmailField(label='', widget=forms.TextInput(
         attrs={'class':'form-control'}))
+    worldTimeZones = forms.ChoiceField(required=False, widget=forms.Select, choices=WORLD_TIME_ZONES,)
+    
     class Meta:
         model = custom_user
         fields = (
@@ -38,6 +40,7 @@ class user_profile_form(forms.ModelForm):
             'userCountry',
             'userCity',
             'userAddress',
+            'worldTimeZones',
 )
 
 
