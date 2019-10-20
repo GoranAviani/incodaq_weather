@@ -201,8 +201,11 @@ def send_daily_forecast(user, typeOfRequest):
 
 
             #return weather forecast for his lat and long
-            weatherForecast = get_user_weather_forecast_api(userLat, userLong)
-           
+            try:
+                weatherForecast = get_user_weather_forecast_api(userLat, userLong)
+            except:
+                return "Something went wrong with getting the weather forecast. Plese contact support."
+            
             #Process raw api data to text about a forecast 
             processedForecastMessage = process_forecast_for_sms_message(weatherForecast, userCity)
             #print(processedForecastMessage)
@@ -212,8 +215,12 @@ def send_daily_forecast(user, typeOfRequest):
             time.sleep(0.5)
             
             #send him a text message with weather forecast
-            send_sms_message_api(userMobileNumber, processedForecastMessage)
-            return statusMessage
+            try:
+                send_sms_message_api(userMobileNumber, processedForecastMessage)
+                return statusMessage
+            except:
+                return "Something went wrong with sending SMS messages. Plese contact support."
+            
     else:
         return "To use the weather forecast feature the user needs to have a minimum of a city and country saved in the user profile."
 
