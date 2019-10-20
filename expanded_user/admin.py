@@ -17,7 +17,7 @@ class custom_user_admin(UserAdmin):
     fieldsets = (
     (None, {'fields': ('username', 'email', 'password')}),
    ('Basic info', {'fields': ( 'first_name', 'last_name')}),
-    ('Other info', {'fields': ('userCity', 'userCountry', 'userLatitude', 'userLongitude')}),
+    ('Other info', {'fields': ('userCity', 'userCountry','userTimeZone','userLatitude', 'userLongitude')}),
 
     #('Other info', {'fields': ( 'userMobilenumber','userCity', 'userCountry')}),
   ('Permissions', {'fields': ('is_superuser', 'is_staff', 'is_active','groups')}),
