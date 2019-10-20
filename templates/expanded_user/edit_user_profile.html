@@ -9,20 +9,20 @@
 {% endif %}
 <br/>
     {% csrf_token %}
-    Username: {{profile_form_data.username}}
+    Username: {{profileFormData.username}}
     <br/>
-    First name: {{profile_form_data.first_name}}
+    First name: {{profileFormData.first_name}}
     <br/>
-    Last name: {{profile_form_data.last_name}}
+    Last name: {{profileFormData.last_name}}
     <br/>
-    Email: {{profile_form_data.email}}
+    Email: {{profileFormData.email}}
     <br/>
-    Address: {{profile_form_data.userAddress}}
+    Address: {{profileFormData.userAddress}}
     Please type in Address if you want to get a better weather forecast*
     <br/>
-    Town: {{profile_form_data.userCity}} Please type in City if you want to get a weather forecast* **
+    Town: {{profileFormData.userCity}} Please type in City if you want to get a weather forecast* **
     <br/>
-    Country: {{profile_form_data.userCountry}} Please type in Country if you want to get a weather forecast* **
+    Country: {{profileFormData.userCountry}} Please type in Country if you want to get a weather forecast* **
     <br/>
     <br/><br/>
     <button type="submit" class="btn btn-primary solid width-100 hover-black-text" >Save</button>
