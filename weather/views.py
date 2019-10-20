@@ -106,10 +106,10 @@ def get_mobile_phone(user_phone_instance):
         statusMessage = "Mobile phone needs to be validated and approved by user to receive weather forecast text messages."
         return status, statusMessage, result
 
-def process_forecast_for_sms_message(result, userCity):
+def process_forecast_for_sms_message(result,forecastLocation):
     processedMessage = ("Today's forecast for {}! Now its {}. LT: {}, HT: {}. {} Your Amibit!" 
     .format(
-    userCity, 
+    forecastLocation, 
     str(round(result["currently"]["temperature"])),
     str(round(result["daily"]["data"][0]["temperatureLow"])),
     str(round(result["daily"]["data"][0]["temperatureHigh"])), 
@@ -168,14 +168,20 @@ def get_string_for_forecast(userAddress, userCity, userCountry):
 
 #the actual sending of the forecast
 def send_daily_forecast(user, typeOfRequest):
-    userAddress = user.userAddress
+    #userAddress = user.userAddress
     userCity = user.userCity
+    userLat = user.userLatitude
+    userLong = user.userLongitude
     #CountryField object from the django-countries app. Defined in extended user model
-    userCountry = user.userCountry.name
+    #userCountry = user.userCountry.name
+
     
-    stringForAPIForecast = get_string_for_forecast(userAddress, userCity, userCountry)
+    #Not used except for checking if user has enough because edit_user_profile is used when saving users profile.
+    #lat long are also determined there and saved in users model.
+    # TODO remove
+    #stringForAPIForecast = get_string_for_forecast(userAddress, userCity, userCountry)
     
-    if stringForAPIForecast != "failure":
+    if ((userLat != None) and (userLong != None)):
         userMobileStatus, statusMessage, userMobileNumber = get_user_mobile_and_check_time(user, typeOfRequest)
 
         #if userForecastTimeList not "now" or in the last 2 hours (processig time was long)
@@ -187,9 +193,12 @@ def send_daily_forecast(user, typeOfRequest):
         else:
             #all user checks have passed and he is to receive his forecast sms
             
+            # NOT user because now the data is saved in users model
             #return users latitude and longitude from his address - api call
-            apiStatus, userLat, userLong = get_user_lat_long_api(stringForAPIForecast)
+            #apiStatus, userLat, userLong = get_user_lat_long_api(stringForAPIForecast)
             #TODO use apistatus var, save it to statuse message. also add it for all api calls
+            # TODO remove
+
 
             #return weather forecast for his lat and long
             weatherForecast = get_user_weather_forecast_api(userLat, userLong)
@@ -206,7 +215,7 @@ def send_daily_forecast(user, typeOfRequest):
             send_sms_message_api(userMobileNumber, processedForecastMessage)
             return statusMessage
     else:
-        return "To use the weather forecast feature the user needs to have a city and country inputed in the user profile secton."
+        return "To use the weather forecast feature the user needs to have a minimum of a city and country saved in the user profile."
 
 
     
