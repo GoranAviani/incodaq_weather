@@ -12,7 +12,7 @@ class custom_user(AbstractUser):
     userCountry = CountryField(blank=True)
     userLatitude = models.CharField(max_length=30,null=True, blank=True)
     userLongitude = models.CharField(max_length=30,null=True, blank=True)
-
+    userTimeZone = models.CharField(max_length=4)
     #userSecondEmail = models.EmailField(max_length=50,null=True, blank=True)
 
 

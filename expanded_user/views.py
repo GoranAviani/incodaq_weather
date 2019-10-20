@@ -117,6 +117,7 @@ def edit_user_profile(request):
                 userAddress = dataDict["userAddress"]
                 userCity = dataDict["userCity"]
                 userCountry = dataDict["userCountry"]
+                userTimeZone = dataDict["userTimeZone"]
 
                 stringForAPILatLong = get_string_for_forecast(userAddress, userCity, userCountry)
                 if stringForAPILatLong != "failure":
