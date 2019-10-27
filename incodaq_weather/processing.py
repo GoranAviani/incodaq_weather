@@ -1,7 +1,7 @@
 def split_by_char(someString, charForSplit):
     
     try:
-        isString = isinstance(someString, str)
+        isString = someString.isalpha()
     except:
         status = "error"
         result = ""
