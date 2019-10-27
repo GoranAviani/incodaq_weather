@@ -6,7 +6,12 @@ def split_by_char(someString, charForSplit):
         status = "error"
         result = ""
         return status, result
-
+    
+    if len(charForSplit) == 0:
+        status = "error"
+        result = ""
+        return status, result
+    
     #is chat for splitting is missing from the string
     if charForSplit not in someString:
         status = "error"
