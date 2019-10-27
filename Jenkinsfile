@@ -1,4 +1,4 @@
-#!groovy
+#!/bin/bash
 
 node {
 
@@ -8,24 +8,19 @@ node {
 
             sh 'git log HEAD^..HEAD --pretty="%h %an - %s" > GIT_CHANGES'
             def lastChanges = readFile('GIT_CHANGES')
-            slackSend color: "warning", message: "Started `${env.JOB_NAME}#${env.BUILD_NUMBER}`\n\n_The changes:_\n${lastChanges}"
-
-        stage 'Test'
-            sh 'virtualenv env -p python3.5'
-            sh '. env/bin/activate'
-            sh 'env/bin/pip install -r requirements.txt'
-            sh 'env/bin/python3.5 manage.py test --testrunner=incodaq_weather.tests.test_runners.NoDbTestRunner'
-
-        // stage 'Deploy'
-        //    sh './deployment/deploy_prod.sh'
-
-        stage 'Publish results'
-            slackSend color: "good", message: "Build successful: `${env.JOB_NAME}#${env.BUILD_NUMBER}` <${env.BUILD_URL}|Open in Jenkins>"
+            echo lastChanges
+            
+        stage 'Update Python Modules and test'
+            sh 'virtualenv env1'
+            sh '. env1/bin/activate && pip3 install --upgrade -r requirements.txt && python ./manage.py test'
+ 
+        stage 'Deploy'
+        echo 'Deployment is coming soon'
+      
     }
 
     catch (err) {
-        slackSend color: "danger", message: "Build failed :face_with_head_bandage: \n`${env.JOB_NAME}#${env.BUILD_NUMBER}` <${env.BUILD_URL}|Open in Jenkins>"
-
+        
         throw err
     }
 
