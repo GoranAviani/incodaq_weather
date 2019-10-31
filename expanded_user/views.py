@@ -38,7 +38,7 @@ def sign_up_user(request):
             
             registrationStatus = "You have succesfully registered and have been automatically logged in"
             statusColor = "green"
-            user1 = {"user1": request.user} 
+            user = {"user1": request.user} 
             
             #TODO on variable
             dashboardStatus = {"dashboardStatus": registrationStatus}
@@ -51,7 +51,7 @@ def sign_up_user(request):
             isMobileValidated, isMobileValidatedMessage, isMobileValidatedStatusColor, \
             wantsToReceiveWeatherSMS, wantsToReceiveWeatherSMSMessage, wantsToReceiveWeatherSMSStatusColor, \
             isForecastTimeSet, isForecastTimeSetMessage, isForecastTimeSetStatusColor \
-            = dashboard_status_processing(**user1, **dashboardStatus, **statusColor)
+            = dashboard_status_processing(**user, **dashboardStatus, **statusColor)
             
             return render(request, 'dashboard.html',
             {
@@ -205,13 +205,48 @@ def edit_user_password(request):
                 password_form_data.save()
                 update_session_auth_hash(request, password_form_data.user)
                 
-                changePasswordStatus = "You have succesfully changed your password."
-                statusColor = "green"
-                return render(request, 'dashboard.html', {'dashboardStatus':changePasswordStatus, 'statusColor': statusColor})
+                dashboardStatus = {"dashboardStatus": "You have succesfully changed your password."}
+                statusColor = {"statusColor": "green"}
+                user = {"user1": request.user}
                 
-                #To be removed after the review
-                #return render(request,'expanded_user/change_user_password_done.html')
+
+                #TODO This is built as a quick fix, review in needed to shorten it and make calling dashboard more reusable
+                dashboardStatusMessage,dashboardStatusColor,hasMobileNumber, hasMobileNumberMessage, hasMobileNumberStatusColor, \
+                hasCityCountry, hasCityCountryMessage, hasCityCountryStatusColor, \
+                hasAddress,hasAddressMessage, hasAddressStatusColor, \
+                isMobileValidated, isMobileValidatedMessage, isMobileValidatedStatusColor, \
+                wantsToReceiveWeatherSMS, wantsToReceiveWeatherSMSMessage, wantsToReceiveWeatherSMSStatusColor, \
+                isForecastTimeSet, isForecastTimeSetMessage, isForecastTimeSetStatusColor \
+                = dashboard_status_processing(**user, **dashboardStatus, **statusColor)
             
+                return render(request, 'dashboard.html',
+                {
+                    'dashboardStatus':dashboardStatusMessage,
+                    'statusColor': dashboardStatusColor,
+                    'hasMobileNumber': hasMobileNumber,
+                    'hasMobileNumberMessage': hasMobileNumberMessage,
+                    'hasMobileNumberStatusColor': hasMobileNumberStatusColor,
+                    'hasCityCountry': hasCityCountry,
+                    'hasCityCountryMessage': hasCityCountryMessage,
+                    'hasCityCountryStatusColor': hasCityCountryStatusColor,
+                    'hasAddress': hasAddress,
+                    'hasAddressMessage': hasAddressMessage,
+                    'hasAddressStatusColor': hasAddressStatusColor,
+                    'isMobileValidated': isMobileValidated,
+                    'isMobileValidatedMessage': isMobileValidatedMessage, 
+                    'isMobileValidatedStatusColor': isMobileValidatedStatusColor,
+                    
+                    'wantsToReceiveWeatherSMS': wantsToReceiveWeatherSMS,
+                    "wantsToReceiveWeatherSMSMessage": wantsToReceiveWeatherSMSMessage, 
+                    "wantsToReceiveWeatherSMSStatusColor": wantsToReceiveWeatherSMSStatusColor,
+
+                    'isForecastTimeSet': isForecastTimeSet,
+                    'isForecastTimeSetMessage': isForecastTimeSetMessage,
+                    'isForecastTimeSetStatusColor': isForecastTimeSetStatusColor
+                    })
+
+
+
             
             else:
                 
