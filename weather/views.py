@@ -110,7 +110,7 @@ def get_mobile_phone(user_phone_instance):
         return status, statusMessage, result
 
 def process_forecast_for_sms_message(result,forecastLocation):
-    processedMessage = ("Today's forecast for {}! Now its {}. LT: {}, HT: {}. {} Your Amibit!" 
+    processedMessage = ("Today's forecast for {}! Now its {}. LT: {}, HT: {}. {} Your Incodaq Weather." 
     .format(
     forecastLocation, 
     str(round(result["currently"]["temperature"])),

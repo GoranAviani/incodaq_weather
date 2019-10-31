@@ -32,7 +32,6 @@ def get_user_lat_long_api(stringToSend):
         return "failure","",""
 
 def get_user_weather_forecast_api(userLen, userLong):
-    print("AAAAA" + darkSkyToken)
     apiUrl = {"apiUrl": "https://api.darksky.net/forecast/"}
     apiEndpoint = {"apiEndpoint": darkSkyToken + "/" + userLen +","+userLong}
     params =  {"params1":{'units': "auto",}}
