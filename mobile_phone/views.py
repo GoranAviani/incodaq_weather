@@ -10,13 +10,13 @@ from .models import (
 
 from expanded_user.models import custom_user
 
-def is_mobile_still_validated(found_u_p_data, phoneNumber):
-    if phoneNumber.isdigit():
+def is_mobile_still_validated(oldPhoneNumber, newPhoneNumber):
+    if newPhoneNumber.isdigit():
 
-        if len(phoneNumber) < 4:
+        if len(newPhoneNumber) < 4:
             return False
         
-        if found_u_p_data.phoneNumber != phoneNumber:
+        if oldPhoneNumber != newPhoneNumber:
             return False
             
         return True
@@ -35,9 +35,9 @@ def edit_user_phone(request):
                 found_u_p_data = user_phone.objects.get(userMobilePhone=request.user) 
                 if user_phone_form_data.is_valid():
                     
-                    #Simple check should the phone still be validated: Sto see if user has changed a phone number or is it
+                    #Simple check should the phone still be validated: Sto see if user hasis_mobile_still_validated changed a phone number or is it
                     # wrong is some other sence, if so he can no longer have a validated number
-                    isMobileStillValidated = is_mobile_still_validated(found_u_p_data, user_phone_form_data["phoneNumber"].data)
+                    isMobileStillValidated = is_mobile_still_validated(found_u_p_data.phoneNumber, user_phone_form_data["phoneNumber"].data)
 
                     user_phone.objects.filter(userMobilePhone=request.user).update(phoneCountryCode=user_phone_form_data["phoneCountryCode"].data
                     , phoneNumber=user_phone_form_data["phoneNumber"].data
