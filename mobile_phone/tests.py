@@ -24,3 +24,7 @@ class MobileValidation(TestCase):
         result = is_mobile_still_validated("073123123", "0731231234")
         self.assertEqual(result, (False))
 
+
+    def test_mobile_numbers_same(self):
+        result = is_mobile_still_validated("073123123", "073123123")
+        self.assertEqual(result, (True))
