@@ -20,7 +20,7 @@ class ProcessingFile(TestCase):
         result = split_by_char(13, ",")
         self.assertEqual(result, ("error", ""))
 
-        result = split_by_char(["13:00"], ",")
+        result = split_by_char(["13:00","14:00"], ",")
         self.assertEqual(result, ("error", ""))
 
     def test_split_by_char_all_empty_separator(self):
