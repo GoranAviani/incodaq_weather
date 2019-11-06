@@ -72,18 +72,18 @@ def check_user_forecast_time(user_phone_instance, user):
     usersWeatherSMSTime = user_phone_instance.timeWeatherSMS
     userTimeZone = user.userTimeZone
     charForSplit = ":" #time hours and minutes are splitted by :
-    #TODO splitting by char and checking hour and minutes is not needed now
     status, usersWeatherSMSTimeList= split_by_char(usersWeatherSMSTime, charForSplit)
-    if status != "error":
-        status, usersWeatherSMSTimeList = check_user_weather_SMS_time_format(usersWeatherSMSTimeList)
-        if status != "error":
-            status = check_if_time_to_send_sms(usersWeatherSMSTimeList, userTimeZone)
-            if status == "DontSendSMS":
-                return "DontSendSMS", "Time set for weather forecast is not now."
-        else:
-            return "DontSendSMS", "Forecast time is in wrong time/number format."
-    else:
+    if status == "error":
         return "DontSendSMS", "Forecast time is in wrong format."
+    #status, usersWeatherSMSTimeList = check_user_weather_SMS_time_format(usersWeatherSMSTimeList)
+    #if status != "error":
+    status = check_if_time_to_send_sms(usersWeatherSMSTimeList, userTimeZone)
+    if status == "DontSendSMS":
+        return "DontSendSMS", "Time set for weather forecast is not now."
+    #else:
+    #    return "DontSendSMS", "Forecast time is in wrong time/number format."
+    #else:
+     #   return "DontSendSMS", "Forecast time is in wrong format."
 
     return "sendSMS", "Weater forecast time is OK."
 
