@@ -7,20 +7,20 @@ def make_request_params(**kwargs):
     try:
         apiUrl = kwargs["apiUrl"]
     except:
-        return ({"testing_apis function": "The main url for the API is missing"})
+        return "error"
 
     try:
         apiEndpoint = kwargs["apiEndpoint"]
         # Add an endpoint to the api
         fullAPIUrl = apiUrl + apiEndpoint
     except:
-        return ({"testing_apis": "The API endpoint for te API is missing"})
+        return "error" 
 
     try:
-        params1 = kwargs["params"]
+        params1 = kwargs["params1"]
         result = requests.get(fullAPIUrl, params=params1)
     except:
-        return ({"testing_api": "Missing API data"})
+        return "error"
 
 
     if result.status_code in (400, 401, 402, 403, 404):
