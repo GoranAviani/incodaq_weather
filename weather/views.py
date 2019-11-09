@@ -187,8 +187,9 @@ def send_daily_forecast(user, typeOfRequest):
             #all user checks have passed and he is to receive his forecast sms
             #return weather forecast for his lat and long
             try:
-                data =  {'userLat': userLat,"userLong": userLong}
+                data =  {'userLat': userLat,"userLong": userLong, "params":{'units': "auto"}}      
                 weatherForecast = get_user_weather_forecast_api(**data)
+                test = weatherForecast
             except:
                 return "Something went wrong with getting the weather forecast. Plese contact support."
             
