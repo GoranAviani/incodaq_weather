@@ -190,9 +190,9 @@ def send_daily_forecast(user, typeOfRequest):
                 data =  {'userLat': userLat,"userLong": userLong, "params":{'units': "auto"}}      
                 weatherForecast = get_user_weather_forecast_api(**data)
                 if weatherForecast == "error":
-                    return "1Something went wrong with getting the weather forecast. Plese contact support."
+                    return "Something went wrong with getting the weather forecast. Plese contact support."
             except:
-                return "Something went wrong with getting the weather forecast. Plese contact support."
+                return "Something went wrong with getting the data needed for the weather forecast. Plese contact support."
             
             #Process raw api data to text about a forecast 
             processedForecastMessage = process_forecast_for_sms_message(weatherForecast, userCity)
