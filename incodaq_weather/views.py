@@ -19,9 +19,9 @@ def index_status_processing():
       #currently
       #exclude = "exclude=minutely,hourly,daily,alerts,flags"
     #  params =  {"params1":{'units': "auto","exclude":"minutely,hourly,daily,alerts,flags"}}
-    
-      #weatherForecast = get_user_weather_forecast_api(lat, lon)
-      #print(weatherForecast)
+      data =  {'userLat': lat,"userLong": lon, "params":{'units': "auto","exclude":"minutely,hourly,daily,alerts,flags"}}           
+      weatherForecast = get_user_weather_forecast_api(**data)
+      print(weatherForecast)
    return "18", "sunny"
 
 
