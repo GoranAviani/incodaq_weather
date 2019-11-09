@@ -16,8 +16,12 @@ def index_status_processing():
       print(city)
       print(lat)
       print(lon)   
-      weatherForecast = get_user_weather_forecast_api(lat, lon)
-      print(weatherForecast)
+      #currently
+      #exclude = "exclude=minutely,hourly,daily,alerts,flags"
+    #  params =  {"params1":{'units': "auto","exclude":"minutely,hourly,daily,alerts,flags"}}
+    
+      #weatherForecast = get_user_weather_forecast_api(lat, lon)
+      #print(weatherForecast)
    return "18", "sunny"
 
 
