@@ -4,12 +4,25 @@ from django.contrib.auth.models import User
 from mobile_phone.models import user_phone
 from .dashboard_status_processing import dashboard_status_processing
 
+def index_status_processing():
+   return "18", "sunny"
+
+
 def index(request):
 #   return render(request,'index.html')
    if request.user.is_authenticated:
       return redirect('dashboard')
    else:
-      return render(request,'index.html')
+      StockholmTemperature, StokcholmWeather = index_status_processing()
+      print(StockholmTemperature)
+      return render(request,'index.html',
+      {
+         'StockholmTemperature':StockholmTemperature,
+         'StokcholmWeather': StokcholmWeather
+      }
+      
+      
+      )
 
 def dashboard(request):
    if request.user.is_authenticated:

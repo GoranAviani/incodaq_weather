@@ -4,8 +4,17 @@
 
 {% block content %}
 index
-aaaaaa
-aaaaaaa
-aaaaa
+Stockholm
+{% if StockholmTemperature %}
+<small style="">Temperature: {{StockholmTemperature}} Weather: {{ StokcholmWeather }}</small>
+{% endif %}    
+
+Tokyo
+New York
+Paris
+Moscow
+Bejing
+Split
+
 
 {% endblock %}
