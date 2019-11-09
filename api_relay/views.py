@@ -38,7 +38,7 @@ def get_user_weather_forecast_api(**kwargs):
         params = {}
         params["params"] = kwargs["params"]
     except:
-        pass
+        return "error"
     apiUrl = {"apiUrl": "https://api.darksky.net/forecast/"}
     apiEndpoint = {"apiEndpoint": darkSkyToken + "/" + userLen +","+userLong}
     result = make_request_params(**apiUrl, **apiEndpoint, **params) 

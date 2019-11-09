@@ -189,6 +189,8 @@ def send_daily_forecast(user, typeOfRequest):
             try:
                 data =  {'userLat': userLat,"userLong": userLong, "params":{'units': "auto"}}      
                 weatherForecast = get_user_weather_forecast_api(**data)
+                if weatherForecast == "error":
+                    return "1Something went wrong with getting the weather forecast. Plese contact support."
             except:
                 return "Something went wrong with getting the weather forecast. Plese contact support."
             
