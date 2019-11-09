@@ -31,12 +31,17 @@ def get_user_lat_long_api(stringToSend):
     except:
         return "failure","",""
 
-def get_user_weather_forecast_api(userLen, userLong):
+def get_user_weather_forecast_api(**kwargs):
+    try:
+        userLen = kwargs["userLat"]
+        userLong = kwargs["userLong"]
+        params = {}
+        params["params"] = kwargs["params"]
+    except:
+        return "error"
     apiUrl = {"apiUrl": "https://api.darksky.net/forecast/"}
     apiEndpoint = {"apiEndpoint": darkSkyToken + "/" + userLen +","+userLong}
-    params =  {"params1":{'units': "auto",}}
-    result = make_request_params(**apiUrl, **apiEndpoint, **params)
-    #print(result)    
+    result = make_request_params(**apiUrl, **apiEndpoint, **params) 
     return result
 
 def send_sms_message_api(userMobileNumber, processedForecastMessage):

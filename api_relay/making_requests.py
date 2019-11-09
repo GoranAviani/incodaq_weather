@@ -17,7 +17,7 @@ def make_request_params(**kwargs):
         return ({"testing_apis": "The API endpoint for te API is missing"})
 
     try:
-        params1 = kwargs["params1"]
+        params1 = kwargs["params"]
         result = requests.get(fullAPIUrl, params=params1)
     except:
         return ({"testing_api": "Missing API data"})
