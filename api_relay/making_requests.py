@@ -17,7 +17,7 @@ def make_request_params(**kwargs):
         return "error" 
 
     try:
-        params1 = kwargs["params1"]
+        params1 = kwargs["params"]
         result = requests.get(fullAPIUrl, params=params1)
     except:
         return "error"
