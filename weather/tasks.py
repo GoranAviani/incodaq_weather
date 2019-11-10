@@ -17,22 +17,6 @@ def send_daily_forecast_celery(user, typeOfRequest):
     from .views import send_daily_forecast
     send_daily_forecast(user, typeOfRequest)
 
-
-@shared_task
-def get_default_cities_forecast_dark_sky(**kwargs):
-    userLen = kwargs["userLat"]
-    userLong = kwargs["userLong"]
-    #params = {}
-    #params["params"] = kwargs["params"]
-    params = kwargs["params"]
-    
-    apiUrl = "https://api.darksky.net/forecast/"
-    apiEndpoint = darkSkyToken + "/" + userLen +","+userLong
-    #result = make_request_params(**apiUrl, **apiEndpoint, **params) 
-    fullAPIUrl = apiUrl + apiEndpoint
-    result = requests.get(fullAPIUrl, params=params)
-    return result.json()
-
 @shared_task
 def get_periodic_forecast_for_default_cities():
     for x in INDEX_PAGE_CITIES:
