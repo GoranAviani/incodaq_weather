@@ -29,3 +29,7 @@ def get_default_cities_forecast_dark_sky(**kwargs):
     fullAPIUrl = apiUrl + apiEndpoint
     result = requests.get(fullAPIUrl, params=params)
     return result.json()
+
+@shared_task
+def get_periodic_forecast_for_default_cities():
+    print("periodic task run")
