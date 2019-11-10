@@ -9,6 +9,8 @@ from weather.tasks import get_user_weather_forecast_dark_sky
 
 
 def index_status_processing():
+   resultForecastRaw = []
+   result = {}
    for x in INDEX_PAGE_CITIES:
       for k, v in x.items():
          city = k
@@ -16,20 +18,22 @@ def index_status_processing():
          lon = v["lon"]
 
          #params =  {"params1":{'units': "auto","exclude":"minutely,hourly,daily,alerts,flags"}}
-         data =  {'userLat': lat,"userLong": lon, "params":{'units': "auto","exclude":"minutely,hourly,daily,alerts,flags"}}           
-      
+         data =  {'userLat': lat,"userLong": lon, "params":{'units': "si","exclude":"minutely,hourly,daily,alerts,flags"}}           
          asyncForecast = get_user_weather_forecast_dark_sky.delay(**data)
-         
-         resultForecast= asyncForecast.get()
+         resultForecastRaw.append(asyncForecast)   
 
-    #  print(city)
-    #  print(lat)
-    #  print(lon)   
-      #currently
-      #exclude = "exclude=minutely,hourly,daily,alerts,flags"
-     #weatherForecast = get_user_weather_forecast_api(**data)
-      print("forecast for " + k + ": " + str(resultForecast))
-   return "18", "sunny"
+  
+   for x in range(0, len(INDEX_PAGE_CITIES)):
+     # print(INDEX_PAGE_CITIES[x])
+      for key in INDEX_PAGE_CITIES[x]:
+         resultForecast = resultForecastRaw[x].get()
+       #  print(resultForecast)
+         temperature = resultForecast["currently"]["temperature"]
+         result[key] = temperature
+         #print(str(test[x].get()))
+      #print("forecast for " + k + ": " + str(resultForecast))
+   print(result)
+   return result
 
 
 def index(request):
@@ -37,11 +41,10 @@ def index(request):
    if request.user.is_authenticated:
       return redirect('dashboard')
    else:
-      StockholmTemperature, StokcholmWeather = index_status_processing()
+      result = index_status_processing()
       return render(request,'index.html',
       {
-         'StockholmTemperature':StockholmTemperature,
-         'StokcholmWeather': StokcholmWeather
+         'result':result
       }
       
       

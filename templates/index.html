@@ -4,17 +4,18 @@
 
 {% block content %}
 index
-Stockholm
-{% if StockholmTemperature %}
-<small style="">Temperature: {{StockholmTemperature}} Weather: {{ StokcholmWeather }}</small>
+</br></br>
+{% if result %}
+{% for key, value in result.items %}
+<td>{{key}}</td>
+<td>{{value}}</td>
+</br>
+{% endfor %}    
+
 {% endif %}    
 
-Tokyo
-New York
-Paris
-Moscow
-Bejing
-Split
+
+
 
 
 {% endblock %}
