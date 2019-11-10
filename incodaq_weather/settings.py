@@ -150,7 +150,7 @@ CELERY_BEAT_SCHEDULE = {
       'task-get_periodic_forecast_for_default_cities': {
        'task': 'weather.tasks.get_periodic_forecast_for_default_cities',
         #'schedule': crontab(minute="*/30"),
-        'schedule': 10,
+        'schedule': 30,
         
     },
 }
