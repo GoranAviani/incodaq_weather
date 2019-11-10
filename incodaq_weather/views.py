@@ -5,7 +5,7 @@ from mobile_phone.models import user_phone
 from .dashboard_status_processing import dashboard_status_processing
 from .choice import INDEX_PAGE_CITIES
 from api_relay.views import get_user_weather_forecast_api
-from weather.tasks import get_user_weather_forecast_dark_sky
+from weather.tasks import get_default_cities_forecast_dark_sky
 
 
 def index_status_processing():
@@ -19,7 +19,7 @@ def index_status_processing():
 
          #params =  {"params1":{'units': "auto","exclude":"minutely,hourly,daily,alerts,flags"}}
          data =  {'userLat': lat,"userLong": lon, "params":{'units': "si","exclude":"minutely,hourly,daily,alerts,flags"}}           
-         asyncForecast = get_user_weather_forecast_dark_sky.delay(**data)
+         asyncForecast = get_default_cities_forecast_dark_sky.delay(**data)
          resultForecastRaw.append(asyncForecast)   
 
   

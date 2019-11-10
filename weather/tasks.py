@@ -16,7 +16,7 @@ def send_daily_forecast_celery(user, typeOfRequest):
 
 
 @shared_task
-def get_user_weather_forecast_dark_sky(**kwargs):
+def get_default_cities_forecast_dark_sky(**kwargs):
     userLen = kwargs["userLat"]
     userLong = kwargs["userLong"]
     #params = {}
