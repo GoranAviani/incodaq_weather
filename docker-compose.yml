@@ -1,11 +1,29 @@
-version: '3'
 
+version: '3'
+volumes:
+  pgdata:
 services:
-  web:
-    build: .
-    command: bash -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
-    container_name: incodaq_weather
+  python: &python
+    # image: python:3.5
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+    - PYTHONUNBUFFERED=1
     volumes:
       - .:/incodaq_weather
     ports:
-      - "8000:8000"
+      - 8000:8000
+    command: bash -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    depends_on:
+      - rabbitmq
+      - celery_worker
+  ## message queue for celery
+  rabbitmq:
+    image: rabbitmq:3.8-alpine
+  celery_worker:
+    <<: *python
+    command: celery -A incodaq_weather worker -l info -B
+    ports: []
+    depends_on:
+      - rabbitmq
