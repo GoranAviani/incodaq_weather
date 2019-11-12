@@ -109,24 +109,33 @@ def get_mobile_phone(user_phone_instance):
         statusMessage = "Mobile phone needs to be validated and approved by user to receive weather forecast text messages."
         return status, statusMessage, result
 
-def process_forecast_for_sms_message(result,forecastLocation):
-    processedMessage = ("Today's forecast for {}! Now its {}. LT: {}, HT: {}. {} Your Incodaq Weather." 
-    .format(
-    forecastLocation, 
-    str(round(result["currently"]["temperature"])),
-    str(round(result["daily"]["data"][0]["temperatureLow"])),
-    str(round(result["daily"]["data"][0]["temperatureHigh"])), 
-    str(result["hourly"]["summary"]) ))
+def process_forecast_api_message(**kwargs):
+    typeOfCall = kwargs["typeOfCall"]
 
-    #print(result["currently"]["summary"]) # this
-    #print(result["currently"]["temperature"]) #this
-    #print(result["currently"]["uvIndex"])
+    if typeOfCall == "sms_message":
+        result = kwargs["result"]
+        forecastLocation = kwargs["forecastLocation"]
 
-    #print(result["hourly"])
-    #print(result["hourly"]["summary"]) #need this
+        processedMessage = ("Today's forecast for {}! Now its {}. LT: {}, HT: {}. {} Your Incodaq Weather."
+        .format(
+        forecastLocation,
+        str(round(result["currently"]["temperature"])),
+        str(round(result["daily"]["data"][0]["temperatureLow"])),
+        str(round(result["daily"]["data"][0]["temperatureHigh"])),
+        str(result["hourly"]["summary"])))
+
+        #print(result["currently"]["summary"]) # this
+        #print(result["currently"]["temperature"]) #this
+        #print(result["currently"]["uvIndex"])
+
+        #print(result["hourly"])
+        #print(result["hourly"]["summary"]) #need this
+
+        return "success", processedMessage
+    else:
+        return "error", ""
 
 
-    return processedMessage
 
 #This function witll return user mobile if user is approved and 
 # wants to receive weather forecast
@@ -194,21 +203,25 @@ def send_daily_forecast(user, typeOfRequest):
             except:
                 return "Something went wrong with getting the data needed for the weather forecast. Plese contact support."
             
-            #Process raw api data to text about a forecast 
-            processedForecastMessage = process_forecast_for_sms_message(weatherForecast, userCity)
+            #Process raw api data to text about a forecast
+            data = {'typeOfCall': "sms_message", "forecastLocation": userCity, "result": weatherForecast}
+            processedForecastMsgStatus, processedForecastMsg = process_forecast_api_message(**data)
             #print(processedForecastMessage)
             
             #delay of 0.5s because free Twilio account supports 2 messages in a second.
             #if number is greather than that 2 twilio will return 429 code.
             time.sleep(0.5)
-            
-            #send him a text message with weather forecast
-            try:
-                send_sms_message_api(userMobileNumber, processedForecastMessage)
-                return statusMessage
-            except:
-                return "Something went wrong with sending the SMS messages. Plese contact support."
-            
+
+
+            # send sms message only if processedForecastMsgStatus is a success
+            if processedForecastMsgStatus == "success":
+                try:
+                    send_sms_message_api(userMobileNumber, processedForecastMsg)
+                    return statusMessage
+                except:
+                    return "Something went wrong with sending the SMS messages. Please contact support."
+            else:
+                return "Something went wrong with preparing the SMS messages. Please contact support."
     else:
         return "To use the weather forecast feature the user needs to have a minimum of a city and country saved in the user profile."
 
