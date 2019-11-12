@@ -113,16 +113,16 @@ def process_forecast_api_message(**kwargs):
     typeOfCall = kwargs["typeOfCall"]
 
     if typeOfCall == "sms_message":
-        result = kwargs["result"]
+        apiResponse = kwargs["apiResponse"]
         forecastLocation = kwargs["forecastLocation"]
 
         processedMessage = ("Today's forecast for {}! Now its {}. LT: {}, HT: {}. {} Your Incodaq Weather."
         .format(
         forecastLocation,
-        str(round(result["currently"]["temperature"])),
-        str(round(result["daily"]["data"][0]["temperatureLow"])),
-        str(round(result["daily"]["data"][0]["temperatureHigh"])),
-        str(result["hourly"]["summary"])))
+        str(round(apiResponse["currently"]["temperature"])),
+        str(round(apiResponse["daily"]["data"][0]["temperatureLow"])),
+        str(round(apiResponse["daily"]["data"][0]["temperatureHigh"])),
+        str(apiResponse["hourly"]["summary"])))
 
         #print(result["currently"]["summary"]) # this
         #print(result["currently"]["temperature"]) #this
@@ -132,6 +132,10 @@ def process_forecast_api_message(**kwargs):
         #print(result["hourly"]["summary"]) #need this
 
         return "success", processedMessage
+    elif typeOfCall == "basic_forecast":
+        apiResponse = kwargs["apiResponse"]
+        result = apiResponse["currently"]["temperature"]
+        return "success", result
     else:
         return "error", ""
 
@@ -196,7 +200,7 @@ def send_daily_forecast(user, typeOfRequest):
             #all user checks have passed and he is to receive his forecast sms
             #return weather forecast for his lat and long
             try:
-                data =  {'userLat': userLat,"userLong": userLong, "params":{'units': "auto"}}      
+                data = {'userLat': userLat,"userLong": userLong, "params":{'units': "auto"}}
                 weatherForecast = get_user_weather_forecast_api(**data)
                 if weatherForecast == "error":
                     return "Something went wrong with getting the weather forecast. Plese contact support."
@@ -204,7 +208,7 @@ def send_daily_forecast(user, typeOfRequest):
                 return "Something went wrong with getting the data needed for the weather forecast. Plese contact support."
             
             #Process raw api data to text about a forecast
-            data = {'typeOfCall': "sms_message", "forecastLocation": userCity, "result": weatherForecast}
+            data = {'typeOfCall': "sms_message", "forecastLocation": userCity, "apiResponse": weatherForecast}
             processedForecastMsgStatus, processedForecastMsg = process_forecast_api_message(**data)
             #print(processedForecastMessage)
             

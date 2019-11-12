@@ -2,7 +2,6 @@ from __future__ import absolute_import, unicode_literals
 from incodaq_weather.celery import app 
 from celery import shared_task
 import os
-darkSkyToken = os.environ.get("darkSkyToken", '')
 from api_relay.making_requests import make_request_params
 import requests
 import json
@@ -38,7 +37,7 @@ def get_user_weather_forecast_dark_sky(**kwargs):
 
 @shared_task
 def get_periodic_forecast_for_default_cities():
-    resultForecastRaw = []
+    from .views import process_forecast_api_message
     result = {}
 
     for x in INDEX_PAGE_CITIES:        
@@ -47,15 +46,17 @@ def get_periodic_forecast_for_default_cities():
             lat = v["lat"]
             lon = v["lon"]
 
-            #params =  {"params1":{'units': "auto","exclude":"minutely,hourly,daily,alerts,flags"}}
-            data ={'userLat': lat, "userLong": lon, "params":{'units': "si", "exclude":"minutely,hourly,daily,alerts,flags"}}
             params = {'units': "si", "exclude": "minutely,hourly,daily,alerts,flags"}
 
             apiUrl = "https://api.darksky.net/forecast/"
             apiEndpoint = darkSkyToken + "/" + lat +","+lon
             fullAPIUrl = apiUrl + apiEndpoint
-            result1 = requests.get(fullAPIUrl, params=params)
-            result1 = result1.json()
+            apiResponse = requests.get(fullAPIUrl, params=params)
+            apiResponse = apiResponse.json()
+
+            data = {'typeOfCall': "basic_forecast", "apiResponse": apiResponse}
+            processedForecastMsgStatus, processedForecastMsg = process_forecast_api_message(**data)
+            result[city] = processedForecastMsg
 
             #<class 'dict'>: {'latitude': 59.3251172, 'longitude': 18.0710935, 'timezone': 'Europe/Stockholm',
             # 'currently': {'time': 1573572991, 'summary': 'Possible Light Rain', 'icon': 'rain', 'precipIntensity':
@@ -63,11 +64,12 @@ def get_periodic_forecast_for_default_cities():
             # 'dewPoint': 5.07, 'humidity': 0.94, 'pressure': 1005.1, 'windSpeed': 5.63,
             # 'windGust': 12.5, 'windBearing': 146, 'cloudCover': 0.76, 'uvIndex': 0, 'visibility': 4.174, 'ozone': 303},
             # 'offset': 1}
-            resultForecastRaw.append(result1)   
 
-            #asyncForecast = get_default_cities_forecast_dark_sky.delay(**data)
-            #resultForecastRaw.append(asyncForecast)   
-        print(resultForecastRaw)
+
+    print(str(result))
+    for city, temp in result.items():
+        print("city: {}, temp: {}" .format(city, temp))
+
    # for x in range(0, len(INDEX_PAGE_CITIES)):
         # print(INDEX_PAGE_CITIES[x])
    #     for key in INDEX_PAGE_CITIES[x]:
