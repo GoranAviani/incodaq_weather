@@ -5,6 +5,7 @@ import os
 from api_relay.making_requests import make_request_params
 import requests
 import json
+
 from incodaq_weather.choice import INDEX_PAGE_CITIES
 from weather.models import (
     default_cities
@@ -39,7 +40,7 @@ def get_user_weather_forecast_dark_sky(**kwargs):
 def get_periodic_forecast_for_default_cities():
     from .views import process_forecast_api_message
     result = {}
-
+    darkSkyToken = "620ba01e0eee8fec9c553015ca9f2416"
     for x in INDEX_PAGE_CITIES:        
         for k, v in x.items():
             city = k
@@ -57,6 +58,16 @@ def get_periodic_forecast_for_default_cities():
             data = {'typeOfCall': "basic_forecast", "apiResponse": apiResponse}
             processedForecastMsgStatus, processedForecastMsg = process_forecast_api_message(**data)
             result[city] = processedForecastMsg
+
+            default_cities.objects.update(city=processedForecastMsg)
+            #data = default_cities.objects.all()
+            #for i in data:
+            #    # ... do stuff
+            #    # i.update(field="value")
+            #    i.field = value
+            #    i.save()
+
+
 
             #<class 'dict'>: {'latitude': 59.3251172, 'longitude': 18.0710935, 'timezone': 'Europe/Stockholm',
             # 'currently': {'time': 1573572991, 'summary': 'Possible Light Rain', 'icon': 'rain', 'precipIntensity':
@@ -80,8 +91,6 @@ def get_periodic_forecast_for_default_cities():
          
     print("THIS IS THE TEST RESULT" + str(result))
 
-    default_cities.objects.update(Stockholm="13"
-                    , Tokyo="45"
-                    )
+
 
     print("END OF TASK")
