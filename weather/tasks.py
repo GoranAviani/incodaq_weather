@@ -59,13 +59,18 @@ def get_periodic_forecast_for_default_cities():
             processedForecastMsgStatus, processedForecastMsg = process_forecast_api_message(**data)
             result[city] = processedForecastMsg
 
-            default_cities.objects.update(city=processedForecastMsg)
-            #data = default_cities.objects.all()
-            #for i in data:
-            #    # ... do stuff
-            #    # i.update(field="value")
-            #    i.field = value
-            #    i.save()
+           # for x in range(0, len(result)):
+           # default_cities.objects.update(city=processedForecastMsg)
+   # data = default_cities.objects.all()
+    #for i in data:
+     #   for k,v in result.items():
+     #       print(k)
+      #      i.k = v
+
+        # ... do stuff
+        # i.update(field="value")
+        #i.field = "a"
+        i.save()
 
 
 
