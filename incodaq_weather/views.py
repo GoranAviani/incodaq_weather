@@ -11,12 +11,11 @@ def index(request):
    if request.user.is_authenticated:
       return redirect('dashboard')
    else:
-      get_periodic_forecast_for_default_cities()
       return render(request,'index.html')
 
 def dashboard(request):
    if request.user.is_authenticated:
-      
+      get_periodic_forecast_for_default_cities()
 
       user1 = {"user1": request.user} 
       

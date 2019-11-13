@@ -25,8 +25,6 @@ def send_daily_forecast_celery(user, typeOfRequest):
 def get_user_weather_forecast_dark_sky(**kwargs):
     userLen = kwargs["userLat"]
     userLong = kwargs["userLong"]
-    #params = {}
-    #params["params"] = kwargs["params"]
     params = kwargs["params"]
     
     apiUrl = "https://api.darksky.net/forecast/"
@@ -40,7 +38,6 @@ def get_user_weather_forecast_dark_sky(**kwargs):
 def get_periodic_forecast_for_default_cities():
     from .views import process_forecast_api_message
     result = {}
-    darkSkyToken = "620ba01e0eee8fec9c553015ca9f2416"
     for x in INDEX_PAGE_CITIES:        
         for k, v in x.items():
             city = k
@@ -59,43 +56,10 @@ def get_periodic_forecast_for_default_cities():
             processedForecastMsgStatus, processedForecastMsg = process_forecast_api_message(**data)
             result[city] = processedForecastMsg
 
-           # for x in range(0, len(result)):
-           # default_cities.objects.update(city=processedForecastMsg)
-   # data = default_cities.objects.all()
-    #for i in data:
-     #   for k,v in result.items():
-     #       print(k)
-      #      i.k = v
+    for k, v in result.items():
+        try:
+            found_city_data = default_cities.objects.get(city=k)
+            default_cities.objects.filter(city=k).update(temperature=v)
+        except:
+            default_cities.objects.create(city=k, temperature=v)
 
-        # ... do stuff
-        # i.update(field="value")
-        #i.field = "a"
-        i.save()
-
-
-
-            #<class 'dict'>: {'latitude': 59.3251172, 'longitude': 18.0710935, 'timezone': 'Europe/Stockholm',
-            # 'currently': {'time': 1573572991, 'summary': 'Possible Light Rain', 'icon': 'rain', 'precipIntensity':
-            # 0.548, 'precipProbability': 0.61, 'precipType': 'rain', 'temperature': 6.02, 'apparentTemperature': 2.33,
-            # 'dewPoint': 5.07, 'humidity': 0.94, 'pressure': 1005.1, 'windSpeed': 5.63,
-            # 'windGust': 12.5, 'windBearing': 146, 'cloudCover': 0.76, 'uvIndex': 0, 'visibility': 4.174, 'ozone': 303},
-            # 'offset': 1}
-
-
-    print(str(result))
-    for city, temp in result.items():
-        print("city: {}, temp: {}" .format(city, temp))
-
-   # for x in range(0, len(INDEX_PAGE_CITIES)):
-        # print(INDEX_PAGE_CITIES[x])
-   #     for key in INDEX_PAGE_CITIES[x]:
-   #         resultForecast = resultForecastRaw[x].get()
-             #  print(resultForecast)
-    #        temperature = resultForecast["currently"]["temperature"]
-    #        result[key] = temperature
-         
-    print("THIS IS THE TEST RESULT" + str(result))
-
-
-
-    print("END OF TASK")
