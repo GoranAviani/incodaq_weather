@@ -4,13 +4,14 @@ from django.contrib.auth.models import User
 from mobile_phone.models import user_phone
 from .dashboard_status_processing import dashboard_status_processing
 from .choice import INDEX_PAGE_CITIES
-
+from weather.tasks import get_periodic_forecast_for_default_cities
 
 def index(request):
 #   return render(request,'index.html')
    if request.user.is_authenticated:
       return redirect('dashboard')
    else:
+      get_periodic_forecast_for_default_cities()
       return render(request,'index.html')
 
 def dashboard(request):
