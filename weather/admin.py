@@ -6,7 +6,7 @@ from .models import default_cities
 
 
 class default_cities_admin (admin.ModelAdmin):
-    list_display = ("Stockholm" , "Tokyo")
+    list_display = ("city" , "temperature")
     #list_filter = ("phoneCountryCode", "phoneNumber" , "isMobileValidated","wantsToReceiveWeatherSMS")
     #search_fields= ("phoneCountryCode","phoneNumber", "isMobileValidated","wantsToReceiveWeatherSMS")
 
