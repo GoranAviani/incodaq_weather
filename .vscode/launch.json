@@ -16,6 +16,19 @@
                 "--nothreading"
             ],
             "django": true
+        }, {
+            "name": "Django moj test",
+            "type": "python",
+            "request": "launch",
+            "pythonPath": "/home/goran/.virtualenvs/incodaq_weather_env/bin/python",
+            "program": "${workspaceFolder}/manage.py",
+            "args": [
+                "runserver",
+                "--noreload",
+                "--nothreading"
+            ],
+            "django": true
         },
+        
     ]
 }

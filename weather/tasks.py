@@ -33,7 +33,7 @@ def get_user_weather_forecast_dark_sky(**kwargs):
     result = requests.get(fullAPIUrl, params=params)
     return result.json()
 
-
+#periodic task
 @shared_task
 def get_periodic_forecast_for_default_cities():
     from .views import process_forecast_api_message
@@ -58,8 +58,11 @@ def get_periodic_forecast_for_default_cities():
 
     for k, v in result.items():
         try:
+            #try to find the current ciry if it exists already
             found_city_data = default_cities.objects.get(city=k)
+            #if found update the temp
             default_cities.objects.filter(city=k).update(temperature=v)
         except:
+            #if city is not found create it
             default_cities.objects.create(city=k, temperature=v)
 
