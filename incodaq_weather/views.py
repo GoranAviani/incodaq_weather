@@ -5,13 +5,28 @@ from mobile_phone.models import user_phone
 from .dashboard_status_processing import dashboard_status_processing
 from .choice import INDEX_PAGE_CITIES
 from weather.tasks import get_periodic_forecast_for_default_cities
+from weather.models import  default_cities
+def get_default_cities_temp():
+   result = {}
+   try:
+      foundDefaultCitiesQuerySet = default_cities.objects.all()
+
+      for x in foundDefaultCitiesQuerySet:
+         result[x.city] = x.temperature
+      return result
+   except:
+      return result
 
 def index(request):
-#   return render(request,'index.html')
    if request.user.is_authenticated:
       return redirect('dashboard')
    else:
-      return render(request,'index.html')
+      defaultCitiesTemp = get_default_cities_temp()
+
+      return render(request,'index.html',
+      {
+         'result': defaultCitiesTemp  }
+                    )
 
 def dashboard(request):
    if request.user.is_authenticated:

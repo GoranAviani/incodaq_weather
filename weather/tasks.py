@@ -10,9 +10,8 @@ from incodaq_weather.choice import INDEX_PAGE_CITIES
 from weather.models import (
     default_cities
 )
-darkSkyToken = os.environ.get("darkSkyToken", '')
-
-
+#darkSkyToken = os.environ.get("darkSkyToken", '')
+from incodaq_weather.local_settings import darkSkyToken
 #testing if this kind of calling already made view functions will work
 @shared_task
 def send_daily_forecast_celery(user, typeOfRequest):
@@ -36,6 +35,8 @@ def get_user_weather_forecast_dark_sky(**kwargs):
 #periodic task
 @shared_task
 def get_periodic_forecast_for_default_cities():
+
+
     from .views import process_forecast_api_message
     result = {}
     for x in INDEX_PAGE_CITIES:        
