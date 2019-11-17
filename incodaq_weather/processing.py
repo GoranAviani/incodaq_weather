@@ -1,5 +1,10 @@
 def split_by_char(someString, charForSplit):
-    
+
+    if someString != str(someString):
+        status = "error"
+        result = ""
+        return status, result
+
     #Check if any part of string is not a number
     for x in str(someString):
         if x.isalpha():

@@ -1,7 +1,7 @@
 from django.test import TestCase
 
 # Create your tests here.
-from .processing import split_by_char
+from .processing import split_by_char, rounding_number
 
 
 class ProcessingFile(TestCase):
