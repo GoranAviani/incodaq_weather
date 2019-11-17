@@ -1,16 +1,13 @@
 #Location of non app single pages
 from django.shortcuts import render, redirect
-from django.contrib.auth.models import User
-from mobile_phone.models import user_phone
 from .dashboard_status_processing import dashboard_status_processing
-from .choice import INDEX_PAGE_CITIES
 from weather.tasks import get_periodic_forecast_for_default_cities
-from weather.models import  default_cities
+from weather.models import default_cities
+
 def get_default_cities_temp():
    result = {}
    try:
       foundDefaultCitiesQuerySet = default_cities.objects.all()
-
       for x in foundDefaultCitiesQuerySet:
          result[x.city] = x.temperature
       return result
@@ -22,17 +19,14 @@ def index(request):
       return redirect('dashboard')
    else:
       defaultCitiesTemp = get_default_cities_temp()
-
-      return render(request,'index.html',
-      {
-         'result': defaultCitiesTemp  }
-                    )
+      return render(request, 'index.html',
+      {'defaultCitiesTemp': defaultCitiesTemp}
+      )
 
 def dashboard(request):
    if request.user.is_authenticated:
-      get_periodic_forecast_for_default_cities()
 
-      user1 = {"user1": request.user} 
+      user1 = {"user1": request.user}
       
       dashboardStatusMessage,dashboardStatusColor,hasMobileNumber, hasMobileNumberMessage, hasMobileNumberStatusColor, \
       hasCityCountry, hasCityCountryMessage, hasCityCountryStatusColor, \

@@ -7,11 +7,14 @@ import requests
 import json
 
 from incodaq_weather.choice import INDEX_PAGE_CITIES
+from incodaq_weather.processing import rounding_number
 from weather.models import (
     default_cities
 )
-#darkSkyToken = os.environ.get("darkSkyToken", '')
 from incodaq_weather.local_settings import darkSkyToken
+
+
+
 #testing if this kind of calling already made view functions will work
 @shared_task
 def send_daily_forecast_celery(user, typeOfRequest):
@@ -55,6 +58,7 @@ def get_periodic_forecast_for_default_cities():
 
             data = {'typeOfCall': "basic_forecast", "apiResponse": apiResponse}
             processedForecastMsgStatus, processedForecastMsg = process_forecast_api_message(**data)
+            processedForecastMsg = rounding_number(processedForecastMsg)
             result[city] = processedForecastMsg
 
     for k, v in result.items():

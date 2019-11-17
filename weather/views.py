@@ -171,7 +171,7 @@ def get_user_mobile_and_check_time(user, typeOfRequest):
     return status, statusMessageWeather, resuresultMobileNumber
 
 def get_string_for_forecast(userAddress, userCity, userCountry):
-    stringToSend =""
+    stringToSend = ""
     if ((userCity != None) and (len(userCity) > 1) and (len(userCountry) > 1)):
         if ((userAddress != None) and (len(userAddress) > 1)):
             return str(userAddress) + "," + str(userCity)+ "," + str(userCountry)

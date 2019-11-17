@@ -23,3 +23,6 @@ def split_by_char(someString, charForSplit):
     status = "stringWasSplitted"
     result = someString.split(charForSplit)
     return status, result
+
+def rounding_number(number):
+    return (round(number * 2.0) / 2.0)

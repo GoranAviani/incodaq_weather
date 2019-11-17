@@ -5,10 +5,10 @@
 {% block content %}
 index
 </br></br>
-{% if result %}
-{% for key, value in result.items %}
-<td>{{key}}</td>
-<td>{{value}}</td>
+{% if defaultCitiesTemp %}
+{% for city, temp in defaultCitiesTemp.items %}
+<td>{{city}}</td>
+<td>{{temp}}</td>
 </br>
 {% endfor %}    
 
