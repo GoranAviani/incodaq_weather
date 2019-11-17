@@ -34,3 +34,15 @@ class ProcessingFile(TestCase):
         result = split_by_char("13:00", " ")
         self.assertEqual(result, ("error", ""))
 
+class RoundingTemperatureNumbers(TestCase):
+    def test_rounding_number(self):
+        result = rounding_number(13)
+        self.assertEqual(result, 13)
+
+    def test_rounding_up_number(self):
+        result = rounding_number(13.4)
+        self.assertEqual(result, 13.5)
+
+    def test_rounding_up_number(self):
+        result = rounding_number(13.7)
+        self.assertEqual(result, 13.5)
