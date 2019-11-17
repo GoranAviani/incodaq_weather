@@ -61,7 +61,7 @@ def get_periodic_forecast_for_default_cities():
             fullAPIUrl = apiUrl + apiEndpoint
             apiResponse = requests.get(fullAPIUrl, params=params)
             if apiResponse.status_code in (400, 401, 402, 403, 404):
-                logging.getLogger("error_logger").error("aaa11111aaaaaaa")
+                logging.getLogger("error_logger").error("Dark Sky api response is: %s", apiResponse.json())
                 break
 
             apiResponse = apiResponse.json()
