@@ -4,6 +4,7 @@ from django.shortcuts import render
 from django.shortcuts import render
 #from incodaq_weather.local_settings import locationiqTokenKey, darkSkyToken, twilioAccountSid, twilioAuthToken, myTwilioTelephone
 import os
+import logging
 locationiqTokenKey = os.environ.get("locationiqTokenKey", '')
 darkSkyToken = os.environ.get("darkSkyToken", '')
 twilioAccountSid = os.environ.get("twilioAccountSid", '')
@@ -19,7 +20,7 @@ from .making_requests import make_request_params, twilio_api
 def get_user_lat_long_api(stringToSend):
     apiUrl = {"apiUrl": "https://eu1.locationiq.com/v1/"}
     apiEndpoint = {"apiEndpoint": "search.php"}
-    params =  {"params1":{'key': locationiqTokenKey,
+    params =  {"params":{'key': locationiqTokenKey,
         'q': stringToSend,
         'format': 'json'}}
     result = make_request_params(**apiUrl, **apiEndpoint, **params)
