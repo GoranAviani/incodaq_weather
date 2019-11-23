@@ -24,55 +24,43 @@
 		<![endif]-->
 
 	</head>
-<body>
-		<div class="site-content">
-			<div class="site-header">
-				<div class="container">
-					<a href="index.html" class="branding">
-                        <img src="{% static 'images/logo.png' %}"  class="logo" alt="">
-
-						<div class="logo-type">
-							<h1 class="site-title">Incodaq Weather</h1>
-							<small class="site-description">Weather in your pocket</small>
-						</div>
-					</a>
-
-					<!-- Default snippet for navigation -->
-					<div class="main-navigation">
-						<button type="button" class="menu-toggle"><i class="fa fa-bars"></i></button>
-						<ul class="menu">
-							<li class="menu-item current-menu-item"><a href="index.html">Home</a></li>
-							<li class="menu-item"><a href="news.html">News</a></li>
-
-							<li class="menu-item"><a href="photos.html">Photos</a></li>
-							<li class="menu-item"><a href="contact.html">Contact</a></li>
-                            {% if user.is_authenticated %}
-               <li class="menu-item"><a href="{% url 'logout' %}">Logout</a></li>
-
-{% else %}
-                                <li class="menu-item"><a href="{% url 'login' %}">Log in</a></li>
-                                <li class="menu-item"><a href="{% url 'signup' %}">Join us</a></li>
-
-{% endif %}
-						</ul> <!-- .menu -->
-					</div> <!-- .main-navigation -->
-
-					<div class="mobile-navigation"></div>
-
-				</div>
-			</div> <!-- .site-header -->
+    <div class="site-content">
+        <div class="site-header">
+            <div class="container">
+                <a href="{% url 'index' %}" class="branding">
+                    <img src="{% static 'images/logo.png' %}"  class="logo" alt="">
+                    <div class="logo-type">
+                        <h1 class="site-title">Incodaq Weather</h1>
+                        <small class="site-description">Weather in your pocket</small>
+                    </div>
+                </a>
+                <!-- Default snippet for navigation -->
+                <div class="main-navigation">
+                    <button type="button" class="menu-toggle"><i class="fa fa-bars"></i></button>
+                    <ul class="menu">
+                        <li class="menu-item current-menu-item"><a href="{% url 'index' %}">Home</a></li>
+                        <li class="menu-item"><a href="">News</a></li>
+                        {% if user.is_authenticated %}
+                            <li class="menu-item"><a href="{% url 'logout' %}">Logout</a></li>
+                        {% else %}
+                            <li class="menu-item"><a href="{% url 'login' %}">Log in</a></li>
+                            <li class="menu-item"><a href="{% url 'signup' %}">Join us</a></li>
+                        {% endif %}
+                    </ul> <!-- .menu -->
+                </div> <!-- .main-navigation -->
+                <div class="mobile-navigation"></div>
+            </div>
+        </div> <!-- .site-header -->
+    </div>
 
 
 
 
 
 
-
-
-    <main>
+<main>
     {% block content %}
-   
     {% endblock %}
-  </main>
-</body>
+</main>
+
 </html>
