@@ -11,36 +11,48 @@
   
   </head>
 <body>
- <!-- A grey horizontal navbar that becomes vertical on small screens -->
-<nav class="navbar navbar-expand-sm bg-light">
+		<div class="site-content">
+			<div class="site-header">
+				<div class="container">
+					<a href="index.html" class="branding">
+						<img src="images/logo.png" alt="" class="logo">
+						<div class="logo-type">
+							<h1 class="site-title">Company name</h1>
+							<small class="site-description">tagline goes here</small>
+						</div>
+					</a>
 
-  <!-- Links -->
-  <ul class="navbar-nav">
-    <li class="nav-item">
-      <a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">Link 2</a>
-    </li>
+					<!-- Default snippet for navigation -->
+					<div class="main-navigation">
+						<button type="button" class="menu-toggle"><i class="fa fa-bars"></i></button>
+						<ul class="menu">
+							<li class="menu-item current-menu-item"><a href="index.html">Home</a></li>
+							<li class="menu-item"><a href="news.html">News</a></li>
 
+							<li class="menu-item"><a href="photos.html">Photos</a></li>
+							<li class="menu-item"><a href="contact.html">Contact</a></li>
+                            {% if user.is_authenticated %}
+               <li class="menu-item"><a href="{% url 'logout' %}">Logout</a></li>
 
-{% if user.is_authenticated %}
-                Username: {{user.username}}
-              <li><a href="{% url 'logout' %}" >Logout</a></li>
-              
 {% else %}
-              <li><a href="{% url 'login' %}" >Log in</a></li>
-            <li><a href="{% url 'signup' %}" >Join us</a></li>
+                                <li class="menu-item"><a href="{% url 'login' %}">Log in</a></li>
+                                <li class="menu-item"><a href="{% url 'signup' %}">Join us</a></li>
 
-            
-          {% endif %}  
+{% endif %}
+						</ul> <!-- .menu -->
+					</div> <!-- .main-navigation -->
 
-  </ul>
-</nav> 
+					<div class="mobile-navigation"></div>
+
+				</div>
+			</div> <!-- .site-header -->
 
 
 
 
+
+
+        
 
     <main>
     {% block content %}
