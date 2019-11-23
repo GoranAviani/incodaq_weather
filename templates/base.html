@@ -9,13 +9,13 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1">
 
-		<title>Compass Starter by Ariona, Rian</title>
+		<title>Incodaq Weather</title>
 
 		<!-- Loading third party fonts -->
 		<link href="http://fonts.googleapis.com/css?family=Roboto:300,400,700|" rel="stylesheet" type="text/css">
-		<link href="fonts/font-awesome.min.css" rel="stylesheet" type="text/css">
+		<link href="{% static 'fonts/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
         <!-- Loading main css file -->
-        <link type="text/css" href="{% static 'css/style.css' %} " rel="stylesheet">
+        <link type="text/css" href="{% static 'css/style.css' %}" rel="stylesheet">
 
 
 		<!--[if lt IE 9]>
@@ -24,6 +24,7 @@
 		<![endif]-->
 
 	</head>
+    <body>
     <div class="site-content">
         <div class="site-header">
             <div class="container">
@@ -62,5 +63,11 @@
     {% block content %}
     {% endblock %}
 </main>
+</body>
+
+    <script src="{% static 'js/jquery-1.11.1.min.js' %}"></script>
+    <script src="{% static 'js/plugins.js' %}"></script>
+    <script src="{% static 'js/app.js' %}"></script>
+
 
 </html>
