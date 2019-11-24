@@ -1,20 +1,97 @@
 <!-- templates/index.html -->
 {% extends 'base.html' %}
+{% load static %}
+{% load staticfiles %}
+
 
 
 {% block content %}
-index
-</br></br>
-{% if defaultCitiesTemp %}
-{% for city, temp in defaultCitiesTemp.items %}
-<td>{{city}}</td>
-<td>{{temp}}</td>
-</br>
-{% endfor %}    
 
-{% endif %}    
+<main class="main-content">
+    <div class="forecast-table">
+            <div class="forecast-container">
+                {% if defaultCitiesTemp %}
+                    <div class="forecast-header">
+                        <div class="h2 text-center">Current temperatures</div>
+                    </div> <!-- .forecast-header -->
+                    {% for city, temp in defaultCitiesTemp.items %}
+                        <div class="forecast">
+                            <div class="forecast-header">
+                                <div class="day">{{city}}</div>
+                            </div> <!-- .forecast-header -->
+                            <div class="forecast-content">
+                                <div class="degree">{{temp}}<sup>o</sup>C</div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="fullwidth-block " data-bg-color="#262936">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-xs-12">
+                    <h2 class="section-title">Application features</h2>
+                    <ul class="arrow-feature">
+                        <li>
+                            <h3>Daily weather forecast directly to you mobile</h3>
+                            <p>After setting your city and prefered forecast time you will be receiving daily weather forecat updates via sms messages.</p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-6 col-xs-12">
+                    <h2 class="section-title">Weather analyssis</h2>
+                    <ul class="arrow-feature">
+                        <li>
+                            <h3>Open source weather</h3>
+                            <p>Incodaq weather uses open source weather service from Dark Sky Weather.</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
+
+
+
+        <div class="fullwidth-block" >
+					<div class="container">
+						<div class="row">
+							<div class="col-xs-12 col-md-4 col-lg-4">
+								<div class="news">
+									<div class="date">Tech stack</div>
+									<h3><a href="#">Technology stack used to build Incodaq Weather </a></h3>
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo saepe assumenda dolorem modi, expedita voluptatum ducimus necessitatibus. Asperiores quod reprehenderit necessitatibus harum, mollitia, odit et consequatur maxime nisi amet doloremque.</p>
+								</div>
+							</div>
+							<div class="col-xs-12 col-md-4 col-lg4">
+								<div class="news">
+									<div class="date">Deployment</div>
+									<h3><a href="#">The way Incodaq Weather is deployed</a></h3>
+									<p>Nobis architecto consequatur ab, ea, eum autem aperiam accusantium placeat vitae facere explicabo temporibus minus distinctio cum optio quis, dignissimos eius aspernatur fuga. Praesentium totam, corrupti beatae amet expedita veritatis.</p>
+								</div>
+							</div>
+							<div class="col-xs-12 col-md-4 col-lg-4">
+								<div class="news">
+									<div class="date">Conclusion</div>
+									<h3><a href="#">Project conclusion</a></h3>
+									<p>Enim impedit officiis placeat qui recusandae doloremque possimus, iusto blanditiis, quam optio delectus maiores. Possimus rerum, velit cum natus eos. Cumque pariatur beatae asperiores, esse libero quas ad dolorem. Voluptates.</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+</main> <!-- .main-content -->
+
+
+		</div>
+
+</div>
 
 
 
