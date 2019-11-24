@@ -83,7 +83,7 @@ def sign_up_user(request):
 
             #Try to get all possible reasons for errors on registration and show them to user
             try:
-                usernameError = ["Username" + signup_form_data.errors["username"][0]]
+                usernameError = ["Username: " + signup_form_data.errors["username"][0]]
             except:
                 usernameError = []
             try:
