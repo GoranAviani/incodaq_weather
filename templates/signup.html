@@ -2,65 +2,62 @@
 {% extends 'base.html' %}
 {% block title %}Sign Up{% endblock %}
 {% block content %}
-<!-- Main container start -->
-<section id="main-container">
-  <div class="container">
-    <div class="row">
-    </div>
-    <!-- Content row  end -->
-    <div class="gap-40">    
-    </div>
-    <div class="row">
-      <div>
-        <div class="row">
-          <div class="margine-10-lr">
-            <h2 class="text-center">Register</h2>
-          </div>  
-        </div>
-        <small style="color: {{statusColor}}">
-        {% if registrationStatus %}
-          <ul>
+<div class="container margine-b-50">
+
+	<div class="row text-center">
+	    <div class="col-md-6 offset-md-3">
+	        <div class="card" data-bg-color="#323544">
+	            <div class="card-body ">
+	                <div class="login-title">
+	                    <div class="title-text">Registration</div>
+	                </div>
+                    {% if registrationStatus %}
+         <ul>
           {% for x in registrationStatus %}
-            <li>{{ x }}</li>
+             <h4 style="color: {{statusColor}}"><li>{{ x }}</li> </h4>
           {% endfor %}
           </ul>
         {% endif %}
-        </small>
-        <form method="post">
-          {% csrf_token %}
-          <div class="row margine-10-lr">
-            <div>
-              <label>Username</label>
-              <input type="text" name="username" class="form-control" placeholder="Username">
-              </div>  
-          </div>
-          <div class="form-group  margine-10-lr">
-            <label>Password</label>
-            <input type="password" name="password1" class="form-control" id="" value="">
-          
-          </div>
-          <div class="form-group  margine-10-lr">
-            <label>Password</label>
-            <input type="password" name="password2" class="form-control" id="" value="">
-            
-          </div>
-          <div class="form-group  margine-10-lr">
-            <label>Email Address</label>
-            <input type="" name="email" class="form-control" id="" value="">
-            
-          </div>
-          <div class="text-left col-lg-6 col-md-6 col-xs-6"><br>
-            <button class="btn btn-primary solid blank margine-10-lr" type="submit">Register with username and password</button> 
-          </div>
-          <div class="text-right col-lg-6 col-md-6 col-xs-6"><br>
-            <a href="{% url 'index'%}" class='btn btn-primary solid blank margine-10-lr' >Back to Index</a>
-          </div>
-          <div class="text-left col-lg-6 col-md-6 col-xs-6"><br>
-            <a class="btn btn-primary solid blank margine-10-lr" href="">Register with Google</a>
-          </div>
-        </form>
-      </div>
-    </div>    
-  </div><!--/ container end -->
-</section><!--/ Main container end -->
+	                <div class="login-form mt-4">
+	                    <form method="post">
+                        {% csrf_token %}
+                            <div class="form-row margine-b-10">
+                                <div class="form-group col-md-12 ">
+                                    <input id="text" name="username" placeholder="Username" class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="form-row margine-b-10">
+                                <div class="form-group col-md-12">
+                                    <input type="password" class="form-control" name="password1" id="pass" placeholder="Password">
+                                </div>
+                            </div>
+                            <div class="form-row margine-b-10">
+                                <div class="form-group col-md-12">
+                                    <input type="password" class="form-control" name="password2" id="pass" placeholder="Repeat password">
+                                </div>
+                            </div>
+                            <div class="form-row margine-b-10">
+                                <div class="form-group col-md-12">
+                                    <input type="email" class="form-control" name="email" id="email" placeholder="Email address">
+                                </div>
+                            </div>
+                            <div class="form-row ">
+                                <button type="submit" class="btn main-button btn-block normal-text ">Submit</button>
+                            </div>
+                            </br>
+                            </br>
+                            <div class="form-row">
+                                <a href="{% url 'index'%}" class='btn main-button btn-block normal-text' >Back to Index</a>
+                            </div>
+                        </form>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+</div>
+
+
+
+
 {% endblock %}
