@@ -32,6 +32,12 @@ audio:not([controls]) {
 [hidden], template {
   display: none; }
 
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
 html {
 
   color: #000;
@@ -1114,7 +1120,7 @@ form textarea {
  * Header Styles
  */
 .site-header {
-  padding: 50px 0; }
+  padding: 50px 0 200px; }
   .site-header .branding {
     float: left; }
     .site-header .branding .logo, .site-header .branding .logo-type {
@@ -1650,6 +1656,8 @@ form textarea {
 .site-footer {
   background: #262936;
   padding: 50px 0;
+    width: 100%;
+
 }
   .site-footer .subscribe-form {
     position: relative;
