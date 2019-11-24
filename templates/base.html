@@ -10,10 +10,11 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1">
 
 		<title>Incodaq Weather</title>
-
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 		<!-- Loading third party fonts -->
 		<link href="http://fonts.googleapis.com/css?family=Roboto:300,400,700|" rel="stylesheet" type="text/css">
-		<link href="{% static 'fonts/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+		<script src="https://kit.fontawesome.com/207f5a397a.js" crossorigin="anonymous"></script>
         <!-- Loading main css file -->
         <link type="text/css" href="{% static 'css/style.css' %}" rel="stylesheet">
 
@@ -24,7 +25,7 @@
 		<![endif]-->
 
 	</head>
-    <body>
+
     <div class="site-content">
         <div class="site-header">
             <div class="container">
@@ -63,7 +64,7 @@
     {% block content %}
     {% endblock %}
 </main>
-</body>
+
 
     <script src="{% static 'js/jquery-1.11.1.min.js' %}"></script>
     <script src="{% static 'js/plugins.js' %}"></script>
