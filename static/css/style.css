@@ -1231,12 +1231,23 @@ form textarea {
     bottom: 5px;
     padding: 0 40px; }
 
+   @media screen and (max-width: 1600px) {
+        .forecast-container {
+            width: 90%;
+            margin:auto;
+        }
+   }
+@media screen and (max-width: 900px) {
+        .forecast-container {
+            width: 100%;
+        }
+   }
+
 .forecast-container {
-  width: 100%;
+
   background: #323544;
   display: table;
   table-layout: fixed;
-  width: 100%;
   overflow: hidden;
   border-radius: 10px;
   margin-top: -150px;
