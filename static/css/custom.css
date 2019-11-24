@@ -23,8 +23,16 @@
  .margine-b-10{
      margin-bottom: 10px;
  }
+ .margine-t-10{
+     margin-top: 10px;
+ }
+ .margine-t-15{
+     margin-top: 15px;
+ }
 
-
+  .margine-b-20{
+     margin-bottom: 20px;
+ }
   .margine-b-50{
      margin-bottom: 50px;
  }

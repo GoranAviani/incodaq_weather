@@ -8,16 +8,18 @@
 	    <div class="col-md-6 offset-md-3">
 	        <div class="card" data-bg-color="#323544">
 	            <div class="card-body ">
-	                <div class="login-title">
+	                <div class="login-title margine-b-20">
 	                    <div class="title-text">Registration</div>
 	                </div>
                     {% if registrationStatus %}
-         <ul>
-          {% for x in registrationStatus %}
-             <h4 style="color: {{statusColor}}"><li>{{ x }}</li> </h4>
-          {% endfor %}
-          </ul>
-        {% endif %}
+                        {% for x in registrationStatus %}
+                            <div class="form-row">
+                                <div class="form-group col-md-12 ">
+                                   <h4  style="color: {{statusColor}}"><li>{{ x }}</li> </h4>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
 	                <div class="login-form mt-4">
 	                    <form method="post">
                         {% csrf_token %}
