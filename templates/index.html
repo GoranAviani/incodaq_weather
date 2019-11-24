@@ -6,46 +6,84 @@
 
 
 {% block content %}
-<div class="forecast-table">
-				<div class="container">
-					<div class="forecast-container">
-
-							<div class="forecast-header">
-								<div class="h2 text-center">Current temperatures</div>
-							</div> <!-- .forecast-header -->
+    <main class="main-content">
 
 
 
 
 
-                        {% if defaultCitiesTemp %}
-{% for city, temp in defaultCitiesTemp.items %}
-					<div class="forecast">
-							<div class="forecast-header">
-								<div class="day">{{city}}</div>
-							</div> <!-- .forecast-header -->
-							<div class="forecast-content">
-								<div class="degree">{{temp}}<sup>o</sup>C</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="forecast-table">
+        <div class="container">
+            <div class="forecast-container">
+                {% if defaultCitiesTemp %}
+                    <div class="forecast-header">
+                        <div class="h2 text-center">Current temperatures</div>
+                    </div> <!-- .forecast-header -->
+                    {% for city, temp in defaultCitiesTemp.items %}
+                        <div class="forecast">
+                            <div class="forecast-header">
+                                <div class="day">{{city}}</div>
+                            </div> <!-- .forecast-header -->
+                            <div class="forecast-content">
+                                <div class="degree">{{temp}}<sup>o</sup>C</div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+
+    			<div class="fullwidth-block " data-bg-color="#262936">
+					<div class="container">
+						<div class="row">
+							<div class="col-md-6 col-xs-12">
+								<h2 class="section-title">Application features</h2>
+								<ul class="arrow-feature">
+									<li>
+										<h3>Daily weather forecast directly to you mobile</h3>
+										<p>After setting your city and prefered forecast time you will be receiving daily weather forecat updates via sms messages.</p>
+									</li>
+								</ul>
+							</div>
+							<div class="col-md-6 col-xs-12">
+								<h2 class="section-title">Weather analyssis</h2>
+								<ul class="arrow-feature">
+									<li>
+										<h3>Open source weather</h3>
+										<p>Incodaq weather uses open source weather service from Dark Sky Weather.</p>
+									</li>
+								</ul>
 							</div>
 						</div>
-
-
-{% endfor %}
-
-{% endif %}
-
-
-
-
-
-
 					</div>
 				</div>
-			</div>
-			<main class="main-content">
 
 
-				<div class="fullwidth-block" data-bg-color="#262936">
+
+
+
+        <div class="fullwidth-block" >
 					<div class="container">
 						<div class="row">
 							<div class="col-md-4">
@@ -73,55 +111,7 @@
 					</div>
 				</div>
 
-				<div class="fullwidth-block">
-					<div class="container">
-						<div class="row">
-							<div class="col-md-4">
-								<h2 class="section-title">Application features</h2>
-								<ul class="arrow-feature">
-									<li>
-										<h3>Natus error sit voluptatem accusantium</h3>
-										<p>Doloremque laudantium totam rem aperiam Inventore veritatis et quasi architecto beatae vitae.</p>
-									</li>
-									<li>
-										<h3>Natus error sit voluptatem accusantium</h3>
-										<p>Doloremque laudantium totam rem aperiam Inventore veritatis et quasi architecto beatae vitae.</p>
-									</li>
-									<li>
-										<h3>Natus error sit voluptatem accusantium</h3>
-										<p>Doloremque laudantium totam rem aperiam Inventore veritatis et quasi architecto beatae vitae.</p>
-									</li>
-								</ul>
-							</div>
-							<div class="col-md-4">
-								<h2 class="section-title">Weather analyssis</h2>
-								<ul class="arrow-list">
-									<li><a href="#">Accusantium doloremque laudantium rem aperiam</a></li>
-									<li><a href="#">Eaque ipsa quae ab illo inventore veritatis quasi</a></li>
-									<li><a href="#">Architecto beatae vitae dicta sunt explicabo</a></li>
-									<li><a href="#">Nemo enim ipsam voluptatem quia voluptas</a></li>
-									<li><a href="#">Aspernatur aut odit aut fugit, sed quia consequuntur</a></li>
-									<li><a href="#">Magni dolores eos qui ratione voluptatem sequi</a></li>
-									<li><a href="#">Neque porro quisquam est qui dolorem ipsum quia</a></li>
-								</ul>
-							</div>
-							<div class="col-md-4">
-								<h2 class="section-title">Awesome Photos</h2>
-								<div class="photo-grid">
-									<a href="#"><img src="images/thumb-1.jpg" alt="#"></a>
-									<a href="#"><img src="images/thumb-2.jpg" alt="#"></a>
-									<a href="#"><img src="images/thumb-3.jpg" alt="#"></a>
-									<a href="#"><img src="images/thumb-4.jpg" alt="#"></a>
-									<a href="#"><img src="images/thumb-5.jpg" alt="#"></a>
-									<a href="#"><img src="images/thumb-6.jpg" alt="#"></a>
-									<a href="#"><img src="images/thumb-7.jpg" alt="#"></a>
-									<a href="#"><img src="images/thumb-8.jpg" alt="#"></a>
-									<a href="#"><img src="images/thumb-9.jpg" alt="#"></a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+
 			</main> <!-- .main-content -->
 
 			<footer class="site-footer">
