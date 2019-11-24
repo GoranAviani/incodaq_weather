@@ -33,7 +33,7 @@ audio:not([controls]) {
   display: none; }
 
 html {
- 
+
   color: #000;
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%; }
@@ -1240,10 +1240,10 @@ form textarea {
     vertical-align: top; }
     .forecast-container .forecast:nth-child(even) {
       background-color: #262936; }
-    @media screen and (max-width: 990px) {
+    @media screen and (max-width: 1500px) {
       .forecast-container .forecast {
         display: block;
-        width: 16.6667%;
+        width: 25%;
         float: left; } }
     .forecast-container .forecast.today {
       width: 420px; }
@@ -1644,7 +1644,8 @@ form textarea {
  */
 .site-footer {
   background: #262936;
-  padding: 50px 0; }
+  padding: 50px 0;
+}
   .site-footer .subscribe-form {
     position: relative;
     margin-bottom: 30px; }
