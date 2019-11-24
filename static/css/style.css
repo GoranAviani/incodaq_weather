@@ -1245,6 +1245,11 @@ form textarea {
         display: block;
         width: 25%;
         float: left; } }
+@media screen and (max-width: 600px) {
+      .forecast-container .forecast {
+        display: block;
+        width: 50%;
+        float: left; } }
     .forecast-container .forecast.today {
       width: 420px; }
       .forecast-container .forecast.today .forecast-header {
@@ -1291,7 +1296,7 @@ form textarea {
     .forecast-container .forecast .forecast-icon {
       height: 50px; }
     .forecast-container .forecast .forecast-content {
-      padding: 50px 20px 10px;
+      padding: 30px 20px 30px;
       text-align: center; }
       .forecast-container .forecast .forecast-content .forecast-icon {
         margin-bottom: 20px; }
