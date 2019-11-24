@@ -1408,7 +1408,8 @@ form textarea {
     font-weight: 300; }
 
 .news {
-  padding-left: 100px;
+  margin-top: 30px;
+  padding-left: 110px;
   position: relative; }
   .news:after {
     content: " ";
@@ -1418,11 +1419,11 @@ form textarea {
     display: block; }
   .news .date {
     position: absolute;
-    top: 0;
+    top: -30px;
     left: 0;
     color: #009ad8;
-    font-size: 24px;
-    font-size: 1.7142857143em; }
+    font-size: 20px;
+    }
   .news h3 {
     font-size: 14px;
     font-size: 1em; }
