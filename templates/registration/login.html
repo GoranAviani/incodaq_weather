@@ -3,7 +3,7 @@
 {% block title %}Login{% endblock %}
 {% block content %}
  <!-- Main container start -->
-    <div class="container">
+<div class="container margine-b-50">
 	<div class="row text-center">
 	    <div class="col-md-6 offset-md-3">
 	        <div class="card" data-bg-color="#323544">
@@ -13,42 +13,30 @@
 	                </div>
 	                <div class="login-form mt-4">
 	                    <form method="post">
-                            {% csrf_token %}
-                        <div class="form-row">
-                            <div class="form-group col-md-12">
-
-            
-                              <input id="text" name="username" placeholder="Username" class="form-control" type="text">
+                        {% csrf_token %}
+                            <div class="form-row margine-b-10">
+                                <div class="form-group col-md-12 ">
+                                    <input id="text" name="username" placeholder="Username" class="form-control" type="text">
+                                </div>
                             </div>
-                            <div class="form-group col-md-12">
-
-
-                              <input type="password" class="form-control" name="password" id="pass" placeholder="Password">
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <input type="password" class="form-control" name="password" id="pass" placeholder="Password">
+                                </div>
                             </div>
-                          </div>
-                         <div class="form-row">
-                        <div class="form-group">
-
-                              </div>
-                    </div>
-
-                        <div class="form-row">
-                            <button type="submit" class="btn btn-danger btn-block ">Submit</button>
-                        </div>
-
-                        <div class="form-row">
-                            <a href="{% url 'index'%}" class='' >Back to Index</a>
-             </div>
-                    </form>
+                            <div class="form-row ">
+                                <button type="submit" class="btn main-button btn-block normal-text ">Submit</button>
+                            </div>
+                            </br>
+                            </br>
+                            <div class="form-row">
+                                <a href="{% url 'index'%}" class='btn main-button btn-block normal-text' >Back to Index</a>
+                            </div>
+                        </form>
 	                </div>
-
 	            </div>
 	        </div>
 	    </div>
 	</div>
 </div>
-
-
-
-
 {% endblock %}

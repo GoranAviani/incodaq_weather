@@ -3,3 +3,28 @@
     font-size: 30px ;
 
     }
+.normal-text{
+    font-size: 15px;
+}
+
+
+  .main-button {
+    padding: 5px 25px;
+    border: 2px solid transparent;
+    border-radius: 30px;
+    color: white !important;
+    -webkit-transition: .3s ease;
+            transition: .3s ease;
+    font-weight: 400; }
+ .main-button:hover {
+    border-color: #009ad8;
+    color: #009ad8 !important; }
+
+ .margine-b-10{
+     margin-bottom: 10px;
+ }
+
+
+  .margine-b-50{
+     margin-bottom: 50px;
+ }
