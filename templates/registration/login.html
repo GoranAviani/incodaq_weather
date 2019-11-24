@@ -3,15 +3,52 @@
 {% block title %}Login{% endblock %}
 {% block content %}
  <!-- Main container start -->
-     <h2 class="text-center">Log in</h2>
-        <form method="post">
-          {% csrf_token %}
-              <label>Username</label>
-              <input type="text" name="username" class="form-control" placeholder="Username">
-            <label>Password</label>
-            <input type="password" name="password" class="form-control" placeholder="Password">
-            <button class="btn btn-primary solid blank margine-10-lr" type="submit">Log in with username and password</button>
-            <a href="{% url 'index'%}" class='btn btn-primary solid blank margine-10-lr' >Back to Index</a>
-            <a class="btn btn-primary solid blank margine-10-lr" href="">Login with Google</a>
-        </form>
+    <div class="container">
+	<div class="row text-center">
+	    <div class="col-md-6 offset-md-3">
+	        <div class="card" data-bg-color="#323544">
+	            <div class="card-body">
+	                <div class="login-title">
+	                    <div class="title-text">Log In</div>
+	                </div>
+	                <div class="login-form mt-4">
+	                    <form method="post">
+                            {% csrf_token %}
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+
+            
+                              <input id="text" name="username" placeholder="Username" class="form-control" type="text">
+                            </div>
+                            <div class="form-group col-md-12">
+
+
+                              <input type="password" class="form-control" name="password" id="pass" placeholder="Password">
+                            </div>
+                          </div>
+                         <div class="form-row">
+                        <div class="form-group">
+
+                              </div>
+                    </div>
+
+                        <div class="form-row">
+                            <button type="submit" class="btn btn-danger btn-block ">Submit</button>
+                        </div>
+
+                        <div class="form-row">
+                            <a href="{% url 'index'%}" class='' >Back to Index</a>
+             </div>
+                    </form>
+	                </div>
+
+	            </div>
+	        </div>
+	    </div>
+	</div>
+</div>
+
+
+
+
 {% endblock %}
