@@ -6,7 +6,7 @@ MAINTAINER goranaviani@gmail.com
 
 # The enviroment variable ensures that the python output is set straight
 # to the terminal with out buffering it first
-#ENV PYTHONUNBUFFERED 1
+ENV PYTHONUNBUFFERED 1
 
 # create root directory for our project in the container
 RUN mkdir /incodaq_weather

@@ -3,6 +3,8 @@ version: '3'
 volumes:
   pgdata:
 services:
+  db:
+    image: postgres
   python: &python
     # image: python:3.5
     build:
@@ -14,8 +16,9 @@ services:
       - .:/incodaq_weather
     ports:
       - 8000:8000
-    command: bash -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    command: bash -c "pip install --no-cache-dir psycopg2 && python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
     depends_on:
+      - db
       - rabbitmq
       - celery_worker
   ## message queue for celery
@@ -26,4 +29,5 @@ services:
     command: celery -A incodaq_weather worker -l info -B
     ports: []
     depends_on:
+      - db
       - rabbitmq
