@@ -18,7 +18,7 @@ try:
 except Exception as e:
     # in case of any error, pass silently.
     pass
-
+from .local_settings import *
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'weather.apps.WeatherConfig',
     'api_relay.apps.ApiRelayConfig',
     'django_countries',
+    'social_django',
 ]
 
 MIDDLEWARE = [
@@ -93,6 +94,17 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+'''
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'HOST': 'db',
+        'PORT': 5432,
+    }
+}
+'''
 
 
 # Password validation
@@ -162,3 +174,11 @@ CELERY_BEAT_SCHEDULE = {
         
     },
 }
+
+
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.google.GoogleOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+)
+LOGIN_URL = '/auth/login/google-oauth2/'
+SOCIAL_AUTH_URL_NAMESPACE = 'social'

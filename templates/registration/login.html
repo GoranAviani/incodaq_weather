@@ -27,12 +27,18 @@
                             <div class="form-row ">
                                 <button type="submit" class="btn main-button btn-block normal-text ">Submit</button>
                             </div>
-                            </br>
-                            </br>
-                            <div class="form-row">
-                                <a href="{% url 'index'%}" class='btn main-button btn-block normal-text' >Back to Index</a>
-                            </div>
+
+
+
                         </form>
+                        <div class="form-row ">
+                            <a href="{% url 'social:begin' 'google-oauth2' %}" class='btn main-button btn-block normal-text' >Login with Google</a>
+                        </div>
+                        </br>
+                        </br>
+                        <div class="form-row">
+                            <a href="{% url 'index'%}" class='btn main-button btn-block normal-text' >Back to Index</a>
+                        </div>
 	                </div>
 	            </div>
 	        </div>
