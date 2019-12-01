@@ -4,7 +4,7 @@
 
 <div class="container margine-b-50">
 	<div class="row text-center">
-	    <div class="col-md-9 offset-md-1">
+	    <div class="col-md-10 col-xs-12 offset-md-1">
 	        <div class="card" data-bg-color="#323544">
 	            <div class="card-body">
 	                <div class="dashboard-title">
@@ -17,7 +17,7 @@
                     </br></br>
                     <div class="form-row margine-b-10">
                         <div class="form-group col-md-12 ">
-                            <div class="h2 text-left">Phone number:
+                            <div class="h3 text-left">Phone number:
                                  {% if hasMobileNumberMessage %}
                                      <normal style="color: {{hasMobileNumberStatusColor}}"> {{ hasMobileNumberMessage }}</normal>
                                      {% if hasMobileNumber == True %}
@@ -31,7 +31,7 @@
                     </div>
                     <div class="form-row margine-b-10">
                         <div class="form-group col-md-12 ">
-                            <div class="h2 text-left">Address:
+                            <div class="h3 text-left">Address:
                                  {% if hasAddressMessage %}
                                      <normal style="color: {{hasAddressStatusColor}}"> {{ hasAddressMessage }}</normal>
                                      {% if hasAddress == True %}
@@ -45,7 +45,7 @@
                     </div>
                     <div class="form-row margine-b-10">
                         <div class="form-group col-md-12 ">
-                            <div class="h2 text-left">Is the mobile phone validated:
+                            <div class="h3 text-left">Is the mobile phone validated:
                                  {% if isMobileValidatedMessage %}
                                      <normal style="color: {{isMobileValidatedStatusColor}}"> {{ isMobileValidatedMessage }}</normal>
                                      {% if isMobileValidated == True %}
@@ -59,7 +59,7 @@
                     </div>
                     <div class="form-row margine-b-10">
                         <div class="form-group col-md-12 ">
-                            <div class="h2 text-left">Do you want to receive SMS messages:
+                            <div class="h3 text-left">Do you want to receive SMS messages:
                                  {% if wantsToReceiveWeatherSMSMessage %}
                                      <normal style="color: {{wantsToReceiveWeatherSMSStatusColor}}"> {{ wantsToReceiveWeatherSMSMessage }}</normal>
                                      {% if wantsToReceiveWeatherSMS == True %}
@@ -73,7 +73,7 @@
                     </div>
                     <div class="form-row margine-b-10">
                         <div class="form-group col-md-12 ">
-                            <div class="h2 text-left">Time to receive your forecast:
+                            <div class="h3 text-left">Time to receive your forecast:
                                  {% if isForecastTimeSetMessage %}
                                      <normal style="color: {{isForecastTimeSetStatusColor}}"> {{ isForecastTimeSetMessage }}</normal>
                                      {% if isForecastTimeSet == True %}
@@ -115,7 +115,7 @@
                         {% if user.is_superuser %}
                                 <h2 class="title-text text-center">Admin menu</h2>
                                 <a href="{% url 'send_daily_forecast' %}" class="btn main-button btn-block normal-text">Send daily forecast to all users via SMS *</a>
-                            
+
                             <p>* Sent forecast SMS messages to all users with approved mobile phone numbers that have inputed their address and wish to receive weather forecast.</p>
                         {% endif %}
                      </div>
