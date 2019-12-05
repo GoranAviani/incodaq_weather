@@ -1,19 +1,92 @@
 {% extends 'base.html' %}
-
 {% block content %}
+    <!-- Main container start -->
+<div class="container margine-b-50">
+	<div class="row text-center">
+	    <div class="col-lg-10 offset-lg-1  col-md-10 offset-md-1 col-xs-12">
+	        <div class="card" data-bg-color="#323544">
+	            <div class="card-body">
+	                <div class="dashboard-title">
+	                    <div class="title-text">User profile</div>
+	                </div>
+                    </br>
+                    {% if userProfileMessage %}
+                        <h2 style="color: {{messageColor}}"> {{ userProfileMessage }}</h2>
+                    {% endif %}
+                    </br></br>
+                    <div class="col-lg-4 offset-lg-4  col-md-4 offset-md-4 col-xs-12">
+                    User: {{profileFormData.username}}
+
+                    </div>
+
+	                <div class="login-form mt-4 col-lg-10 offset-lg-1">
+	                    <form method="post">
+                        {% csrf_token %}
+                            <div class="form-row margine-b-10">
+                                <div class="form-group col-md-12 col-lg-12">
+                                     <div class="col-md-12 col-lg-12 text-left">
+                                        First name:
+                                     </div>
+                                    <div class="col-md-12 col-lg-12 text-left ">
+                                        {{profileFormData.first_name}}
+
+                                    </div>
+                                </div>
+                            </div>
+                        Last name: {{profileFormData.last_name}}
+Email: {{profileFormData.email}}
+
+
+
+
+
+                            <div class="form-row ">
+                                <button type="submit" class="btn main-button btn-block normal-text ">Submit</button>
+                            </div>
+
+
+
+                        </form>
+                        <div class="form-row ">
+                            <a href="{% url 'social:begin' 'google-oauth2' %}" class='btn main-button btn-block normal-text' >Login with Google</a>
+                        </div>
+                        </br>
+                        </br>
+                        <div class="form-row">
+                            <a href="{% url 'index'%}" class='btn main-button btn-block normal-text' >Back to Index</a>
+                        </div>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <div class="container margin-30-top">
 <form method="post">
-{% if userProfileMessage %}
-<small style="color: {{messageColor}}"> {{ userProfileMessage }}</small>
-{% endif %}
-<br/>
+
     {% csrf_token %}
-    Username: {{profileFormData.username}}
-    <br/>
-    First name: {{profileFormData.first_name}}
-    <br/>
-    Last name: {{profileFormData.last_name}}
+
+
+
     <br/>
     Email: {{profileFormData.email}}
     <br/>
