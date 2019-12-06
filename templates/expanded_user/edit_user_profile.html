@@ -15,8 +15,7 @@
                     {% endif %}
                     </br></br>
                     <div class="col-lg-4 offset-lg-4  col-md-4 offset-md-4 col-xs-12">
-                    User: {{profileFormData.username}}
-
+                        User: {{profileFormData.username}}
                     </div>
 
 	                <div class="login-form mt-4 col-lg-10 offset-lg-1">
@@ -24,21 +23,90 @@
                         {% csrf_token %}
                             <div class="form-row margine-b-10">
                                 <div class="form-group col-md-12 col-lg-12">
-                                     <div class="col-md-12 col-lg-12 text-left">
+                                     <div class="text-left ">
                                         First name:
                                      </div>
-                                    <div class="col-md-12 col-lg-12 text-left ">
-                                        {{profileFormData.first_name}}
-
+                                    <div class="text-left ">
+                                         <la id="first_name" class="input-field1">{{profileFormData.first_name}}</la>
                                     </div>
                                 </div>
                             </div>
-                        Last name: {{profileFormData.last_name}}
-Email: {{profileFormData.email}}
+                            <div class="form-row margine-b-10">
+                                <div class="form-group col-md-12 col-lg-12">
+                                     <div class="col-md-12 col-lg-12 text-left">
+                                        Last name:
+                                     </div>
+                                    <div class="text-left ">
+                                         <la id="first_name" class="input-field1">{{profileFormData.last_name}}</la>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row margine-b-10">
+                                <div class="form-group col-md-12 col-lg-12">
+                                     <div class="text-left ">
+                                        Email:
+                                     </div>
+                                    <div class="text-left ">
+                                         <la id="first_name" class="input-field1">{{profileFormData.email}}</la>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row margine-b-10">
+                                <div class="form-group col-md-12 col-lg-12">
+                                     <div class="text-left ">
+                                        Address:
+                                     </div>
+                                    <div class="text-left ">
+                                         <la id="first_name" class="input-field1">{{profileFormData.userAddress}}</la>
+
+    <br/>
+
+    Please type in Address if you want to get a better weather forecast*
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row margine-b-10">
+                                <div class="form-group col-md-12 col-lg-12">
+                                     <div class="col-md-12 col-lg-12 text-left">
+                                         Town:
+                                     </div>
+                                    <div class="text-left ">
+                                         <la id="first_name" class="input-field1">{{profileFormData.userCity}}</la>
+                                    </div>
+                                    Please type in City if you want to get a weather forecast* **
+                                </div>
+                            </div>
+                            <div class="form-row margine-b-10">
+                                <div class="form-group col-md-12 col-lg-12">
+                                     <div class="text-left ">
+                                        Country:
+                                     </div>
+                                    <div class="col-md-12 col-lg-12 text-left ">
+                                         <la id="first_name" class="input-field1">{{profileFormData.userCountry}}</la>
+                                    </div>
+                                    Please type in Country if you want to get a weather forecast* **
+                                </div>
+                            </div>
+                            <div class="form-row margine-b-10">
+                                <div class="form-group col-md-12 col-lg-12">
+                                     <div class="text-left ">
+                                       Time zone:
+                                     </div>
+                                    <div class="text-left ">
+                                         <la id="first_name" class="input-field1">{{profileFormData.userTimeZone}}</la>
+                                    </div>
+
+                                </div>
+                            </div>
+    * Will provide more accutate weather forecast if weather forecast is enabled in the mobile phone settings.
+<br/>
+** Mandatory if weather forecast is enabled in the mobile phone settings.
 
 
 
 
+</br>
+                        </br>                        </br>
 
                             <div class="form-row ">
                                 <button type="submit" class="btn main-button btn-block normal-text ">Submit</button>
@@ -47,14 +115,14 @@ Email: {{profileFormData.email}}
 
 
                         </form>
-                        <div class="form-row ">
-                            <a href="{% url 'social:begin' 'google-oauth2' %}" class='btn main-button btn-block normal-text' >Login with Google</a>
-                        </div>
+
                         </br>
                         </br>
                         <div class="form-row">
                             <a href="{% url 'index'%}" class='btn main-button btn-block normal-text' >Back to Index</a>
                         </div>
+                        </br>
+                        </br>
 	                </div>
 	            </div>
 	        </div>
@@ -62,51 +130,5 @@ Email: {{profileFormData.email}}
 	</div>
 </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="container margin-30-top">
-<form method="post">
-
-    {% csrf_token %}
-
-
-
-    <br/>
-    Email: {{profileFormData.email}}
-    <br/>
-    Address: {{profileFormData.userAddress}}
-    Please type in Address if you want to get a better weather forecast*
-    <br/>
-    Town: {{profileFormData.userCity}} Please type in City if you want to get a weather forecast* **
-    <br/>
-    Country: {{profileFormData.userCountry}} Please type in Country if you want to get a weather forecast* **
-    <br/>
-    Time zone: {{profileFormData.userTimeZone}} 
-    <br/>
-    <br/><br/>
-    <button type="submit" class="btn btn-primary solid width-100 hover-black-text" >Save</button>
-<br/><br/><br/>
-* Will provide more accutate weather forecast if weather forecast is enabled in the mobile phone settings.
-<br/>
-** Mandatory if weather forecast is enabled in the mobile phone settings.    
-<br/> 
-</form>
-</div>
 
 {% endblock %}
