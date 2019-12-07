@@ -188,7 +188,7 @@ def send_daily_forecast(user, typeOfRequest):
     userLat = user.userLatitude
     userLong = user.userLongitude
 
-    if ((userLat != None) and (userLong != None)):
+    if ((userLat != None and  userLat != "") and (userLong != None and userLong != "")):
         userMobileStatus, statusMessage, userMobileNumber = get_user_mobile_and_check_time(user, typeOfRequest)
         #if userForecastTimeList not "now" or in the last 2 hours (processig time was long)
         # then dont send because its still not the time do send sms
