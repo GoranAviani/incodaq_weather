@@ -15,13 +15,21 @@
                     {% endif %}
                     </br>
                     </br>
-                    <div class="col-lg-4 offset-lg-4  col-md-4 offset-md-4 col-xs-12">
-                        User:  {{user.username}}
-                    </div>
+
 
 	                <div class="login-form mt-4 col-lg-10 offset-lg-1">
 	                    <form method="post">
                         {% csrf_token %}
+                            <div class="form-row margine-b-10">
+                                <div class="form-group col-md-12 col-lg-12">
+                                     <div class="text-left ">
+                                        User:
+                                     </div>
+                                    <div class="text-left ">
+                                         <la id="first_name" class="input-field1">{{profileFormData.username}}</la>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="form-row margine-b-10">
                                 <div class="form-group col-md-12 col-lg-12">
                                      <div class="text-left ">
