@@ -13,9 +13,10 @@
                     {% if userProfileMessage %}
                         <h2 style="color: {{messageColor}}"> {{ userProfileMessage }}</h2>
                     {% endif %}
-                    </br></br>
+                    </br>
+                    </br>
                     <div class="col-lg-4 offset-lg-4  col-md-4 offset-md-4 col-xs-12">
-                        User: {{profileFormData.username}}
+                        User:  {{user.username}}
                     </div>
 
 	                <div class="login-form mt-4 col-lg-10 offset-lg-1">
@@ -33,7 +34,7 @@
                             </div>
                             <div class="form-row margine-b-10">
                                 <div class="form-group col-md-12 col-lg-12">
-                                     <div class="col-md-12 col-lg-12 text-left">
+                                     <div class="text-left">
                                         Last name:
                                      </div>
                                     <div class="text-left ">
@@ -58,17 +59,15 @@
                                      </div>
                                     <div class="text-left ">
                                          <la id="first_name" class="input-field1">{{profileFormData.userAddress}}</la>
-
-    <br/>
-
-    Please type in Address if you want to get a better weather forecast*
+                                    <br/>
+                                    Please type in Address if you want to get a better weather forecast*
                                     </div>
                                 </div>
                             </div>
                             <div class="form-row margine-b-10">
                                 <div class="form-group col-md-12 col-lg-12">
-                                     <div class="col-md-12 col-lg-12 text-left">
-                                         Town:
+                                     <div class="text-left">
+                                         City:
                                      </div>
                                     <div class="text-left ">
                                          <la id="first_name" class="input-field1">{{profileFormData.userCity}}</la>
@@ -81,7 +80,7 @@
                                      <div class="text-left ">
                                         Country:
                                      </div>
-                                    <div class="col-md-12 col-lg-12 text-left ">
+                                    <div class="text-left ">
                                          <la id="first_name" class="input-field1">{{profileFormData.userCountry}}</la>
                                     </div>
                                     Please type in Country if you want to get a weather forecast* **
@@ -95,27 +94,18 @@
                                     <div class="text-left ">
                                          <la id="first_name" class="input-field1">{{profileFormData.userTimeZone}}</la>
                                     </div>
-
                                 </div>
                             </div>
-    * Will provide more accutate weather forecast if weather forecast is enabled in the mobile phone settings.
-<br/>
-** Mandatory if weather forecast is enabled in the mobile phone settings.
-
-
-
-
-</br>
-                        </br>                        </br>
-
+                            * This field provides a more accurate weather forecast.
+                            <br/>
+                            ** Mandatory field.
+                            </br>
+                            </br>
+                            </br>
                             <div class="form-row ">
                                 <button type="submit" class="btn main-button btn-block normal-text ">Submit</button>
                             </div>
-
-
-
                         </form>
-
                         </br>
                         </br>
                         <div class="form-row">
@@ -129,6 +119,4 @@
 	    </div>
 	</div>
 </div>
-
-
 {% endblock %}
