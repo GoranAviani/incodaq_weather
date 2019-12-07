@@ -1,112 +1,66 @@
 {% extends 'base.html' %}
+
 {% block content %}
-    <!-- Main container start -->
 <div class="container margine-b-50">
 	<div class="row text-center">
 	    <div class="col-lg-10 offset-lg-1  col-md-10 offset-md-1 col-xs-12">
 	        <div class="card" data-bg-color="#323544">
 	            <div class="card-body">
 	                <div class="dashboard-title">
-	                    <div class="title-text">User profile</div>
+	                    <div class="title-text">User phone settings</div>
 	                </div>
                     </br>
-                    {% if userProfileMessage %}
-                        <h2 style="color: {{messageColor}}"> {{ userProfileMessage }}</h2>
-                    {% endif %}
                     </br>
-                    </br>
-
-
+                    <div class="col-lg-4 offset-lg-4  col-md-4 offset-md-4 col-xs-12">
+                        User:  {{user.username}}
+                    </div>
 	                <div class="login-form mt-4 col-lg-10 offset-lg-1">
 	                    <form method="post">
                         {% csrf_token %}
                             <div class="form-row margine-b-10">
                                 <div class="form-group col-md-12 col-lg-12">
                                      <div class="text-left ">
-                                        User:
+                                        Mobile phone country code: *
                                      </div>
                                     <div class="text-left ">
-                                         <la id="first_name" class="input-field1">{{profileFormData.username}}</la>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-row margine-b-10">
-                                <div class="form-group col-md-12 col-lg-12">
-                                     <div class="text-left ">
-                                        First name:
-                                     </div>
-                                    <div class="text-left ">
-                                         <la id="first_name" class="input-field1">{{profileFormData.first_name}}</la>
+                                         <la id="first_name" class="input-field1">{{user_phone_form_data.phoneCountryCode}}</la>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-row margine-b-10">
                                 <div class="form-group col-md-12 col-lg-12">
                                      <div class="text-left">
-                                        Last name:
+                                        Mobile phone number: *
                                      </div>
                                     <div class="text-left ">
-                                         <la id="first_name" class="input-field1">{{profileFormData.last_name}}</la>
+                                         <la id="first_name" class="input-field1">{{user_phone_form_data.phoneNumber}}</la>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-row margine-b-10">
                                 <div class="form-group col-md-12 col-lg-12">
                                      <div class="text-left ">
-                                        Email:
+                                        Do you want to receive weather SMS to your mobile: **
                                      </div>
                                     <div class="text-left ">
-                                         <la id="first_name" class="input-field1">{{profileFormData.email}}</la>
+                                         <la id="first_name" class="input-field1">{{user_phone_form_data.wantsToReceiveWeatherSMS}}</la>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-row margine-b-10">
                                 <div class="form-group col-md-12 col-lg-12">
                                      <div class="text-left ">
-                                        Address:
+                                        Set your time to receive weather forecast:
                                      </div>
                                     <div class="text-left ">
-                                         <la id="first_name" class="input-field1">{{profileFormData.userAddress}}</la>
-                                    <br/>
-                                    Please type in Address if you want to get a better weather forecast*
+                                         <la id="first_name" class="input-field1">{{user_phone_form_data.timeWeatherSMS}}</la>
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-row margine-b-10">
-                                <div class="form-group col-md-12 col-lg-12">
-                                     <div class="text-left">
-                                         City:
-                                     </div>
-                                    <div class="text-left ">
-                                         <la id="first_name" class="input-field1">{{profileFormData.userCity}}</la>
-                                    </div>
-                                    Please type in City if you want to get a weather forecast* **
-                                </div>
-                            </div>
-                            <div class="form-row margine-b-10">
-                                <div class="form-group col-md-12 col-lg-12">
-                                     <div class="text-left ">
-                                        Country:
-                                     </div>
-                                    <div class="text-left ">
-                                         <la id="first_name" class="input-field1">{{profileFormData.userCountry}}</la>
-                                    </div>
-                                    Please type in Country if you want to get a weather forecast* **
-                                </div>
-                            </div>
-                            <div class="form-row margine-b-10">
-                                <div class="form-group col-md-12 col-lg-12">
-                                     <div class="text-left ">
-                                       Time zone:
-                                     </div>
-                                    <div class="text-left ">
-                                         <la id="first_name" class="input-field1">{{profileFormData.userTimeZone}}</la>
-                                    </div>
-                                </div>
-                            </div>
-                            * This field provides a more accurate weather forecast.
+                            * Required fields in order to receive weather forecast.
+                             <br/>
+                            ** If you want to receive your SMS weather forecast you need to approve it by ticking this box.
                             <br/>
-                            ** Mandatory field.
                             </br>
                             </br>
                             </br>
@@ -114,6 +68,11 @@
                                 <button type="submit" class="btn main-button btn-block normal-text ">Submit</button>
                             </div>
                         </form>
+                        </br>
+                        </br>
+                        <div class="form-row">
+                            <a href="{% url 'send_daily_forecast_to_user'%}" class='btn main-button btn-block normal-text' >Send daily forecast</a>
+                        </div>
                         </br>
                         </br>
                         <div class="form-row">
@@ -127,4 +86,8 @@
 	    </div>
 	</div>
 </div>
+
+
+
+
 {% endblock %}
