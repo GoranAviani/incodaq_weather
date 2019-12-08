@@ -18,15 +18,26 @@ from weather.models import (
 )
 from incodaq_weather.local_settings import darkSkyToken
 
+from expanded_user.models import custom_user
+#from .views import send_daily_forecast
 
-
-
-#testing if this kind of calling already made view functions will work
+#periodic task
 @shared_task
-def send_daily_forecast_celery(user, typeOfRequest):
+def send_daily_forecast_to_all_celery():
+    users = custom_user.objects.all()
+    typeOfRequest = "autoWeatherRequest"
     #Solution for avoiding circular importing for this testing
     from .views import send_daily_forecast
-    send_daily_forecast(user, typeOfRequest)
+    for user in users:
+        send_daily_forecast(user, typeOfRequest)
+
+
+#periodic task
+#@shared_task
+#def send_daily_forecast_celery(user, typeOfRequest):
+#    #Solution for avoiding circular importing for this testing
+#    from .views import send_daily_forecast
+#    send_daily_forecast(user, typeOfRequest)
 
 #async task
 @shared_task
