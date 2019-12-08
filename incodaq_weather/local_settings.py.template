@@ -1,0 +1,17 @@
+#This is the local settings for used for development that are not intended to be seen
+#To use the file delete the .template from the file name.
+
+#Access token used to access location iq geocoding api
+locationiqTokenKey = ""
+
+#Access token used to acces Dark sky weather api
+darkSkyToken = ""
+
+#Twilio credentials
+twilioAccountSid = ""
+twilioAuthToken = ""
+myTwilioTelephone = ""
+
+#Google oauth key and secret
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = ''
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = ''
