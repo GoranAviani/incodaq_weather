@@ -7,10 +7,10 @@ from celery import Celery
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'incodaq_weather.settings')
 
 app = Celery('incodaq_weather',
-             #broker='amqp://guest@localhost//',
-             #backend='amqp://guest@localhost//',
-             broker='amqp://rabbitmq//',
-             backend='amqp://rabbitmq//',
+             broker='amqp://guest@localhost//',
+             backend='amqp://guest@localhost//',
+             #broker='amqp://rabbitmq//',
+             #backend='amqp://rabbitmq//',
              )
 
 app.config_from_object('django.conf:settings', namespace='CELERY')
