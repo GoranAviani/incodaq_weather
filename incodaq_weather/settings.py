@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+from celery.schedules import crontab
+
 
 # importing logger settings
 try:
@@ -139,21 +141,21 @@ else:
     STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
 
 
-from celery.schedules import crontab
+
 
 
 #beat settings
 CELERY_BEAT_SCHEDULE = {
       'task-get_periodic_forecast_for_default_cities': {
        'task': 'weather.tasks.get_periodic_forecast_for_default_cities',
-        'schedule': crontab(minute="*/30"),
-        #'schedule': 30,
+        #'schedule': crontab(minute="*/30"),
+        'schedule': 30,
         
     },
     'task-get_forecast_for_all_users': {
         'task': 'weather.tasks.send_daily_forecast_to_all_celery',
-        'schedule': crontab(minute="*/30"),
-        # 'schedule': 30,
+        #'schedule': crontab(minute="*/30"),
+        'schedule': 30,
 
     },
 
