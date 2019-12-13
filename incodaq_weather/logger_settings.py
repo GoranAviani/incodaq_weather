@@ -26,6 +26,22 @@ LOGGING = {
 			'filename':'logs/InfoLoggers.log',
 			'formatter':'large',
 		},
+		'darksky_info_file':{
+			'level':'INFO',
+		       'class':'logging.handlers.TimedRotatingFileHandler',
+			'when':'midnight',
+			'interval':1,
+			'filename':'logs/DarkSkyLoggers.log',
+			'formatter':'large',
+		},
+		'darksky_error_file':{
+			'level':'INFO',
+		       'class':'logging.handlers.TimedRotatingFileHandler',
+			'when':'midnight',
+			'interval':1,
+			'filename':'logs/DarkSkyErrorLoggers.log',
+			'formatter':'large',
+		},
 	},
 	'loggers':{
 		'error_logger':{
@@ -36,6 +52,16 @@ LOGGING = {
 		'info_logger':{
 			'handlers':['info_file'],
 			'level':'INFO',
+			'propagate':False,
+		},
+		'darksky_info_logger':{
+			'handlers':['darksky_info_file'],
+			'level':'INFO',
+			'propagate':False,
+		},
+		'darksky_error_logger':{
+			'handlers':['darksky_error_file'],
+			'level':'ERROR',
 			'propagate':False,
 		},
 	},
