@@ -116,6 +116,9 @@
                                 <h2 class="title-text text-center">Admin menu</h2>
                                 <a href="{% url 'send_daily_forecast' %}" class="btn main-button btn-block normal-text">Send daily forecast to all users via SMS *</a>
 
+                                <a href="{% url 'update_index_statuses' %}" class="btn main-button btn-block normal-text">Update Index.html default cities temperatures</a>
+
+
                             <p>* Sent forecast SMS messages to all users with approved mobile phone numbers that have inputed their address and wish to receive weather forecast.</p>
                         {% endif %}
                      </div>
