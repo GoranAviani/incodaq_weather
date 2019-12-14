@@ -14,8 +14,9 @@ node {
             sh 'virtualenv env1'
             sh '. env1/bin/activate && pip3 install --upgrade -r requirements.txt && python ./manage.py test'
  
-        stage 'Deploy'
-        echo 'Deployment is coming soon'
+         stage 'Deploy'
+            sh 'chmod +x ./deployment/deploy_prod.sh'
+            sh './deployment/deploy_prod.sh'
       
     }
 
