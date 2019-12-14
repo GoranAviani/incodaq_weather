@@ -113,7 +113,7 @@ def process_forecast_api_message(**kwargs):
         apiResponse = kwargs["apiResponse"]
         forecastLocation = kwargs["forecastLocation"]
 
-        processedMessage = ("Today's forecast for {}! Now its {}. LT: {}, HT: {}. {} Your Incodaq Weather."
+        processedMessage = ("Forecast for {}! It is {}C. Low: {}C, High: {}C. {} Incodaq Weather."
             .format(
             forecastLocation,
             str(round(apiResponse["currently"]["temperature"])),
