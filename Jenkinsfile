@@ -12,7 +12,7 @@ node {
             
         stage 'Update Python Modules and test'
             sh 'virtualenv env1'
-        
+
          stage 'Deploy'
             sh 'chmod +x ./deployment/deploy_prod.sh'
             sh './deployment/deploy_prod.sh'

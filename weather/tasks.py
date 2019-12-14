@@ -106,5 +106,9 @@ def get_periodic_forecast_for_default_cities(*args, **kwargs):
     #        default_cities.objects.create(city=k, temperature=v)
 
     # if this function has been called from a view
-    if args[0].path == '/weather_app/update_index_statuses/':
-        return HttpResponse('Index cities temperature and weather conditions have been updated.')
+    try:
+        if args[0].path == '/weather_app/update_index_statuses/':
+            return HttpResponse('Index cities temperature and weather conditions have been updated.')
+    except:
+        #it is celery task running this fun
+        pass
