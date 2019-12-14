@@ -222,7 +222,7 @@ body {
   font-size: 14px;
   font-weight: 300;
   line-height: 1.5;
-  background: #1e202b; }
+  background: #2e3142; }
 
 h1, h2, h3, h4, h5, h6 {
   font-weight: 700;
@@ -1130,12 +1130,10 @@ form textarea {
       margin-right: 10px; }
     .site-header .branding .site-title {
       margin-bottom: 5px;
-      font-size: 16px;
-      font-size: 1.1428571429em;
+      font-size: 24px;
       color: white; }
     .site-header .branding .site-description {
-      font-size: 10px;
-      font-size: 0.7142857143em;
+      font-size: 14px;
       display: block;
       color: #bfc1c8; }
 
