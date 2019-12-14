@@ -33,12 +33,6 @@ def send_daily_forecast_to_all_celery():
         send_daily_forecast(user, typeOfRequest)
 
 
-# periodic task
-# @shared_task
-# def send_daily_forecast_celery(user, typeOfRequest):
-#    #Solution for avoiding circular importing for this testing
-#    from .views import send_daily_forecast
-#    send_daily_forecast(user, typeOfRequest)
 
 # async task
 @shared_task
@@ -89,19 +83,17 @@ def get_periodic_forecast_for_default_cities(*args, **kwargs):
             processedTemp = rounding_number(processedTemp)
 
             # {'city': city, 'temp': processedTemp, 'iconDesc': processedIconText}
-            print({'city': city, 'temp': processedTemp, 'iconDesc': processedIconDesc})
             result.append({'city': city, 'temp': processedTemp, 'iconDesc': processedIconDesc})
             # result[city] = processedTemp
-    print(result)
     for x in result:
         try:
             #try to find the current ciry if it exists already
             found_city_data = default_cities.objects.get(city=x["city"])
             # if found update the temp
-            default_cities.objects.filter(city=x["city"]).update(temperature=x["temp"], weatherIconDesc= x["iconDesc"])
+            default_cities.objects.filter(city=x["city"]).update(temperature=x["temp"], weatherIconDesc=x["iconDesc"])
         except:
             #if city is not found create it
-            default_cities.objects.create(city=x["city"], temperature=x["temp"], weatherIconDesc= x["iconDesc"])
+            default_cities.objects.create(city=x["city"], temperature=x["temp"], weatherIconDesc=x["iconDesc"])
 
     # for k, v in result.items():
     #    try:
