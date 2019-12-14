@@ -10,8 +10,8 @@ node {
             def lastChanges = readFile('GIT_CHANGES')
             echo lastChanges
             
-        #stage 'Update Python Modules and test'
-        #    sh 'virtualenv env1'
+        stage 'Update Python Modules and test'
+            sh 'virtualenv env1'
         #    sh '. env1/bin/activate && pip3 install --upgrade -r requirements.txt && python ./manage.py test'
  
          stage 'Deploy'
