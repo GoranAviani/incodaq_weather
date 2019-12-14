@@ -5,11 +5,12 @@ from weather.tasks import get_periodic_forecast_for_default_cities
 from weather.models import default_cities
 
 def get_default_cities_temp():
-   result = {}
+   result = []
    try:
       foundDefaultCitiesQuerySet = default_cities.objects.all()
       for x in foundDefaultCitiesQuerySet:
-         result[x.city] = x.temperature
+         # {'city': city, 'temp': processedTemp, 'iconDesc': processedIconText}
+         result.append({'city': x.city, 'temp': x.temperature, 'iconDesc': x.weatherIconDesc})
       return result
    except:
       return result

@@ -30,7 +30,7 @@
         <div class="site-header">
             <div class="container">
                 <a href="{% url 'index' %}" class="branding">
-                    <img src="{% static 'images/logo.png' %}"  class="logo" alt="">
+                    <canvas class="partly-cloudy-day logo" width="80" height="80"></canvas>
                     <div class="logo-type">
                         <h1 class="site-title">Incodaq Weather</h1>
                         <small class="site-description">Weather in your pocket</small>
@@ -64,6 +64,48 @@
     <script src="{% static 'js/jquery-1.11.1.min.js' %}"></script>
     <script src="{% static 'js/plugins.js' %}"></script>
     <script src="{% static 'js/app.js' %}"></script>
+    <script src="{% static 'js/skycons.js' %}"></script>
+        <script>
+
+              var icons = new Skycons({
+          "monochrome": false
+        }),
+        list = [
+           "clear-day",
+            "clear-night",
+            "partly-cloudy-day",
+            "partly-cloudy-night",
+            "cloudy",
+            "rain",
+            "showers-day",
+            "showers-night",
+            "sleet",
+            "rain-snow",
+            "rain-snow-showers-day",
+            "rain-snow-showers-night",
+            "snow",
+            "snow-showers-day",
+            "snow-showers-night",
+            "wind",
+            "fog",
+            "thunder",
+            "thunder-rain",
+            "thunder-showers-day",
+            "thunder-showers-night",
+            "hail"
+        ],
+        i;
+
+      for (i = list.length; i--;) {
+        var weatherType = list[i],
+          elements = document.getElementsByClassName(weatherType);
+        for (e = elements.length; e--;) {
+          icons.set(elements[e], weatherType);
+        }
+      }
+
+      icons.play();
+    </script>
 
 
 
