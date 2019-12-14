@@ -217,7 +217,7 @@ html {
   font-size: 14px; }
 
 body {
-  color: #bfc1c8;
+  color: #ced0d6;
   font-family: "Roboto", "Open Sans", sans-serif;
   font-size: 14px;
   font-weight: 300;
@@ -1328,7 +1328,7 @@ form textarea {
       .forecast-container .forecast .forecast-content .degree {
         font-size: 24px;
         font-size: 1.7142857143em;
-        color: white;
+        color: #ced0d6;
         font-weight: 700; }
       .forecast-container .forecast .forecast-content small {
         font-size: 16px;
