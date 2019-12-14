@@ -1250,7 +1250,7 @@ form textarea {
 
 .forecast-container {
 
-  background: #323544;
+  background: #42475e;
   display: table;
   table-layout: fixed;
   overflow: hidden;
@@ -1261,7 +1261,7 @@ form textarea {
     display: table-cell;
     vertical-align: top; }
     .forecast-container .forecast:nth-child(even) {
-      background-color: #262936; }
+      background-color: #373c4f; }
     @media screen and (max-width: 3500px) {
       .forecast-container .forecast {
         display: block;
