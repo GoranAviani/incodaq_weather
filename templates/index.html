@@ -11,16 +11,13 @@
     <div class="forecast-table">
             <div class="forecast-container">
                 {% if defaultCitiesTemp %}
-                    <div class="forecast-header">
-                        <div class="h2 text-center">Current temperatures</div>
-                    </div> <!-- .forecast-header -->
                     {% for x in defaultCitiesTemp %}
                         <div class="forecast">
                             <div class="forecast-header">
-                                <div class="day">{{x.city}}</div>
+                                <h3>{{x.city}}</h3>
                             </div> <!-- .forecast-header -->
                             <div class="forecast-content">
-                                    <canvas class={{x.iconDesc}} width="64" height="64"></canvas>
+                                    <canvas class={{x.iconDesc}} width="80" height="80"></canvas>
                             </div>
                             <div class="forecast-content">
                                 <div class="degree">{{x.temp}}<sup>o</sup>C</div>
@@ -35,7 +32,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-xs-12">
-                    <h2 class="section-title">Weather forecast</h2>
+                    <h2 class="section-title">Forecast</h2>
                     <ul class="arrow-feature">
                         <li>
                             <h3>Using the open source weather solution</h3>
