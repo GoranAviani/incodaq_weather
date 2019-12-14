@@ -14,13 +14,16 @@
                     <div class="forecast-header">
                         <div class="h2 text-center">Current temperatures</div>
                     </div> <!-- .forecast-header -->
-                    {% for city, temp in defaultCitiesTemp.items %}
+                    {% for x in defaultCitiesTemp %}
                         <div class="forecast">
                             <div class="forecast-header">
-                                <div class="day">{{city}}</div>
+                                <div class="day">{{x.city}}</div>
                             </div> <!-- .forecast-header -->
                             <div class="forecast-content">
-                                <div class="degree">{{temp}}<sup>o</sup>C</div>
+                                <div class="degree">{{x.iconDesc}}</div>
+                            </div>
+                            <div class="forecast-content">
+                                <div class="degree">{{x.temp}}<sup>o</sup>C</div>
                             </div>
                         </div>
                     {% endfor %}
