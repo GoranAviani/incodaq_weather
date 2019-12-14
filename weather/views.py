@@ -136,7 +136,7 @@ def process_forecast_api_message(**kwargs):
     elif typeOfCall == "default_cities_adv_forecast":
         apiResponse = kwargs["apiResponse"]
         temperature = apiResponse["currently"]["temperature"]
-        iconDesc = result = apiResponse["currently"]["icon"]
+        iconDesc = apiResponse["currently"]["icon"]
         return "success", temperature, iconDesc
     else:
         return "error", ""

@@ -31,11 +31,11 @@ LOGGING = {
 		       'class':'logging.handlers.TimedRotatingFileHandler',
 			'when':'midnight',
 			'interval':1,
-			'filename':'logs/DarkSkyLoggers.log',
+			'filename':'logs/DarkSkyInfoLoggers.log',
 			'formatter':'large',
 		},
 		'darksky_error_file':{
-			'level':'INFO',
+			'level':'ERROR',
 		       'class':'logging.handlers.TimedRotatingFileHandler',
 			'when':'midnight',
 			'interval':1,
