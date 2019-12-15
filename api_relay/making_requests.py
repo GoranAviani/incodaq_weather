@@ -41,5 +41,5 @@ def twilio_api(userMobileNumber, processedForecastMessage, twilioAccountSid, twi
                         from_= myTwilioTelephone,
                         to=userMobileNumber
                     )
-    print(message1.status)
-    print(message1)
+    #print(message1.status)
+    #print(message1)

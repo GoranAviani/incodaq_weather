@@ -74,17 +74,14 @@ def get_periodic_forecast_for_default_cities(*args, **kwargs):
 
             apiResponse = apiResponse.json()
 
-            # data = {'typeOfCall': "default_cities_basic_forecast", "apiResponse": apiResponse}
-            # processedForecastMsgStatus, processedForecastMsg = process_forecast_api_message(**data)
-            # processedForecastMsg = rounding_number(processedForecastMsg)
-
             data = {'typeOfCall': "default_cities_adv_forecast", "apiResponse": apiResponse}
             processedStatus, processedTemp, processedIconDesc = process_forecast_api_message(**data)
             processedTemp = rounding_number(processedTemp)
 
+            # Template
             # {'city': city, 'temp': processedTemp, 'iconDesc': processedIconText}
             result.append({'city': city, 'temp': processedTemp, 'iconDesc': processedIconDesc})
-            # result[city] = processedTemp
+
     for x in result:
         try:
             #try to find the current ciry if it exists already
@@ -95,15 +92,7 @@ def get_periodic_forecast_for_default_cities(*args, **kwargs):
             #if city is not found create it
             default_cities.objects.create(city=x["city"], temperature=x["temp"], weatherIconDesc=x["iconDesc"])
 
-    # for k, v in result.items():
-    #    try:
-    #        #try to find the current ciry if it exists already
-    #        found_city_data = default_cities.objects.get(city=k)
-    #        #if found update the temp
-    #        default_cities.objects.filter(city=k).update(temperature=v)
-    #    except:
-    #        #if city is not found create it
-    #        default_cities.objects.create(city=k, temperature=v)
+
 
     # if this function has been called from a view
     try:
