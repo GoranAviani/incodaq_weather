@@ -2,14 +2,14 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="">
-				<div class="container">
-					<form action="#" class="find-location">
-						<input type="text" placeholder="Find your location...">
-						<input type="submit" value="Find">
-					</form>
-
-				</div>
-			</div>
+    <div class="container">
+        <form class="find-location" action="/search/" method="GET" >
+          {% csrf_token %}
+            <input autofocus type="text" name="search_bar" id="base_search" cplaceholder="Find your location...">
+            <button type="submit" value="Find">Find</button>
+        </form>
+    </div>
+</div>
 <div class="container margine-b-50">
 	<div class="row text-center">
 	    <div class="col-md-10 col-xs-12 offset-md-1">
