@@ -29,11 +29,12 @@ def index(request):
 def dashboard(request):
    if request.user.is_authenticated:
       if request.method == 'POST':
+      #this is the "location forecast search" that is called from dashboard
          form = SearchBarForm(request.POST)
          if form.is_valid():
             cd = form.cleaned_data
-            a = cd.get('searchBarInput')
-   #TODO
+            a = cd.get('searchBarInput') #get the user input data
+   #TODO - validate data with from validators, fetch forecast via api and display on another page.
       else:
          user1 = {"user1": request.user}
 
