@@ -11,7 +11,7 @@ import datetime
 from incodaq_weather.processing import *
 
 from .tasks import *
-
+from .forms import SearchBarForm
 
 # Create your views here.
 
@@ -257,6 +257,14 @@ def send_daily_forecast_to_user(request):
 
 
 #this is a search that is called from dashboard
-def get_forecast_from_search_bar(request):
-    text = request.GET.get('search_bar')
-    print(text)
+#def get_forecast_from_search_bar(request):
+ #   form = SearchBarForm()
+  #  if request.method == 'POST':
+ #       form = SearchBarForm(request.POST)
+  #      if form.is_valid():
+   #         cd = form.cleaned_data
+   #         a = cd.get('search_bar')
+
+
+    #userInput = request.GET.get('search_bar')
+    #    print(userInput)
