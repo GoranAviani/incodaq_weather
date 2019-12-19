@@ -254,3 +254,9 @@ def send_daily_forecast_to_user(request):
     typeOfRequest = "manualWeatherRequest"
     statusMessage = send_daily_forecast(user, typeOfRequest)
     return HttpResponse('Forecast status message: {} Message for user: {}'.format(statusMessage, user.username))
+
+
+#this is a search that is called from dashboard
+def get_forecast_from_search_bar(request):
+    text = request.GET.get('search_bar')
+    print(text)

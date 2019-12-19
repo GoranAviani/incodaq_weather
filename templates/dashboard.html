@@ -3,7 +3,7 @@
 {% block content %}
 <div class="">
     <div class="container">
-        <form class="find-location" action="/search/" method="GET" >
+        <form class="find-location" action="/weather_app/get_forecast_from_search_bar/" method="GET" >
           {% csrf_token %}
             <input type="text" name="search_bar" id="base_search" placeholder="Find your location...">
             <button type="submit" value="Find">Find</button>
