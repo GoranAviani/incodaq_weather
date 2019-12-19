@@ -5,7 +5,7 @@
     <div class="container">
         <form class="find-location" action="/search/" method="GET" >
           {% csrf_token %}
-            <input autofocus type="text" name="search_bar" id="base_search" cplaceholder="Find your location...">
+            <input type="text" name="search_bar" id="base_search" placeholder="Find your location...">
             <button type="submit" value="Find">Find</button>
         </form>
     </div>
