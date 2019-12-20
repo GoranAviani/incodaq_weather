@@ -1,0 +1,17 @@
+<!-- templates/dashboard.html -->
+{% extends 'base.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Incodaq Weather forecast</title>
+</head>
+    {% for field, errors in formErrors.items %}
+        {% for error in errors %}
+            {{error}}
+        {% endfor %}
+    {% endfor %}
+
+
+
+{% endblock %}
