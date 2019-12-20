@@ -38,11 +38,11 @@ def dashboard(request):
          else:
             formMessages = form.errors
             messageColor = "red"
-            return render(request, 'search_bar_forecast.html',
+            return render(request, 'full_forecast.html',
                  {
                     'formMessages': formMessages,
                      'messageColor': messageColor})
-   #TODO - validate data with from validators, fetch forecast via api and display on another page.
+   #TODO - fetch forecast via api and display on another page.
       else:
          user1 = {"user1": request.user}
 
