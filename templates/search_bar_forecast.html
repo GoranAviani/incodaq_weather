@@ -6,11 +6,34 @@
     <meta charset="UTF-8">
     <title>Incodaq Weather forecast</title>
 </head>
-    {% for field, errors in formErrors.items %}
-        {% for error in errors %}
-            {{error}}
-        {% endfor %}
-    {% endfor %}
+
+<div class="container margine-b-50">
+	<div class="row text-center">
+	    <div class="col-md-10 col-xs-12 offset-md-1">
+	        <div class="card" data-bg-color="#323544">
+	            <div class="card-body">
+	                <div class="dashboard-title">
+	                    <h2 class="title-text">Forecast</h2>
+	                </div>
+                    </br>
+                    {% if formMessages.items %}
+                        {% for field, messages in formMessages.items %}
+                            {% for message in messages %}
+                                <h2 style="color: {{messageColor}}"> {{ message }}</h2>
+                            {% endfor %}
+                        {% endfor %}
+                    {% endif %}
+                    </br></br>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+</div>
+
+
+
+
+
 
 
 

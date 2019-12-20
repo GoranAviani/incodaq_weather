@@ -4,7 +4,7 @@ from .dashboard_status_processing import dashboard_status_processing
 from weather.tasks import get_periodic_forecast_for_default_cities
 from weather.models import default_cities
 from weather.forms import SearchBarForm
-
+from django.http import HttpResponse
 
 def get_default_cities_temp():
    result = []
@@ -34,6 +34,14 @@ def dashboard(request):
          if form.is_valid():
             cd = form.cleaned_data
             a = cd.get('searchBarInput') #get the user input data
+            return HttpResponse(a)
+         else:
+            formMessages = form.errors
+            messageColor = "red"
+            return render(request, 'search_bar_forecast.html',
+                 {
+                    'formMessages': formMessages,
+                     'messageColor': messageColor})
    #TODO - validate data with from validators, fetch forecast via api and display on another page.
       else:
          user1 = {"user1": request.user}
