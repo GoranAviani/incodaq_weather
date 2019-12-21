@@ -16,12 +16,15 @@
 	                    <h2 class="title-text">Forecast</h2>
 	                </div>
                     </br>
-                    {% if formErrorMessages.items %}
-                        {% for field, messages in formErrorMessages.items %}
+                    {% if isValidFormErrorMessages.items %}
+                        {% for field, messages in isValidFormErrorMessages.items %}
                             {% for message in messages %}
-                                <h2 style="color: {{messageColor}}"> {{ message }}</h2>
+                                <h2 style="color: {{errorMessageColor}}"> {{ message }}</h2>
                             {% endfor %}
                         {% endfor %}
+                    {% endif %}
+                    {% if customErrorMessage %}
+                        <h2 style="color: {{customErrorMessageColor}}"> {{ customErrorMessage }}</h2>
                     {% endif %}
                     </br></br>
 	            </div>

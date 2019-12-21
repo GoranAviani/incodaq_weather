@@ -33,13 +33,14 @@ def index(request):
 def dashboard(request):
    if request.user.is_authenticated:
       if request.method == 'POST':
-      #this is the "location forecast search" that is called from dashboard
+      #this is the "forecast search bar" that is called from dashboard
          form = SearchBarForm(request.POST)
          if form.is_valid():
             cd = form.cleaned_data
             a = cd.get('searchBarInput') #get the user input data
             latLogAPIStatus, userLat, userLon = get_user_lat_long_api(a)
             if latLogAPIStatus != 'success':
+
                return HttpResponse(latLogAPIStatus) #TODO return error message on full_forecast in new message
             else:
                 try:
@@ -47,7 +48,12 @@ def dashboard(request):
                     weatherForecast = get_user_weather_forecast_api(**data)
                     if weatherForecast == "error": #get_user_weather returns only error or message
                         logging.getLogger("darksky_error_logger").error("Dark Sky ERROR response: %s", weatherForecast)
-                        return HttpResponse("dark sky error") #TODO return full_forecast with proper new message
+                        customErrorMessage = "Error while fetching you forecast, please contact our support."
+                        customErrorMessageColor = "red"
+                        return render(request, 'full_forecast.html',
+                                      {
+                                         'customErrorMessage': customErrorMessage,
+                                         'customErrorMessageColor': customErrorMessageColor})
                     else:
                        #Dark sky forecast api was success
                        #process foreast message
@@ -74,12 +80,12 @@ def dashboard(request):
 
             return HttpResponse(latLogAPIStatus)
          else:
-            formErrorMessages = form.errors
+            isValidFormErrorMessages = form.errors
             messageColor = "red"
             return render(request, 'full_forecast.html',
                  {
-                    'formErrorMessages': formErrorMessages,
-                     'messageColor': messageColor})
+                    'isValidFormErrorMessages': isValidFormErrorMessages,
+                     'errorMessageColor': messageColor})
    #TODO - fetch forecast via api and display on another page.
       else:
          user1 = {"user1": request.user}
