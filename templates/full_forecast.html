@@ -16,8 +16,8 @@
 	                    <h2 class="title-text">Forecast</h2>
 	                </div>
                     </br>
-                    {% if formMessages.items %}
-                        {% for field, messages in formMessages.items %}
+                    {% if formErrorMessages.items %}
+                        {% for field, messages in formErrorMessages.items %}
                             {% for message in messages %}
                                 <h2 style="color: {{messageColor}}"> {{ message }}</h2>
                             {% endfor %}

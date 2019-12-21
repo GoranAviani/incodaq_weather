@@ -36,11 +36,11 @@ def dashboard(request):
             a = cd.get('searchBarInput') #get the user input data
             return HttpResponse(a)
          else:
-            formMessages = form.errors
+            formErrorMessages = form.errors
             messageColor = "red"
             return render(request, 'full_forecast.html',
                  {
-                    'formMessages': formMessages,
+                    'formErrorMessages': formErrorMessages,
                      'messageColor': messageColor})
    #TODO - fetch forecast via api and display on another page.
       else:
