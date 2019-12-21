@@ -1,2 +1,0 @@
-2019-11-27 19:28:09,642  ERROR  6575  /home/goran/111MOJIPROGRAMI/GITHUB/incodaq_weather/api_relay/making_requests.py  make_request_params  29  40x Api response is: {'code': 400, 'error': 'Poorly formatted request'}  
-2019-11-27 19:28:36,571  ERROR  6575  /home/goran/111MOJIPROGRAMI/GITHUB/incodaq_weather/api_relay/making_requests.py  make_request_params  29  40x Api response is: {'code': 400, 'error': 'Poorly formatted request'}  

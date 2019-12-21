@@ -30,4 +30,4 @@ def split_by_char(someString, charForSplit):
     return status, result
 
 def rounding_number(number):
-    return (round(number * 2.0) / 2.0)
+    return (round(number * 2) / 2)
