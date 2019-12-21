@@ -40,7 +40,7 @@ def dashboard(request):
             a = cd.get('searchBarInput') #get the user input data
             latLogAPIStatus, userLat, userLon = get_user_lat_long_api(a)
             if latLogAPIStatus != 'success':
-               return HttpResponse(latLogAPIStatus) #TODO return error message on full_forecast
+               return HttpResponse(latLogAPIStatus) #TODO return error message on full_forecast in new message
             else:
                 try:
                     data = {'userLat': userLat, "userLong": userLon, "params": {'units': "auto"}}
@@ -52,7 +52,7 @@ def dashboard(request):
                        #Dark sky forecast api was success
                        #process foreast message
 
-                       # TODO process messgage and display it on full forecast with proper forecast
+                       # TODO process messgage in a new way and display it on full forecast with proper forecast
 
                        data = {'typeOfCall': "sms_message", "forecastLocation": a,
                                "apiResponse": weatherForecast}
@@ -61,11 +61,16 @@ def dashboard(request):
 
                        # send sms message only if processedForecastMsgStatus is a success
                        if processedForecastMsgStatus == "success":
+                          #TODO display on full_forecsat
                           return HttpResponse(processedForecastMsg)
                         #TODO if not success
+                       # TODO display it on full_forecast as custom message
+
                 except:
                     logging.getLogger("darksky_error_logger").error("Something went wrong with try except in view dashboard search bar forecast")
                     return HttpResponse("Something went wrong with try except in view dashboard search bar forecast")
+                     #TODO display it on full_forecast as custom message
+
 
             return HttpResponse(latLogAPIStatus)
          else:
