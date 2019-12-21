@@ -1,0 +1,47 @@
+<!-- templates/dashboard.html -->
+{% extends 'base.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Incodaq Weather forecast</title>
+</head>
+
+<div class="container margine-b-50">
+	<div class="row text-center">
+	    <div class="col-md-10 col-xs-12 offset-md-1">
+	        <div class="card" data-bg-color="#323544">
+	            <div class="card-body">
+	                <div class="dashboard-title">
+	                    <h2 class="title-text">Forecast</h2>
+	                </div>
+                    </br>
+                    {% if isValidFormErrorMessages.items %}
+                        {% for field, messages in isValidFormErrorMessages.items %}
+                            {% for message in messages %}
+                                <h2 style="color: {{errorMessageColor}}"> {{ message }}</h2>
+                            {% endfor %}
+                        {% endfor %}
+                    {% endif %}
+                    {% if customErrorMessage %}
+                        <h2 style="color: {{customErrorMessageColor}}"> {{ customErrorMessage }}</h2>
+                    {% endif %}
+                    </br></br>
+
+                    {% if processedForecastMsg %}
+                        <h2>{{ processedForecastMsg }}</h2>
+                    {% endif %}
+	            </div>
+	        </div>
+	    </div>
+	</div>
+</div>
+
+
+
+
+
+
+
+
+{% endblock %}

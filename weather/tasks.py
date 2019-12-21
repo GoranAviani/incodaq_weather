@@ -70,7 +70,7 @@ def get_periodic_forecast_for_default_cities(*args, **kwargs):
                 logging.getLogger("darksky_error_logger").error("Dark Sky 40x response: %s", apiResponse.json())
                 break
             else:
-                logging.getLogger("darksky_info_logger").error("Dark Sky successful response: %s", apiResponse.json())
+                logging.getLogger("darksky_info_logger").info("Dark Sky successful response: %s", apiResponse.json())
 
             apiResponse = apiResponse.json()
 

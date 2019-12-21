@@ -20,6 +20,7 @@ def make_request_params(**kwargs):
     try:
         params1 = kwargs["params"]
         result = requests.get(fullAPIUrl, params=params1)
+        logging.getLogger("darksky_info_logger").info("Dark Sky successful response: %s", result.json())
     except:
         logging.getLogger("error_logger").error("Api response is: %s", result.json())
         return "error"
