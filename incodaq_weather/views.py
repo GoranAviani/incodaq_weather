@@ -4,9 +4,10 @@ from .dashboard_status_processing import dashboard_status_processing
 from weather.tasks import get_periodic_forecast_for_default_cities
 from weather.models import default_cities
 from weather.forms import SearchBarForm
+from weather.views import process_forecast_api_message
 from django.http import HttpResponse
-from api_relay.views import get_user_lat_long_api
-
+from api_relay.views import get_user_lat_long_api, get_user_weather_forecast_api
+import logging
 
 
 def get_default_cities_temp():
@@ -39,11 +40,34 @@ def dashboard(request):
             a = cd.get('searchBarInput') #get the user input data
             latLogAPIStatus, userLat, userLon = get_user_lat_long_api(a)
             if latLogAPIStatus != 'success':
-               return HttpResponse(latLogAPIStatus)
+               return HttpResponse(latLogAPIStatus) #TODO return error message on full_forecast
             else:
+                try:
+                    data = {'userLat': userLat, "userLong": userLon, "params": {'units': "auto"}}
+                    weatherForecast = get_user_weather_forecast_api(**data)
+                    if weatherForecast == "error": #get_user_weather returns only error or message
+                        logging.getLogger("darksky_error_logger").error("Dark Sky ERROR response: %s", weatherForecast)
+                        return HttpResponse("dark sky error") #TODO return full_forecast with proper new message
+                    else:
+                       #Dark sky forecast api was success
+                       #process foreast message
+
+                       # TODO process messgage and display it on full forecast with proper forecast
+
+                       data = {'typeOfCall': "sms_message", "forecastLocation": a,
+                               "apiResponse": weatherForecast}
+                       processedForecastMsgStatus, processedForecastMsg = process_forecast_api_message(**data)
 
 
-               return HttpResponse(latLogAPIStatus)
+                       # send sms message only if processedForecastMsgStatus is a success
+                       if processedForecastMsgStatus == "success":
+                          return HttpResponse(processedForecastMsg)
+                        #TODO if not success
+                except:
+                    logging.getLogger("darksky_error_logger").error("Something went wrong with try except in view dashboard search bar forecast")
+                    return HttpResponse("Something went wrong with try except in view dashboard search bar forecast")
+
+            return HttpResponse(latLogAPIStatus)
          else:
             formErrorMessages = form.errors
             messageColor = "red"
