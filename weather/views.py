@@ -138,6 +138,26 @@ def process_forecast_api_message(**kwargs):
         temperature = apiResponse["currently"]["temperature"]
         iconDesc = apiResponse["currently"]["icon"]
         return "success", temperature, iconDesc
+    elif typeOfCall == "search_bar_forecast":
+        apiResponse = kwargs["apiResponse"]
+        forecastLocation = kwargs["forecastLocation"]
+        currentlyIcon = apiResponse["currently"]["icon"]
+        hourlyIcon = apiResponse["hourly"]["icon"]
+
+        #TODO make hourly icon forecast
+        processedMessage = ("Forecast for {}!, Now its : {}C. With a low of: {}C, "
+                            "and a high of: {}C. Currently it is: {} and during the day: {}"
+                            "UV index is: {}"
+            .format(
+            forecastLocation,
+            str(round(apiResponse["currently"]["temperature"])),
+            str(round(apiResponse["daily"]["data"][0]["temperatureLow"])),
+            str(round(apiResponse["daily"]["data"][0]["temperatureHigh"])),
+            str(apiResponse["currently"]["summary"]),
+            str(apiResponse["hourly"]["summary"]),
+            str(apiResponse["currently"]["uvIndex"])
+        ))
+        return "success", processedMessage
     else:
         return "error", ""
 

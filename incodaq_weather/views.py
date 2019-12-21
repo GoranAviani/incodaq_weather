@@ -57,10 +57,9 @@ def dashboard(request):
                     else:
                        #Dark sky forecast api was success
                        #process foreast message
-
                        # TODO process messgage in a new way and display it on full forecast with proper forecast
 
-                       data = {'typeOfCall': "sms_message", "forecastLocation": a,
+                       data = {'typeOfCall': "search_bar_forecast", "forecastLocation": a,
                                "apiResponse": weatherForecast}
                        processedForecastMsgStatus, processedForecastMsg = process_forecast_api_message(**data)
 
