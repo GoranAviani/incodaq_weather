@@ -66,15 +66,21 @@ def dashboard(request):
 
                        # send sms message only if processedForecastMsgStatus is a success
                        if processedForecastMsgStatus == "success":
-                          #TODO display on full_forecsat
-                          return HttpResponse(processedForecastMsg)
-                        #TODO if not success
-                       # TODO display it on full_forecast as custom message
-
+                          # TODO display processedForecastMsg onfull forecast
+                          return render(request, 'full_forecast.html',
+                                        {
+                                           'processedForecastMsg': processedForecastMsg})
+                       else:
+                           customErrorMessage = "Error while processing the forecast message, please contact our support."
+                           customErrorMessageColor = "red"
+                           return render(request, 'full_forecast.html',
+                                      {
+                                         'customErrorMessage': customErrorMessage,
+                                         'customErrorMessageColor': customErrorMessageColor})
                 except:
                     logging.getLogger("darksky_error_logger").error("Something went wrong with try except in view dashboard search bar forecast")
                     return HttpResponse("Something went wrong with try except in view dashboard search bar forecast")
-                     #TODO display it on full_forecast as custom message
+                     #TODO display this on full_forecast as custom message
 
 
             return HttpResponse(latLogAPIStatus)

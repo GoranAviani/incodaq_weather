@@ -157,6 +157,8 @@ def process_forecast_api_message(**kwargs):
             str(apiResponse["hourly"]["summary"]),
             str(apiResponse["currently"]["uvIndex"])
         ))
+
+
         return "success", processedMessage
     else:
         return "error", ""
