@@ -5,6 +5,9 @@ from weather.tasks import get_periodic_forecast_for_default_cities
 from weather.models import default_cities
 from weather.forms import SearchBarForm
 from django.http import HttpResponse
+from api_relay.views import get_user_lat_long_api
+
+
 
 def get_default_cities_temp():
    result = []
@@ -34,7 +37,13 @@ def dashboard(request):
          if form.is_valid():
             cd = form.cleaned_data
             a = cd.get('searchBarInput') #get the user input data
-            return HttpResponse(a)
+            latLogAPIStatus, userLat, userLon = get_user_lat_long_api(a)
+            if latLogAPIStatus != 'success':
+               return HttpResponse(latLogAPIStatus)
+            else:
+
+
+               return HttpResponse(latLogAPIStatus)
          else:
             formErrorMessages = form.errors
             messageColor = "red"
