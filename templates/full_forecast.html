@@ -1,51 +1,141 @@
 <!-- templates/dashboard.html -->
 {% extends 'base.html' %}
 {% block content %}
-<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Incodaq Weather forecast</title>
 </head>
 
-<div class="container margine-b-50">
-	<div class="row text-center">
-	    <div class="col-md-10 col-xs-12 offset-md-1">
-	        <div class="card" data-bg-color="#323544">
-	            <div class="card-body">
-	                <div class="dashboard-title">
-	                    <h2 class="title-text">Forecast</h2>
-	                </div>
-                    </br>
-                    {% if isValidFormErrorMessages.items %}
+{% if isValidFormErrorMessages.items %}
+    <div class="container margine-b-50">
+        <div class="row text-center">
+            <div class="col-md-10 col-xs-12 offset-md-1">
+                <div class="card" data-bg-color="#323544">
+                    <div class="card-body">
+                        <div class="dashboard-title">
+                            <h2 class="title-text">Forecast invalid input</h2>
+                        </div>
+                        </br>
                         {% for field, messages in isValidFormErrorMessages.items %}
                             {% for message in messages %}
                                 <h2 style="color: {{errorMessageColor}}"> {{ message }}</h2>
                             {% endfor %}
                         {% endfor %}
-                    {% endif %}
-                    {% if customErrorMessage %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endif %}
+
+
+{% if customErrorMessage %}
+    <div class="container margine-b-50">
+        <div class="row text-center">
+            <div class="col-md-10 col-xs-12 offset-md-1">
+                <div class="card" data-bg-color="#323544">
+                    <div class="card-body">
+                        <div class="dashboard-title">
+                            <h2 class="title-text">Forecast error message</h2>
+                        </div>
+                        </br>
                         <h2 style="color: {{customErrorMessageColor}}"> {{ customErrorMessage }}</h2>
-                    {% endif %}
-                    </br></br>
-
-                    {% if processedForecastMsg %}
-                        <h2>{{ processedForecastMsg.forecastLocation }}</h2>
-                        <h2>{{ processedForecastMsg.currentlyTemp }}</h2>
-                        <h2>{{ processedForecastMsg.dailyLow }}</h2>
-                        <h2>{{ processedForecastMsg.dailyHigh }}</h2>
-                        <h2>{{ processedForecastMsg.currentlySummary }}</h2>
-                        <h2>{{ processedForecastMsg.hourlySummary }}</h2>
-                        <h2>{{ processedForecastMsg.currentlyUV }}</h2>
-                        <h2>{{ processedForecastMsg.currentlyIcon }}</h2>
-                        <h2>{{ processedForecastMsg.hourlyIcon }}</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endif %}
 
 
-                    {% endif %}
-	            </div>
-	        </div>
-	    </div>
-	</div>
-</div>
+
+{% if processedForecastMsg %}
+   </br></br></br>
+    <div class="forecast-table">
+        </br></br>
+            <div class="forecast-container">
+                <div align="center">
+                    <h2>{{ processedForecastMsg.forecastLocation }}</h2>
+                </div>
+                        <div class="forecast">
+                            <div class="forecast-header">
+                                <h2>Current Temperature</h2>
+                            </div>
+                            <div class="forecast-content">
+                                <div class="degree">{{ processedForecastMsg.currentlyTemp }}<sup>o</sup>C</div>
+                            </div>
+                        </div>
+
+                        <div class="forecast">
+                            <div class="forecast-header">
+                                <h2>Lowest temperature</h2>
+                            </div>
+                            <div class="forecast-content">
+                                <div class="degree">{{ processedForecastMsg.dailyLow }}<sup>o</sup>C</div>
+                            </div>
+                            <div class="forecast-content">
+                            </div>
+                        </div>
+
+                        <div class="forecast">
+                            <div class="forecast-header">
+                                <h2>Highest Temperature</h2>
+                            </div>
+                            <div class="forecast-content">
+                                <div class="degree">{{ processedForecastMsg.dailyHigh }}<sup>o</sup>C</div>
+                            </div>
+                        </div>
+                        <div class="forecast">
+                            <div class="forecast-header">
+                                <h2>UV Index</h2>
+                            </div>
+                            <div class="forecast-content">
+                                <div class="degree">{{ processedForecastMsg.currentlyUV }}</div>
+                            </div>
+                            <div class="forecast-content">
+                            </div>
+                        </div>
+                        <div class="forecast">
+                            <div class="forecast-header">
+                                <h2>Current weather</h2>
+                            </div>
+                            <div class="forecast-content">
+                                 <canvas class={{ processedForecastMsg.currentlyIcon }} width="80" height="80"></canvas>
+
+                            </div>
+                            <div class="forecast-content">
+                                <div class="degree">{{ processedForecastMsg.currentlySummary }}</div>
+                            </div>
+                        </div>
+
+                        <div class="forecast">
+                            <div class="forecast-header">
+                                <h2>Daily weather</h2>
+                            </div>
+                            <div class="forecast-content">
+                                <canvas class={{ processedForecastMsg.hourlyIcon }} width="80" height="80"></canvas>
+                            </div>
+                            <div class="forecast-content">
+                                <div class="degree">{{ processedForecastMsg.hourlySummary }}</div>
+                            </div>
+                        </div>
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+{% endif %}
+
+
 
 
 
