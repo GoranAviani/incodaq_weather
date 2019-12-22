@@ -29,7 +29,17 @@
                     </br></br>
 
                     {% if processedForecastMsg %}
-                        <h2>{{ processedForecastMsg }}</h2>
+                        <h2>{{ processedForecastMsg.forecastLocation }}</h2>
+                        <h2>{{ processedForecastMsg.currentlyTemp }}</h2>
+                        <h2>{{ processedForecastMsg.dailyLow }}</h2>
+                        <h2>{{ processedForecastMsg.dailyHigh }}</h2>
+                        <h2>{{ processedForecastMsg.currentlySummary }}</h2>
+                        <h2>{{ processedForecastMsg.hourlySummary }}</h2>
+                        <h2>{{ processedForecastMsg.currentlyUV }}</h2>
+                        <h2>{{ processedForecastMsg.currentlyIcon }}</h2>
+                        <h2>{{ processedForecastMsg.hourlyIcon }}</h2>
+
+
                     {% endif %}
 	            </div>
 	        </div>
