@@ -9,9 +9,9 @@ node {
             sh 'git log HEAD^..HEAD --pretty="%h %an - %s" > GIT_CHANGES'
             def lastChanges = readFile('GIT_CHANGES')
             echo lastChanges
-            
+
         stage 'Update Python Modules and test'
-            sh 'virtualenv env1'
+            sh 'python -m virtualenv venv991'
 
          stage 'Deploy'
             sh 'chmod +x ./deployment/deploy_prod.sh'
