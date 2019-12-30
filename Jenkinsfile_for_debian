@@ -11,16 +11,16 @@ node {
             echo lastChanges
 
         stage 'Update Python Modules and test'
-            sh 'python -m virtualenv env1'
+            sh 'virtualenv env1'
 
          stage 'Deploy'
             sh 'chmod +x ./deployment/deploy_prod.sh'
             sh './deployment/deploy_prod.sh'
-      
+
     }
 
     catch (err) {
-        
+
         throw err
     }
 
