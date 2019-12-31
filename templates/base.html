@@ -43,10 +43,11 @@
                         <li class="menu-item current-menu-item"><a href="{% url 'index' %}">Home</a></li>
                         <li class="menu-item"><a href="">News</a></li>
                         {% if user.is_authenticated %}
-                            <li class="menu-item"><a href="{% url 'logout' %}">Logout</a></li>
+                            <li class="menu-item"><a href="{% url 'logout' %}">Sign out</a></li>
                         {% else %}
-                            <li class="menu-item"><a href="{% url 'login' %}">Log in</a></li>
-                            <li class="menu-item"><a href="{% url 'signup' %}">Join us</a></li>
+                            <li class="menu-item"><a href="{% url 'login' %}">Sign in</a></li>
+                            <li class="menu-item"><a href="{% url 'social:begin' 'google-oauth2' %}">Sign in to Incodaq Weather with Google</a></li>
+                            <li class="menu-item"><a href="{% url 'signup' %}">Sign up</a></li>
                         {% endif %}
                     </ul> <!-- .menu -->
                 </div> <!-- .main-navigation -->
