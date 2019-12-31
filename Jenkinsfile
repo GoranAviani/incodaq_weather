@@ -11,7 +11,7 @@ node {
             echo lastChanges
 
         stage 'Update Python Modules and test'
-            sh 'python -m virtualenv env1'
+            sh 'python3 -m virtualenv env1'
 
          stage 'Deploy'
             sh 'chmod +x ./deployment/deploy_prod.sh'
