@@ -1,6 +1,25 @@
 <!-- templates/dashboard.html -->
 {% extends 'base.html' %}
 {% block content %}
+
+<form class="navbar-form" action="/search/" method="GET" >
+  {% csrf_token %}
+  <div class="input-group search-box  white-bckg width-100">
+    <input autofocus type="text" name="search_bar" id="base_search" class="form-control" placeholder="Search here...">
+    <button type="submit" ></button>
+  </div>
+</form>
+
+<div class="">
+    <div class="container search-box">
+        <form class="find-location" method="post">
+          {% csrf_token %}
+            {{searchBarInputForm.searchBarInput}}
+            <button type="submit" class="input-group-addon" value="Find"><i class="fas fa-search"></i></button>
+        </form>
+    </div>
+</div>
+
 <div class="">
     <div class="container">
         <form class="find-location" method="post">
