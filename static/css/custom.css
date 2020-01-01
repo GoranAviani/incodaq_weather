@@ -36,9 +36,16 @@
      margin-top: 15px;
  }
 
+  .margine-t-20{
+     margin-top: 20px;
+ }
   .margine-b-20{
      margin-bottom: 20px;
  }
   .margine-b-50{
      margin-bottom: 50px;
  }
+
+  .bckg-dark{
+      background: #1e202b;
+  }

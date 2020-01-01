@@ -94,43 +94,29 @@
                              {% endif %}
                         </div>
                     </div>
-                    </br>
-                    </br>
-                    <div class="form-row col-lg-12 col-md-12 col-xs-12">
+
+                    <div class="form-row col-lg-12 col-md-12 col-xs-12 margine-b-20">
                         <a href="{% url 'edit_user_profile' %}" class='btn main-button btn-block normal-text' >Edit user profile</a>
                     </div>
-                    </br>
-                    </br>
-                    <div class="form-row col-lg-12 col-md-12 col-xs-12">
+                    <div class="form-row col-lg-12 col-md-12 col-xs-12 margine-b-20">
                         <a href="{% url 'edit_user_password'%}" class='btn main-button btn-block normal-text' >Edit user password</a>
                     </div>
-                    </br>
-                    </br>
-                    <div class="form-row col-lg-12 col-md-12 col-xs-12">
+                    <div class="form-row col-lg-12 col-md-12 col-xs-12 margine-b-20">
                         <a href="{% url 'edit_mobile_phone'%}" class='btn main-button btn-block normal-text' >Edit mobile phone</a>
                     </div>
-                    </br>
-                    </br>
-                    <div class="form-row col-lg-12 col-md-12 col-xs-12">
+                    <div class="form-row col-lg-12 col-md-12 col-xs-12 margine-b-20">
                         <a href="{% url 'send_daily_forecast_to_user'%}" class='btn main-button btn-block normal-text' >Send weather forecast to my mobile phone now</a>
                     </div>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    <div class="form-row col-lg-12 col-md-12 col-xs-12">
-                        {% if user.is_superuser %}
-                                <h2 class="title-text text-center">Admin menu</h2>
+                    {% if user.is_superuser %}
+                        <div class="form-row col-lg-12 col-md-12 col-xs-12 margine-t-20 margine-b-20 bckg-dark">
+
+                                <h2 class="title-text">Admin menu</h2>
                                 <a href="{% url 'send_daily_forecast' %}" class="btn main-button btn-block normal-text">Send daily forecast to users *</a>
 
                                 <a href="{% url 'update_index_statuses' %}" class="btn main-button btn-block normal-text">Update main page weather conditions now</a>
-
-
                             <p>* Sent current forecast to all users with approved phone number, have inputed their address, have agnovledged that they wish to receive weather forecast and their forecast time is in the last 30 minutes from now.</p>
-                        {% endif %}
-                     </div>
+                        </div>
+                    {% endif %}
 	            </div>
 	        </div>
 	    </div>
