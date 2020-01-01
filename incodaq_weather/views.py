@@ -40,7 +40,7 @@ def dashboard(request):
             a = cd.get('searchBarInput') #get the user input data
             latLogAPIStatus, userLat, userLon = get_user_lat_long_api(a)
             if latLogAPIStatus != 'success':
-
+                #Current failure message = "Can not retrieve latitude and longitude for this place..."
                return HttpResponse(latLogAPIStatus) #TODO return error message on full_forecast in new message
             else:
                 try:

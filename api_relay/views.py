@@ -30,7 +30,7 @@ def get_user_lat_long_api(stringToSend):
         userLon = result[0]["lon"]
         return "success", userLat, userLon
     except:
-        return "failure","",""
+        return "Can not retrieve latitude and longitude for this place...","",""
 
 def get_user_weather_forecast_api(**kwargs):
     try:
