@@ -55,24 +55,21 @@
 
    .search-box {
         position: relative;
-    }
-    .search-box input {
-    padding-right: 35px;
-    border-color: #dfe3e8;
-    border-radius: 4px !important;
-    box-shadow: none
+        border-color: #dfe3e8;
+        border-radius: 6px !important;
+        box-shadow: none
     }
   .search-box .input-group-addon {
-        min-width: 35px;
+        min-width: 55px;
         border: none;
         background: transparent;
         position: absolute;
         right: 0;
         z-index: 9;
         padding: 7px;
-    height: 100%;
+        height: 100%;
     }
     .search-box i {
-        color: #a0a5b1;
-    font-size: 19px;
+        color: #009ad8;
+        font-size: 25px;
     }
