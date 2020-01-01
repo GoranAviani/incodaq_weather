@@ -49,3 +49,25 @@
   .bckg-dark{
       background: #1e202b;
   }
+
+
+
+
+   .search-box {
+        position: relative;
+        box-shadow: none
+    }
+  .search-box .input-group-addon {
+        min-width: 105px;
+        border: none;
+        background: transparent;
+        position: absolute;
+        right: 0;
+        z-index: 9;
+        padding: 7px;
+        height: 100%;
+    }
+    .search-box i {
+        color: #009ad8;
+        font-size: 25px;
+    }
