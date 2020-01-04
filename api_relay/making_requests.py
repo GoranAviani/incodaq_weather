@@ -5,6 +5,22 @@ import twilio.rest
 import logging
 
 def make_request(**kwargs):
+    info_logger = "info_logger"
+    error_logger = "error_logger"
+    try:
+        sourceOfCall = kwargs["sourceOfCall"]
+        if sourceOfCall == "darksky":
+            info_logger = "darksky_info_logger"
+            error_logger = "darksky_error_logger"
+        elif sourceOfCall == "rechaptcha":
+            info_logger = "rechaptcha_info_logger"
+            error_logger = "rechaptcha_error_logger"
+    except:
+        logging.getLogger("error_logger").error("make_request made without source of call: %s", kwargs)
+
+
+
+
     try:
         apiUrl = kwargs["apiUrl"]
     except:
@@ -27,9 +43,9 @@ def make_request(**kwargs):
         try:
             params1 = kwargs["params"]
             result = requests.get(fullAPIUrl, params=params1)
-            logging.getLogger("darksky_info_logger").info("Dark Sky successful response: %s", result.json())
+            logging.getLogger(info_logger).info("Successful params get api response: %s", result.json())
         except:
-            logging.getLogger("error_logger").error("Api response is: %s", result.json())
+            logging.getLogger(error_logger).error("Not succesfull params get api response: %s", result.json())
             return "error"
 
     elif paramsData == "data" and getPost == "post":
@@ -37,10 +53,9 @@ def make_request(**kwargs):
             data1 = kwargs["data"]
             #data1 = kwargs.get('data')
             result = requests.post(fullAPIUrl, data=data1)
-            #TODO recaptcja logger
-            logging.getLogger("darksky_info_logger").info("recaptcha successful response: %s", result.json())
+            logging.getLogger(info_logger).info("Successful data post api response: %s", result.json())
         except:
-            logging.getLogger("error_logger").error("Recaptcha api response is: %s", result.json())
+            logging.getLogger(error_logger).error("Not succesfull data post api response: %s", result.json())
             return "error"
 
     if result.status_code in (400, 401, 402, 403, 404):
