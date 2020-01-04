@@ -42,6 +42,22 @@ LOGGING = {
 			'filename':'logs/DarkSkyErrorLoggers.log',
 			'formatter':'large',
 		},
+		'rechaptcha_info_file':{
+			'level':'INFO',
+		   	'class':'logging.handlers.TimedRotatingFileHandler',
+			'when':'midnight',
+			'interval':1,
+			'filename':'logs/reChaptchaInfoLoggers.log',
+			'formatter':'large',
+		},
+		'rechaptcha_error_file':{
+			'level':'ERROR',
+		       'class':'logging.handlers.TimedRotatingFileHandler',
+			'when':'midnight',
+			'interval':1,
+			'filename':'logs/reChaptchaErrorLoggers.log',
+			'formatter':'large',
+		},
 	},
 	'loggers':{
 		'error_logger':{
@@ -61,6 +77,16 @@ LOGGING = {
 		},
 		'darksky_error_logger':{
 			'handlers':['darksky_error_file'],
+			'level':'ERROR',
+			'propagate':False,
+		},
+		'rechaptcha_info_logger':{
+			'handlers':['rechaptcha_info_file'],
+			'level':'INFO',
+			'propagate':False,
+		},
+		'rechaptcha_error_logger':{
+			'handlers':['rechaptcha_error_file'],
 			'level':'ERROR',
 			'propagate':False,
 		},
