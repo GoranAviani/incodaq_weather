@@ -22,6 +22,10 @@ def get_default_cities_temp():
       return result
 
 def processing_forecast_search_bar_form(request):
+    # if user not auth do rechaptcha
+    if not request.user.is_authenticated:
+        pass
+
     form = SearchBarForm(request.POST)
     if form.is_valid():
         cd = form.cleaned_data
@@ -29,7 +33,7 @@ def processing_forecast_search_bar_form(request):
         latLogAPIStatus, userLat, userLon = get_user_lat_long_api(a)
         if latLogAPIStatus != 'success':
             # Current failure message = "Can not retrieve latitude and longitude for this place..."
-            return "failure", "", latLogAPIStatus, "" #TODO finish sending custom data
+            return "failure", "", latLogAPIStatus, "" #TODO finish sending custom data with message color
         else:
             try:
                 data = {'userLat': userLat, "userLong": userLon, "params": {'units': "auto"}}
@@ -40,15 +44,12 @@ def processing_forecast_search_bar_form(request):
                     customErrorMessageColor = "red"
                     return "customFailure", 'full_forecast.html', customErrorMessage, customErrorMessageColor
                 else:
-                    # Dark sky forecast api was success
-                    # process foreast message
-                    # TODO process messgage in a new way and display it on full forecast with proper forecast
-
+                    # Dark sky forecast api was success now process foreast message
                     data = {'typeOfCall': "search_bar_forecast", "forecastLocation": a,
                             "apiResponse": weatherForecast}
                     processedForecastMsgStatus, processedForecastMsg = process_forecast_api_message(**data)
 
-                    # send sms message only if processedForecastMsgStatus is a success
+                    #message processed succesfully + all processes were completed, display search bar forecast
                     if processedForecastMsgStatus == "success":
                         return processedForecastMsgStatus, "full_forecast.html", processedForecastMsg, "green"
                     else:
@@ -57,16 +58,14 @@ def processing_forecast_search_bar_form(request):
                         return "customFailure", "full_forecast.html", customErrorMessage, customErrorMessageColor
             except:
                 logging.getLogger("darksky_error_logger").error(
-                    "Something went wrong with try except in view dashboard search bar forecast")
-                return HttpResponse("Something went wrong with try except in view dashboard search bar forecast")
+                    "Something went wrong with try except in view function processing_forecast_search_bar_form")
+                return HttpResponse("Something went wrong with try except in view function processing_forecast_search_bar_form")
                 # TODO display this on full_forecast as custom message
     else:
+        #Form was not successfully validated
         isValidFormErrorMessages = form.errors
         messageColor = "red"
         return "customFailureNotValid", "full_forecast.html", isValidFormErrorMessages, messageColor
-
-
-
 
 def index(request):
    if request.user.is_authenticated:
@@ -92,12 +91,11 @@ def index(request):
                                  'errorMessageColor': customMessageColor})
 
            else:
-               #TODO make custom error message if something else happends
+               #TODO make custom error message if something else unexpected happends, log it
                pass
        else:
             defaultCitiesTemp = get_default_cities_temp()
             searchBarInputForm = SearchBarForm()
-
             return render(request, 'index.html',
             {'defaultCitiesTemp': defaultCitiesTemp,
             'searchBarInputForm': searchBarInputForm}
