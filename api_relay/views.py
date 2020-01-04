@@ -54,6 +54,7 @@ def send_sms_message_api(userMobileNumber, processedForecastMessage):
 
 def get_recaptcha_api(recaptcha_response):
     ''' Begin reCAPTCHA validation '''
+    sourceOfCall = {"sourceOfCall": "rechaptcha"}
     apiUrl = {"apiUrl": "https://www.google.com/"}
     apiEndpoint = {"apiEndpoint": "recaptcha/api/siteverify"}
     paramsData = {"paramsData": "data"}
@@ -62,6 +63,6 @@ def get_recaptcha_api(recaptcha_response):
                 'secret': settings.GOOGLE_RECAPTCHA_SECRET_KEY,
                 'response': recaptcha_response
             }}
-    result = make_request(**apiUrl, **apiEndpoint, **paramsData, **getPost, **data)
+    result = make_request(**apiUrl, **apiEndpoint, **paramsData, **getPost, **data, **sourceOfCall)
     return result
     ''' End reCAPTCHA validation '''
