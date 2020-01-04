@@ -36,11 +36,13 @@ def processing_forecast_search_bar_form(request):
                 'secret': settings.GOOGLE_RECAPTCHA_SECRET_KEY,
                 'response': recaptcha_response
             }
+            #TODO swith to api repay module
             r = requests.post('https://www.google.com/recaptcha/api/siteverify', data=data)
             result = r.json()
             ''' End reCAPTCHA validation '''
 
             if result['success']:
+                #TODO review this part and the error bellow
                 pass
                 #form.save()
                 #messages.success(request, 'New comment added with success!')
