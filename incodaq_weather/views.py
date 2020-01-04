@@ -26,8 +26,11 @@ def index(request):
       return redirect('dashboard')
    else:
       defaultCitiesTemp = get_default_cities_temp()
+      searchBarInputForm = SearchBarForm()
+
       return render(request, 'index.html',
-      {'defaultCitiesTemp': defaultCitiesTemp}
+      {'defaultCitiesTemp': defaultCitiesTemp,
+       'searchBarInputForm': searchBarInputForm}
       )
 
 def dashboard(request):
