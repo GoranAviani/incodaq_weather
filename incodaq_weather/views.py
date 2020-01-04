@@ -6,11 +6,8 @@ from weather.models import default_cities
 from weather.forms import SearchBarForm
 from weather.views import process_forecast_api_message
 from django.http import HttpResponse
-from api_relay.views import get_user_lat_long_api, get_user_weather_forecast_api
+from api_relay.views import get_user_lat_long_api, get_user_weather_forecast_api, get_recaptcha_api
 import logging
-from django.conf import settings
-#TODO remove requests when switching api calls to api reay model
-import requests
 
 def get_default_cities_temp():
    result = []
@@ -24,22 +21,14 @@ def get_default_cities_temp():
       return result
 
 def processing_forecast_search_bar_form(request):
-    # if user not auth do rechaptcha
-
     form = SearchBarForm(request.POST)
     if form.is_valid():
+        # if user not auth do rechaptcha
         if not request.user.is_authenticated:
-
             ''' Begin reCAPTCHA validation '''
+
             recaptcha_response = request.POST.get('g-recaptcha-response')
-            data = {
-                'secret': settings.GOOGLE_RECAPTCHA_SECRET_KEY,
-                'response': recaptcha_response
-            }
-            #TODO swith to api repay module
-            r = requests.post('https://www.google.com/recaptcha/api/siteverify', data=data)
-            result = r.json()
-            ''' End reCAPTCHA validation '''
+            result = get_recaptcha_api(recaptcha_response)
 
             if result['success']:
                 #TODO review this part and the error bellow
