@@ -25,6 +25,7 @@ def get_user_lat_long_api(stringToSend):
     params =  {"params":{'key': locationiqTokenKey,
         'q': stringToSend,
         'format': 'json'}}
+    # TODO depreciated due to make_requests
     result = make_request_params(**apiUrl, **apiEndpoint, **params)
     
     try:
@@ -44,6 +45,7 @@ def get_user_weather_forecast_api(**kwargs):
         return "error"
     apiUrl = {"apiUrl": "https://api.darksky.net/forecast/"}
     apiEndpoint = {"apiEndpoint": darkSkyToken + "/" + userLen +","+userLong}
+    # TODO depreciated due to make_requests
     result = make_request_params(**apiUrl, **apiEndpoint, **params) 
     return result
 
