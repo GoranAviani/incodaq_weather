@@ -25,7 +25,8 @@ from .local_settings import (
     SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET,
     SECRET_KEY,
     DATABASES,
-    ALLOWED_HOSTS
+    ALLOWED_HOSTS,
+    reCAPTCHA_SECRET_KEY
 )
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)

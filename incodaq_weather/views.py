@@ -104,6 +104,7 @@ def index(request):
 def dashboard(request):
    if request.user.is_authenticated:
       if request.method == 'POST':
+          #TODO replace this with processing_forecast_search_bar_form function
       #this is the "forecast search bar" that is called from dashboard
          form = SearchBarForm(request.POST)
          if form.is_valid():
