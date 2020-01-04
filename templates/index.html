@@ -9,15 +9,14 @@
 
 <main class="main-content">
 
-    <div class="">
-        <div class="container search-box">
+        <div class="container search-box margine-b-90">
             <form class="find-location" method="post">
               {% csrf_token %}
                 {{searchBarInputForm.searchBarInput}}
                 <button type="submit" class="input-group-addon" value="Find"><i class="fas fa-search"></i></button>
             </form>
         </div>
-    </div>
+
     <div class="forecast-table">
             <div class="forecast-container">
                 {% if defaultCitiesTemp %}
