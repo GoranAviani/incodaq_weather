@@ -26,7 +26,7 @@ from .local_settings import (
     SECRET_KEY,
     DATABASES,
     ALLOWED_HOSTS,
-    reCAPTCHA_SECRET_KEY
+    GOOGLE_RECAPTCHA_SECRET_KEY
 )
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)

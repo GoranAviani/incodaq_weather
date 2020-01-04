@@ -8,7 +8,9 @@ from weather.views import process_forecast_api_message
 from django.http import HttpResponse
 from api_relay.views import get_user_lat_long_api, get_user_weather_forecast_api
 import logging
-
+from django.conf import settings
+#TODO remove requests when switching api calls to api reay model
+import requests
 
 def get_default_cities_temp():
    result = []
@@ -23,11 +25,30 @@ def get_default_cities_temp():
 
 def processing_forecast_search_bar_form(request):
     # if user not auth do rechaptcha
-    if not request.user.is_authenticated:
-        pass
 
     form = SearchBarForm(request.POST)
     if form.is_valid():
+        if not request.user.is_authenticated:
+
+            ''' Begin reCAPTCHA validation '''
+            recaptcha_response = request.POST.get('g-recaptcha-response')
+            data = {
+                'secret': settings.GOOGLE_RECAPTCHA_SECRET_KEY,
+                'response': recaptcha_response
+            }
+            r = requests.post('https://www.google.com/recaptcha/api/siteverify', data=data)
+            result = r.json()
+            ''' End reCAPTCHA validation '''
+
+            if result['success']:
+                pass
+                #form.save()
+                #messages.success(request, 'New comment added with success!')
+            else:
+                customErrorMessage = "Invalid reCAPTCHA. Please try again."
+                customErrorMessageColor = "red"
+                return "customFailure", 'full_forecast.html', customErrorMessage, customErrorMessageColor
+
         cd = form.cleaned_data
         a = cd.get('searchBarInput')  # get the user input data
         latLogAPIStatus, userLat, userLon = get_user_lat_long_api(a)
