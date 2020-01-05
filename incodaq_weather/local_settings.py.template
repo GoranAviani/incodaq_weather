@@ -38,3 +38,6 @@ myTwilioTelephone = ""
 #Google oauth key and secret
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = ''
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = ''
+
+#reCAPTCHA secret
+GOOGLE_RECAPTCHA_SECRET_KEY = ""
