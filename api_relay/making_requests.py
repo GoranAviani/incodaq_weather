@@ -67,7 +67,7 @@ def make_request(**kwargs):
 
     return result.json()
 
-#TODO depreciated due to make_requests
+#depreciated due to make_request fun
 def make_request_params(**kwargs):
     try:
         apiUrl = kwargs["apiUrl"]

@@ -40,7 +40,7 @@ def processing_forecast_search_bar_form(request):
         latLogAPIStatus, userLat, userLon = get_user_lat_long_api(a)
         if latLogAPIStatus != 'success':
             # Current failure message = "Can not retrieve latitude and longitude for this place..."
-            return "failure", "full_forecast.html", latLogAPIStatus, "red" #TODO finish sending custom data with message color
+            return "failure", "full_forecast.html", latLogAPIStatus, "red"
         else:
             try:
                 data = {'userLat': userLat, "userLong": userLon, "params": {'units': "auto"}}
@@ -66,8 +66,8 @@ def processing_forecast_search_bar_form(request):
             except:
                 logging.getLogger("darksky_error_logger").error(
                     "Something went wrong with try except in view function processing_forecast_search_bar_form")
-                return HttpResponse("Something went wrong with try except in view function processing_forecast_search_bar_form")
-                # TODO display this on full_forecast as custom message
+                return "failure", "full_forecast.html", "Something went wrong trying to get your forecast", "red"
+
     else:
         #Form was not successfully validated
         isValidFormErrorMessages = form.errors
@@ -88,11 +88,12 @@ def index(request):
            elif status == "success":
                 return render(request, htmlPage,
                          {
-                             'processedForecastMsg': customMessage}) #TODO return color
-
+                             'processedForecastMsg': customMessage}) #No color needed for processedForecastMsh
            else:
-               #TODO make custom error message if something else unexpected happends, log it
-               pass
+               return render(request, "full_forecast.html",
+                             {
+                                 'customErrorMessage': "Unknown status returned from processing_forecast_search_bar_form to index page.",
+                                 'customErrorMessageColor': "red"})
        else:
             defaultCitiesTemp = get_default_cities_temp()
             searchBarInputForm = SearchBarForm()
@@ -113,10 +114,12 @@ def dashboard(request):
           elif status == "success":
               return render(request, htmlPage,
                             {
-                                'processedForecastMsg': customMessage})  # TODO return color
+                                'processedForecastMsg': customMessage})  #No color needed for processedForecastMsg
           else:
-              # TODO make custom error message if something else unexpected happends, log it
-              pass
+              return render(request, "full_forecast.html",
+                            {
+                                'customErrorMessage': "Unknown status returned from processing_forecast_search_bar_form to dashboard page.",
+                                'customErrorMessageColor': "red"})
       else:
          user1 = {"user1": request.user}
 
