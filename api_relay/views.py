@@ -20,14 +20,19 @@ from .making_requests import make_request_params, twilio_api, make_request
 
 #returning users latitude and longitude
 def get_user_lat_long_api(stringToSend):
+    sourceOfCall = {"sourceOfCall": "locationiq"}
+    paramsData = {"paramsData": "params"}
+    getPost = {"getPost": "get"}
     apiUrl = {"apiUrl": "https://eu1.locationiq.com/v1/"}
     apiEndpoint = {"apiEndpoint": "search.php"}
     params =  {"params":{'key': locationiqTokenKey,
         'q': stringToSend,
         'format': 'json'}}
-    # TODO depreciated due to make_requests
-    result = make_request_params(**apiUrl, **apiEndpoint, **params)
-    
+    result = make_request(**apiUrl, **apiEndpoint, **paramsData, **getPost, **params, **sourceOfCall)
+
+    # depreciated due to make_requests
+    # result = make_request_params(**apiUrl, **apiEndpoint, **params)
+
     try:
         userLat = result[0]["lat"]
         userLon = result[0]["lon"]
@@ -48,9 +53,10 @@ def get_user_weather_forecast_api(**kwargs):
         return "error"
     apiUrl = {"apiUrl": "https://api.darksky.net/forecast/"}
     apiEndpoint = {"apiEndpoint": darkSkyToken + "/" + userLen +","+userLong}
-    # TODO depreciated due to make_requests
-    #result = make_request_params(**apiUrl, **apiEndpoint, **params)
     result = make_request(**apiUrl, **apiEndpoint, **paramsData, **getPost, **params, **sourceOfCall)
+
+    # depreciated due to make_requests
+    #result = make_request_params(**apiUrl, **apiEndpoint, **params)
 
     return result
 

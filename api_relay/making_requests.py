@@ -15,6 +15,9 @@ def make_request(**kwargs):
         elif sourceOfCall == "rechaptcha":
             info_logger = "rechaptcha_info_logger"
             error_logger = "rechaptcha_error_logger"
+        elif sourceOfCall == "locationiq":
+            info_logger = "locationiq_info_logger"
+            error_logger = "locationiq_error_logger"
     except:
         logging.getLogger("error_logger").error("make_request made without source of call: %s", kwargs)
 
