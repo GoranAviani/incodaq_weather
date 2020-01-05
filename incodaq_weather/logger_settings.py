@@ -58,6 +58,22 @@ LOGGING = {
 			'filename':'logs/reChaptchaErrorLoggers.log',
 			'formatter':'large',
 		},
+		'locationiq_info_file':{
+			'level':'INFO',
+		   	'class':'logging.handlers.TimedRotatingFileHandler',
+			'when':'midnight',
+			'interval':1,
+			'filename':'logs/locationiqInfoLoggers.log',
+			'formatter':'large',
+		},
+		'locationiq_error_file':{
+			'level':'ERROR',
+		       'class':'logging.handlers.TimedRotatingFileHandler',
+			'when':'midnight',
+			'interval':1,
+			'filename':'logs/locationiqErrorLoggers.log',
+			'formatter':'large',
+		},
 	},
 	'loggers':{
 		'error_logger':{
@@ -87,6 +103,17 @@ LOGGING = {
 		},
 		'rechaptcha_error_logger':{
 			'handlers':['rechaptcha_error_file'],
+			'level':'ERROR',
+			'propagate':False,
+		},
+
+		'locationiq_info_logger':{
+			'handlers':['locationiq_info_file'],
+			'level':'INFO',
+			'propagate':False,
+		},
+		'locationiq_error_logger':{
+			'handlers':['locationiq_error_file'],
 			'level':'ERROR',
 			'propagate':False,
 		},
