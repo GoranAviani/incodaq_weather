@@ -26,26 +26,21 @@ def processing_forecast_search_bar_form(request):
         # if user not auth do rechaptcha
         if not request.user.is_authenticated:
             ''' Begin reCAPTCHA validation '''
-
             recaptcha_response = request.POST.get('g-recaptcha-response')
             result = get_recaptcha_api(recaptcha_response)
 
-            if result['success']:
-                #TODO review this part and the error bellow
-                pass
-                #form.save()
-                #messages.success(request, 'New comment added with success!')
-            else:
+            if not result['success']:
                 customErrorMessage = "Invalid reCAPTCHA. Please try again."
                 customErrorMessageColor = "red"
-                return "customFailure", 'full_forecast.html', customErrorMessage, customErrorMessageColor
+                return "failure", 'full_forecast.html', customErrorMessage, customErrorMessageColor
+            ''' end reCAPTCHA validation '''
 
         cd = form.cleaned_data
         a = cd.get('searchBarInput')  # get the user input data
         latLogAPIStatus, userLat, userLon = get_user_lat_long_api(a)
         if latLogAPIStatus != 'success':
             # Current failure message = "Can not retrieve latitude and longitude for this place..."
-            return "failure", "", latLogAPIStatus, "" #TODO finish sending custom data with message color
+            return "failure", "full_forecast.html", latLogAPIStatus, "red" #TODO finish sending custom data with message color
         else:
             try:
                 data = {'userLat': userLat, "userLong": userLon, "params": {'units': "auto"}}
@@ -54,7 +49,7 @@ def processing_forecast_search_bar_form(request):
                     logging.getLogger("darksky_error_logger").error("Dark Sky ERROR response: %s", weatherForecast)
                     customErrorMessage = "Error while fetching you forecast, please contact our support."
                     customErrorMessageColor = "red"
-                    return "customFailure", 'full_forecast.html', customErrorMessage, customErrorMessageColor
+                    return "failure", 'full_forecast.html', customErrorMessage, customErrorMessageColor
                 else:
                     # Dark sky forecast api was success now process foreast message
                     data = {'typeOfCall': "search_bar_forecast", "forecastLocation": a,
@@ -67,7 +62,7 @@ def processing_forecast_search_bar_form(request):
                     else:
                         customErrorMessage = "Error while processing the forecast message, please contact our support."
                         customErrorMessageColor = "red"
-                        return "customFailure", "full_forecast.html", customErrorMessage, customErrorMessageColor
+                        return "failure", "full_forecast.html", customErrorMessage, customErrorMessageColor
             except:
                 logging.getLogger("darksky_error_logger").error(
                     "Something went wrong with try except in view function processing_forecast_search_bar_form")
@@ -77,7 +72,7 @@ def processing_forecast_search_bar_form(request):
         #Form was not successfully validated
         isValidFormErrorMessages = form.errors
         messageColor = "red"
-        return "customFailureNotValid", "full_forecast.html", isValidFormErrorMessages, messageColor
+        return "failure", "full_forecast.html", isValidFormErrorMessages, messageColor
 
 def index(request):
    if request.user.is_authenticated:
@@ -86,8 +81,6 @@ def index(request):
        if request.method == 'POST':
            status, htmlPage, customMessage, customMessageColor = processing_forecast_search_bar_form(request)
            if status == "failure":
-               return HttpResponse(customMessage)
-           elif status == "customFailure":
                return render(request, htmlPage,
                              {
                                  'customErrorMessage': customMessage,
@@ -96,11 +89,6 @@ def index(request):
                 return render(request, htmlPage,
                          {
                              'processedForecastMsg': customMessage}) #TODO return color
-           elif status == "customFailureNotValid":
-               return render(request, htmlPage,
-                             {
-                                 'isValidFormErrorMessages': customMessage,
-                                 'errorMessageColor': customMessageColor})
 
            else:
                #TODO make custom error message if something else unexpected happends, log it
@@ -118,8 +106,6 @@ def dashboard(request):
       if request.method == 'POST':
           status, htmlPage, customMessage, customMessageColor = processing_forecast_search_bar_form(request)
           if status == "failure":
-              return HttpResponse(customMessage)
-          elif status == "customFailure":
               return render(request, htmlPage,
                             {
                                 'customErrorMessage': customMessage,
@@ -128,12 +114,6 @@ def dashboard(request):
               return render(request, htmlPage,
                             {
                                 'processedForecastMsg': customMessage})  # TODO return color
-          elif status == "customFailureNotValid":
-              return render(request, htmlPage,
-                            {
-                                'isValidFormErrorMessages': customMessage,
-                                'errorMessageColor': customMessageColor})
-
           else:
               # TODO make custom error message if something else unexpected happends, log it
               pass
