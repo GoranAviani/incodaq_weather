@@ -9,6 +9,19 @@
 
 <main class="main-content">
 
+        <div class="container search-box margine-b-110">
+            <form class="find-location" method="post">
+              {% csrf_token %}
+                <div>
+                {{searchBarInputForm.searchBarInput}}
+                <button type="submit" class="input-group-addon" value="Find"><i class="fas fa-search"></i></button>
+                </div>
+                <script src='https://www.google.com/recaptcha/api.js'></script>
+                <div class="g-recaptcha" data-sitekey="6LfSUcwUAAAAAC22nUBRuG2Ez0M2pv73GiCzblJj"></div>
+
+            </form>
+        </div>
+
     <div class="forecast-table">
             <div class="forecast-container">
                 {% if defaultCitiesTemp %}

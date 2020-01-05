@@ -121,12 +121,6 @@ def process_forecast_api_message(**kwargs):
             str(round(apiResponse["daily"]["data"][0]["temperatureHigh"])),
             str(apiResponse["hourly"]["summary"])))
 
-        # print(result["currently"]["summary"]) # this
-        # print(result["currently"]["temperature"]) #this
-        # print(result["currently"]["uvIndex"])
-
-        # print(result["hourly"])
-        # print(result["hourly"]["summary"]) #need this
 
         return "success", processedMessage
     elif typeOfCall == "default_cities_basic_forecast":
