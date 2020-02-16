@@ -94,6 +94,8 @@ def make_request_params(**kwargs):
         logging.getLogger("error_logger").error("40x Api response is: %s", result.json())
         return result
 
+    #test log
+    logging.getLogger("error_logger").error("test api responce logger: %s", result.json())
     return result.json()
 
 def twilio_api(userMobileNumber, processedForecastMessage, twilioAccountSid, twilioAuthToken, myTwilioTelephone):
@@ -106,5 +108,7 @@ def twilio_api(userMobileNumber, processedForecastMessage, twilioAccountSid, twi
                         from_= myTwilioTelephone,
                         to=userMobileNumber
                     )
+    logging.getLogger("error_logger").error("Twilio message response logger: %s", message1)
+
     #print(message1.status)
     #print(message1)
