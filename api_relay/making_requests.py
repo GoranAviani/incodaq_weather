@@ -45,7 +45,7 @@ def make_request(**kwargs):
     if paramsData == "params" and getPost == "get":
         try:
             params1 = kwargs["params"]
-            logging.getLogger(info_logger).info("Api request: %s", str(fullAPIUrl + params1))
+            logging.getLogger(info_logger).info("Api request: %s", str(fullAPIUrl))
             result = requests.get(fullAPIUrl, params=params1)
             logging.getLogger(info_logger).info("Api response: %s", result.json())
         except:
