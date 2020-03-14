@@ -92,7 +92,7 @@ def get_mobile_phone(user_phone_instance):
 
             status = "OK"
             result = phoneCountryCode + phoneNumber
-            statusMessage = "Mobile phone OK."
+            statusMessage = "Mobile phone check is OK."
             return status, statusMessage, result
         else:
             status = "DontSendSMS"
@@ -217,6 +217,7 @@ def send_daily_forecast(user, typeOfRequest):
     userLat = user.userLatitude
     userLong = user.userLongitude
 
+    #fetc user lat lon if they are missing
     if ((userLat != None and userLat != "") and (userLong != None and userLong != "")):
         userMobileStatus, statusMessage, userMobileNumber = get_user_mobile_and_check_time(user, typeOfRequest)
         # if userForecastTimeList not "now" or in the last 2 hours (processig time was long)
