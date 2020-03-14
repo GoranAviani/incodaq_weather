@@ -54,7 +54,7 @@ def get_user_weather_forecast_api(**kwargs):
     apiUrl = {"apiUrl": "https://api.darksky.net/forecast/"}
     apiEndpoint = {"apiEndpoint": darkSkyToken + "/" + userLen +","+userLong}
     result = make_request(**apiUrl, **apiEndpoint, **paramsData, **getPost, **params, **sourceOfCall)
-
+    #TODO add requst status code
     # depreciated due to make_requests
     #result = make_request_params(**apiUrl, **apiEndpoint, **params)
 
