@@ -100,6 +100,10 @@ def make_request_params(**kwargs):
     return result.json()
 
 def twilio_api(userMobileNumber, processedForecastMessage, twilioAccountSid, twilioAuthToken, myTwilioTelephone):
+    logging.getLogger("twilio_info_logger").info("Api request message: {}, user tel nr: {}" .format(
+        processedForecastMessage,
+        userMobileNumber))
+
     try:
         client1 = twilio.rest.Client(twilioAccountSid, twilioAuthToken)
 
@@ -109,8 +113,12 @@ def twilio_api(userMobileNumber, processedForecastMessage, twilioAccountSid, twi
                             from_= myTwilioTelephone,
                             to=userMobileNumber
                         )
+#TODO log twilio responses
+#        logging.getLogger("twilio_info_logger").info("Api response message: {}".format(message1))
+
     except:
-        logging.getLogger("error_logger").error("Twilio message response logger: %s", message1)
+        logging.getLogger("twilio_error_logger").info("Api request failed for tel nr: {}" .format(userMobileNumber))
+       # logging.getLogger("error_logger").error("Twilio message response logger: %s", message1)
 
     #print(message1.status)
     #print(message1)

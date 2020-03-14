@@ -74,6 +74,22 @@ LOGGING = {
 			'filename':'logs/locationiqErrorLoggers.log',
 			'formatter':'large',
 		},
+		'twilio_error_file':{
+			'level':'ERROR',
+		       'class':'logging.handlers.TimedRotatingFileHandler',
+			'when':'midnight',
+			'interval':1,
+			'filename':'logs/twilioErrorLoggers.log',
+			'formatter':'large',
+		},
+		'twilio_info_file':{
+			'level':'INFO',
+			   'class':'logging.handlers.TimedRotatingFileHandler',
+			'when':'midnight',
+			'interval':1,
+			'filename':'logs/twilioInfoLoggers.log',
+			'formatter':'large',
+		},
 	},
 	'loggers':{
 		'error_logger':{
@@ -115,6 +131,16 @@ LOGGING = {
 		'locationiq_error_logger':{
 			'handlers':['locationiq_error_file'],
 			'level':'ERROR',
+			'propagate':False,
+		},
+		'twilio_error_logger':{
+			'handlers':['twilio_error_file'],
+			'level':'ERROR',
+			'propagate':False,
+		},
+		'twilio_info_logger':{
+			'handlers':['twilio_info_file'],
+			'level':'INFO',
 			'propagate':False,
 		},
 	},
