@@ -85,4 +85,4 @@ def dashboard_status_processing(**kwargs):
         hasAddress, hasAddressMessage, hasAddressStatusColor, \
         isMobileValidated, isMobileValidatedMessage, isMobileValidatedStatusColor, \
         wantsToReceiveWeatherSMS, wantsToReceiveWeatherSMSMessage, wantsToReceiveWeatherSMSStatusColor, \
-        isForecastTimeSet, isForecastTimeSetMessage, isForecastTimeSetStatusColor \
+        isForecastTimeSet, isForecastTimeSetMessage, isForecastTimeSetStatusColor
