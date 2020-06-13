@@ -12,6 +12,12 @@ import logging
 
 
 def get_default_cities_temp():
+   """
+   Goal: Getting default cities list and their info
+   Story: Trying to get default cities data from the db, if no data is returned for the db then
+   INDEX_CITIES_DEFAULT_VALUES data is used
+   :return: List od dicts containing cities info
+   """
    result = []
    foundDefaultCitiesQuerySet = default_cities.objects.all()
    if not foundDefaultCitiesQuerySet:
