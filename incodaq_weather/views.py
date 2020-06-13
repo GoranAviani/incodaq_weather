@@ -131,9 +131,9 @@ def dashboard(request):
       else:
          user1 = {"user1": request.user}
 
-         dashboardStatusMessage,dashboardStatusColor,hasMobileNumber, hasMobileNumberMessage, hasMobileNumberStatusColor, \
+         dashboardStatusMessage, dashboardStatusColor, hasMobileNumber, hasMobileNumberMessage, hasMobileNumberStatusColor, \
          hasCityCountry, hasCityCountryMessage, hasCityCountryStatusColor, \
-         hasAddress,hasAddressMessage, hasAddressStatusColor, \
+         hasAddress, hasAddressMessage, hasAddressStatusColor, \
          isMobileValidated, isMobileValidatedMessage, isMobileValidatedStatusColor, \
          wantsToReceiveWeatherSMS, wantsToReceiveWeatherSMSMessage, wantsToReceiveWeatherSMSStatusColor, \
          isForecastTimeSet, isForecastTimeSetMessage, isForecastTimeSetStatusColor \

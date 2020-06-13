@@ -40,21 +40,7 @@
                         </div>
                     </div>
                     <div class = "col-lg-12 col-md-12 col-xs-12 margine-b-20">
-                        <div class="form-row h3 text-left">Address:
-                        </div>
-                        <div class="form-row h3 text-left">
-                             {% if hasAddressMessage %}
-                                 <normal style="color: {{hasAddressStatusColor}}"> {{ hasAddressMessage }}</normal>
-                                 {% if hasAddress == True %}
-                                    <i class="far fa-check-circle"></i>
-                                 {% else %}
-                                    <i class="far fa-times-circle"></i>
-                                 {% endif %}
-                             {% endif %}
-                        </div>
-                    </div>
-                    <div class = "col-lg-12 col-md-12 col-xs-12 margine-b-20">
-                        <div class="form-row h3 text-left">Is the mobile phone validated:
+                        <div class="form-row h3 text-left">Is the phone number validated:
                         </div>
                         <div class="form-row h3 text-left">
                              {% if isMobileValidatedMessage %}
@@ -74,6 +60,20 @@
                              {% if wantsToReceiveWeatherSMSMessage %}
                                  <normal style="color: {{wantsToReceiveWeatherSMSStatusColor}}"> {{ wantsToReceiveWeatherSMSMessage }}</normal>
                                  {% if wantsToReceiveWeatherSMS == True %}
+                                    <i class="far fa-check-circle"></i>
+                                 {% else %}
+                                    <i class="far fa-times-circle"></i>
+                                 {% endif %}
+                             {% endif %}
+                        </div>
+                    </div>
+                    <div class = "col-lg-12 col-md-12 col-xs-12 margine-b-20">
+                        <div class="form-row h3 text-left">Address:
+                        </div>
+                        <div class="form-row h3 text-left">
+                             {% if hasAddressMessage %}
+                                 <normal style="color: {{hasAddressStatusColor}}"> {{ hasAddressMessage }}</normal>
+                                 {% if hasAddress == True %}
                                     <i class="far fa-check-circle"></i>
                                  {% else %}
                                     <i class="far fa-times-circle"></i>

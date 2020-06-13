@@ -16,7 +16,7 @@ def dashboard_status_processing(**kwargs):
     hasAddressStatusColor = "yellow"
 
     hasMobileNumber = False
-    hasMobileNumberMessage = "Your account has no mobile number"
+    hasMobileNumberMessage = "Your account has no mobile number connected to it"
     hasMobileNumberStatusColor = "red"
 
     isForecastTimeSet = False
@@ -28,7 +28,7 @@ def dashboard_status_processing(**kwargs):
     isMobileValidatedStatusColor = "red"
 
     wantsToReceiveWeatherSMS = False
-    wantsToReceiveWeatherSMSMessage = "To receive messages select that inside your mobile configuration"
+    wantsToReceiveWeatherSMSMessage = "User has not selected to receive weather prognosis text messages"
     wantsToReceiveWeatherSMSStatusColor = "red"    
 
     if (user1.userCity is not None and (len(user1.userCountry.name)>1) ):
