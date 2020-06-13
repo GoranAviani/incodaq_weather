@@ -7,17 +7,19 @@ from weather.forms import SearchBarForm
 from weather.views import process_forecast_api_message
 from django.http import HttpResponse
 from api_relay.views import get_user_lat_long_api, get_user_weather_forecast_api, get_recaptcha_api
+from incodaq_weather.constants import INDEX_CITIES_DEFAULT_VALUES
 import logging
+
 
 def get_default_cities_temp():
    result = []
-   try:
-      foundDefaultCitiesQuerySet = default_cities.objects.all()
+   foundDefaultCitiesQuerySet = default_cities.objects.all()
+   if not foundDefaultCitiesQuerySet:
+       return INDEX_CITIES_DEFAULT_VALUES
+   else:
       for x in foundDefaultCitiesQuerySet:
          # {'city': city, 'temp': processedTemp, 'iconDesc': processedIconText}
          result.append({'city': x.city, 'temp': x.temperature, 'iconDesc': x.weatherIconDesc})
-      return result
-   except:
       return result
 
 def processing_forecast_search_bar_form(request):
