@@ -14,7 +14,7 @@
   </component>
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$" />
-    <orderEntry type="jdk" jdkName="Remote Python 3.6.9 Docker Compose (web at [/home/goran/111MOJIPROGRAMI/GITHUB/incodaq_weather/docker-compose.yml])" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="Python 3.8 (incodaq_weather_env)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
   <component name="TemplatesService">
