@@ -40,21 +40,7 @@
                         </div>
                     </div>
                     <div class = "col-lg-12 col-md-12 col-xs-12 margine-b-20">
-                        <div class="form-row h3 text-left">Address:
-                        </div>
-                        <div class="form-row h3 text-left">
-                             {% if hasAddressMessage %}
-                                 <normal style="color: {{hasAddressStatusColor}}"> {{ hasAddressMessage }}</normal>
-                                 {% if hasAddress == True %}
-                                    <i class="far fa-check-circle"></i>
-                                 {% else %}
-                                    <i class="far fa-times-circle"></i>
-                                 {% endif %}
-                             {% endif %}
-                        </div>
-                    </div>
-                    <div class = "col-lg-12 col-md-12 col-xs-12 margine-b-20">
-                        <div class="form-row h3 text-left">Is the mobile phone validated:
+                        <div class="form-row h3 text-left">Mobile phone validation:
                         </div>
                         <div class="form-row h3 text-left">
                              {% if isMobileValidatedMessage %}
@@ -68,7 +54,7 @@
                         </div>
                     </div>
                     <div class = "col-lg-12 col-md-12 col-xs-12 margine-b-20">
-                        <div class="form-row h3 text-left">Do you want to receive SMS messages:
+                        <div class="form-row h3 text-left">SMS recieval approval:
                         </div>
                         <div class="form-row h3 text-left">
                              {% if wantsToReceiveWeatherSMSMessage %}
@@ -82,7 +68,7 @@
                         </div>
                     </div>
                     <div class = "col-lg-12 col-md-12 col-xs-12 margine-b-20">
-                        <div class="form-row h3 text-left">Time to receive weather forecast:
+                        <div class="form-row h3 text-left">SMS receival time:
                         </div>
                         <div class="form-row h3 text-left">
                              {% if isForecastTimeSetMessage %}
@@ -95,6 +81,20 @@
                              {% endif %}
                         </div>
                     </div>
+                    <div class = "col-lg-12 col-md-12 col-xs-12 margine-b-20">
+                            <div class="form-row h3 text-left">Street address:
+                            </div>
+                            <div class="form-row h3 text-left">
+                                 {% if hasAddressMessage %}
+                                     <normal style="color: {{hasAddressStatusColor}}"> {{ hasAddressMessage }}</normal>
+                                     {% if hasAddress == True %}
+                                        <i class="far fa-check-circle"></i>
+                                     {% else %}
+                                        <i class="far fa-times-circle"></i>
+                                     {% endif %}
+                                 {% endif %}
+                            </div>
+                        </div>
 
                     <div class="form-row col-lg-12 col-md-12 col-xs-12 margine-b-20">
                         <a href="{% url 'edit_user_profile' %}" class='btn main-button btn-block normal-text' >Edit user profile</a>
