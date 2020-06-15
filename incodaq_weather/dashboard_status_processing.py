@@ -9,7 +9,7 @@ def dashboard_status_processing(**kwargs):
     #Dashboard default values are false.
     hasCityCountry = False
     hasCityCountryMessage = "City and Country are required fields for weather forecast"
-    hasCityCountryStatusColor = "Red"
+    hasCityCountryStatusColor = "red"
    
     hasAddress = False
     hasAddressMessage = "Address is required to receive a more precise forecast"
@@ -34,7 +34,7 @@ def dashboard_status_processing(**kwargs):
     if (user1.userCity is not None and (len(user1.userCountry.name)>1) ):
         hasCityCountry = True
         hasCityCountryMessage = "City and Country are inputed"
-        hasCityCountryStatusColor = "Green"
+        hasCityCountryStatusColor = "green"
 
 
     if user1.userAddress is not None:
