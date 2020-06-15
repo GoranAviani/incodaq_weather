@@ -60,6 +60,10 @@
   .margine-b-50{
      margin-bottom: 50px;
  }
+  .margine-l-10{
+     margin-left: 10px;
+ }
+
 
   .bckg-dark{
       background: #1e202b;

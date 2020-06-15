@@ -32,81 +32,78 @@
                              {% if hasMobileNumberMessage %}
                                  <normal style="color: {{hasMobileNumberStatusColor}}"> {{ hasMobileNumberMessage }}</normal>
                                  {% if hasMobileNumber == True %}
-                                    <i class="far fa-check-circle"></i>
+                                    <i class="margine-l-10 far fa-check-circle"></i>
                                  {% else %}
-                                    <i class="far fa-times-circle"></i>
+                                    <i class="margine-l-10 far fa-times-circle"></i>
                                  {% endif %}
                              {% endif %}
                         </div>
                     </div>
                     <div class = "col-lg-12 col-md-12 col-xs-12 margine-b-20">
-                        <div class="form-row h3 text-left">Address:
-                        </div>
-                        <div class="form-row h3 text-left">
-                             {% if hasAddressMessage %}
-                                 <normal style="color: {{hasAddressStatusColor}}"> {{ hasAddressMessage }}</normal>
-                                 {% if hasAddress == True %}
-                                    <i class="far fa-check-circle"></i>
-                                 {% else %}
-                                    <i class="far fa-times-circle"></i>
-                                 {% endif %}
-                             {% endif %}
-                        </div>
-                    </div>
-                    <div class = "col-lg-12 col-md-12 col-xs-12 margine-b-20">
-                        <div class="form-row h3 text-left">Is the mobile phone validated:
+                        <div class="form-row h3 text-left">Mobile phone validated:
                         </div>
                         <div class="form-row h3 text-left">
                              {% if isMobileValidatedMessage %}
                                  <normal style="color: {{isMobileValidatedStatusColor}}"> {{ isMobileValidatedMessage }}</normal>
                                  {% if isMobileValidated == True %}
-                                    <i class="far fa-check-circle"></i>
+                                    <i class="margine-l-10 far fa-check-circle"></i>
                                  {% else %}
-                                    <i class="far fa-times-circle"></i>
+                                    <i class="margine-l-10 far fa-times-circle"></i>
                                  {% endif %}
                              {% endif %}
                         </div>
                     </div>
                     <div class = "col-lg-12 col-md-12 col-xs-12 margine-b-20">
-                        <div class="form-row h3 text-left">Do you want to receive SMS messages:
+                        <div class="form-row h3 text-left">SMS receival approval:
                         </div>
                         <div class="form-row h3 text-left">
                              {% if wantsToReceiveWeatherSMSMessage %}
                                  <normal style="color: {{wantsToReceiveWeatherSMSStatusColor}}"> {{ wantsToReceiveWeatherSMSMessage }}</normal>
                                  {% if wantsToReceiveWeatherSMS == True %}
-                                    <i class="far fa-check-circle"></i>
+                                    <i class="margine-l-10 far fa-check-circle"></i>
                                  {% else %}
-                                    <i class="far fa-times-circle"></i>
+                                    <i class="margine-l-10 far fa-times-circle"></i>
                                  {% endif %}
                              {% endif %}
                         </div>
                     </div>
                     <div class = "col-lg-12 col-md-12 col-xs-12 margine-b-20">
-                        <div class="form-row h3 text-left">Time to receive weather forecast:
+                        <div class="form-row h3 text-left">SMS receival time:
                         </div>
                         <div class="form-row h3 text-left">
                              {% if isForecastTimeSetMessage %}
                                  <normal style="color: {{isForecastTimeSetStatusColor}}"> {{ isForecastTimeSetMessage }}</normal>
                                  {% if isForecastTimeSet == True %}
-                                    <i class="far fa-check-circle"></i>
+                                    <i class="margine-l-10 far fa-check-circle"></i>
                                  {% else %}
-                                    <i class="far fa-times-circle"></i>
+                                    <i class="margine-l-10 far fa-times-circle"></i>
                                  {% endif %}
                              {% endif %}
                         </div>
                     </div>
+                    <div class = "col-lg-12 col-md-12 col-xs-12 margine-b-20">
+                            <div class="form-row h3 text-left">Street address:
+                            </div>
+                            <div class="form-row h3 text-left">
+                                 {% if hasAddressMessage %}
+                                     <normal style="color: {{hasAddressStatusColor}}"> {{ hasAddressMessage }}</normal>
+                                     {% if hasAddress == True %}
+                                        <i class="margine-l-10 far fa-check-circle"></i>
+                                     {% else %}
+                                        <i class="margine-l-10 far fa-times-circle"></i>
+                                     {% endif %}
+                                 {% endif %}
+                            </div>
+                        </div>
 
-                    <div class="form-row col-lg-12 col-md-12 col-xs-12 margine-b-20">
-                        <a href="{% url 'edit_user_profile' %}" class='btn main-button btn-block normal-text' >Edit user profile</a>
+                    <div class="form-row col-lg-12 col-md-12 col-xs-12 margine-b-20 margine-t-20">
+                        <a href="{% url 'edit_user_profile' %}" class='btn main-button btn-block normal-text' >User profile settings</a>
                     </div>
                     <div class="form-row col-lg-12 col-md-12 col-xs-12 margine-b-20">
-                        <a href="{% url 'edit_user_password'%}" class='btn main-button btn-block normal-text' >Edit user password</a>
+                        <a href="{% url 'edit_mobile_phone'%}" class='btn main-button btn-block normal-text' >Mobile phone settings</a>
                     </div>
-                    <div class="form-row col-lg-12 col-md-12 col-xs-12 margine-b-20">
-                        <a href="{% url 'edit_mobile_phone'%}" class='btn main-button btn-block normal-text' >Edit mobile phone</a>
-                    </div>
-                    <div class="form-row col-lg-12 col-md-12 col-xs-12 margine-b-20">
-                        <a href="{% url 'send_daily_forecast_to_user'%}" class='btn main-button btn-block normal-text' >Send weather forecast to my mobile phone now</a>
+                    <div class="form-row col-lg-12 col-md-12 col-xs-12 margine-b-20 margine-t-20">
+                        <a href="{% url 'send_daily_forecast_to_user'%}" class='btn main-button btn-block normal-text font-weight-bold' >Send weather forecast now!</a>
                     </div>
                     {% if user.is_superuser %}
                         <div class="form-row col-lg-12 col-md-12 col-xs-12 margine-t-20 margine-b-20 bckg-dark">
@@ -117,12 +114,12 @@
                                 Note: Admin menu is visible only to Incodaq Weather administrators.
                             </div>
                             <div class="col-lg-12 col-md-12 col-xs-12 margine-t-20 margine-b-20">
-                                <a href="{% url 'update_index_statuses' %}" class="btn main-button btn-block normal-text">Update main page weather conditions now</a>
+                                <a href="{% url 'update_index_statuses' %}" class="btn main-button btn-block normal-text">Update index page weather conditions now</a>
                             </div>
                             <div class="col-lg-12 col-md-12 col-xs-12 margine-b-20">
-                                <a href="{% url 'send_daily_forecast' %}" class="btn main-button btn-block normal-text">Send daily forecast to users *</a>
+                                <a href="{% url 'send_daily_forecast' %}" class="btn main-button btn-block normal-text">Send daily forecast to all users *</a>
                             </div>
-                            <p>* Sent current forecast to all users with approved phone number, have inputed their address, have agnovledged that they wish to receive weather forecast and their forecast time is in the last 30 minutes from now.</p>
+                            <p>* Sent weather forecast SMS to all users with approved phone number, at least basic address info, have approved SMS receival and ave their forecast time set at last 30 minutes from now.</p>
                         </div>
                     {% endif %}
 	            </div>
