@@ -1,6 +1,24 @@
 
 from django.shortcuts import render
 from mobile_phone.models import user_phone
+from incodaq_weather.constants import \
+    (
+    GREEN_STRING,
+    RED_STRING,
+    YELLOW_STRING,
+    CITY_COUNTRY_NEGATIVE_STATUS,
+    ADDRESS_NEGATIVE_STATUS,
+    MOBILE_NUMBER_NEGATIVE_STATUS,
+    FORECAST_TIME_NEGATIVE_STATUS,
+    MOBILE_NUMBER_VALIDATED_NEGATIVE_STATUS,
+    SMS_MESSAGE_NEGATIVE_STATUS,
+    CITY_COUNTRY_POSITIVE_STATUS,
+    ADDRESS_POSITIVE_STATUS,
+    MOBILE_NUMBER_POSITIVE_STATUS,
+    FORECAST_TIME_POSITIVE_STATUS,
+    MOBILE_NUMBER_POSITIVE_NEGATIVE_STATUS,
+    SMS_MESSAGE_POSITIVE_STATUS
+    )
 
 def dashboard_status_processing(**kwargs):
  
@@ -8,62 +26,62 @@ def dashboard_status_processing(**kwargs):
 
     #Dashboard default values are false.
     hasCityCountry = False
-    hasCityCountryMessage = "City and Country are required fields for weather forecast"
-    hasCityCountryStatusColor = "Red"
+    hasCityCountryMessage = CITY_COUNTRY_NEGATIVE_STATUS
+    hasCityCountryStatusColor = RED_STRING
    
     hasAddress = False
-    hasAddressMessage = "Address is required to receive a more precise forecast"
-    hasAddressStatusColor = "yellow"
+    hasAddressMessage = ADDRESS_NEGATIVE_STATUS
+    hasAddressStatusColor = YELLOW_STRING
 
     hasMobileNumber = False
-    hasMobileNumberMessage = "Your account has no mobile number"
-    hasMobileNumberStatusColor = "red"
+    hasMobileNumberMessage = MOBILE_NUMBER_NEGATIVE_STATUS
+    hasMobileNumberStatusColor = RED_STRING
 
     isForecastTimeSet = False
-    isForecastTimeSetMessage = "Forecast time is not set"
-    isForecastTimeSetStatusColor = "red"
+    isForecastTimeSetMessage = FORECAST_TIME_NEGATIVE_STATUS
+    isForecastTimeSetStatusColor = RED_STRING
 
     isMobileValidated = False
-    isMobileValidatedMessage = "Your mobile phone is not validated"
-    isMobileValidatedStatusColor = "red"
+    isMobileValidatedMessage = MOBILE_NUMBER_VALIDATED_NEGATIVE_STATUS
+    isMobileValidatedStatusColor = RED_STRING
 
     wantsToReceiveWeatherSMS = False
-    wantsToReceiveWeatherSMSMessage = "To receive messages select that inside your mobile configuration"
-    wantsToReceiveWeatherSMSStatusColor = "red"    
+    wantsToReceiveWeatherSMSMessage = SMS_MESSAGE_NEGATIVE_STATUS
+    wantsToReceiveWeatherSMSStatusColor = RED_STRING
 
     if (user1.userCity is not None and (len(user1.userCountry.name)>1) ):
         hasCityCountry = True
-        hasCityCountryMessage = "City and Country are inputed"
-        hasCityCountryStatusColor = "Green"
+        hasCityCountryMessage = CITY_COUNTRY_POSITIVE_STATUS
+        hasCityCountryStatusColor = GREEN_STRING
 
 
     if user1.userAddress is not None:
         hasAddress = True
-        hasAddressMessage = "Address is inputed"
-        hasAddressStatusColor = "green"
+        hasAddressMessage = ADDRESS_POSITIVE_STATUS
+        hasAddressStatusColor = GREEN_STRING
 
    #Check mobile number, forecast time etc only if instance of user_phone object exist
     try:
         found_u_p_data = user_phone.objects.get(userMobilePhone=user1)
         if found_u_p_data.phoneNumber is not None and len(found_u_p_data.phoneNumber) != 0:
             hasMobileNumber = True
-            hasMobileNumberMessage = "You have inputed a mobile number"
-            hasMobileNumberStatusColor = "green"
+            hasMobileNumberMessage = MOBILE_NUMBER_POSITIVE_STATUS
+            hasMobileNumberStatusColor = GREEN_STRING
 
         if ((found_u_p_data.timeWeatherSMS is not None) and (found_u_p_data.timeWeatherSMS is not "")):
             isForecastTimeSet = True
-            isForecastTimeSetMessage = "Forecast time is set"
-            isForecastTimeSetStatusColor = "green"
+            isForecastTimeSetMessage = ADDRESS_POSITIVE_STATUS
+            isForecastTimeSetStatusColor = GREEN_STRING
 
         isMobileValidated = found_u_p_data.isMobileValidated 
         if isMobileValidated:
-            isMobileValidatedMessage = "your mobile phone has been validated"
-            isMobileValidatedStatusColor = "green"
+            isMobileValidatedMessage = MOBILE_NUMBER_POSITIVE_NEGATIVE_STATUS
+            isMobileValidatedStatusColor = GREEN_STRING
        
         wantsToReceiveWeatherSMS = found_u_p_data.wantsToReceiveWeatherSMS 
         if wantsToReceiveWeatherSMS:
-            wantsToReceiveWeatherSMSMessage = "You have selected to receive forecast text messages"
-            wantsToReceiveWeatherSMSStatusColor = "green"
+            wantsToReceiveWeatherSMSMessage = SMS_MESSAGE_POSITIVE_STATUS
+            wantsToReceiveWeatherSMSStatusColor = GREEN_STRING
        
 
     except:
@@ -76,8 +94,8 @@ def dashboard_status_processing(**kwargs):
         dashboardStatusMessage = kwargs["dashboardStatus"]
         dashboardStatusColor = kwargs["statusColor"]
     except:
-        dashboardStatusMessage = "Hello and welcome to your dashboard."
-        dashboardStatusColor = "green"
+        dashboardStatusMessage = "Welcome to your dashboard"
+        dashboardStatusColor = GREEN_STRING
 
 
     return dashboardStatusMessage,dashboardStatusColor,hasMobileNumber, hasMobileNumberMessage, hasMobileNumberStatusColor,\
