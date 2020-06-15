@@ -103,9 +103,6 @@
                         <a href="{% url 'edit_mobile_phone'%}" class='btn main-button btn-block normal-text' >Mobile phone</a>
                     </div>
                     <div class="form-row col-lg-12 col-md-12 col-xs-12 margine-b-20">
-                        <a href="{% url 'edit_user_password'%}" class='btn main-button btn-block normal-text' >Change login password</a>
-                    </div>
-                    <div class="form-row col-lg-12 col-md-12 col-xs-12 margine-b-20">
                         <a href="{% url 'send_daily_forecast_to_user'%}" class='btn main-button btn-block normal-text' >Send weather forecast to my mobile phone now</a>
                     </div>
                     {% if user.is_superuser %}
