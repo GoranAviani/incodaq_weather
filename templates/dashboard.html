@@ -103,7 +103,7 @@
                         <a href="{% url 'edit_mobile_phone'%}" class='btn main-button btn-block normal-text' >Mobile phone</a>
                     </div>
                     <div class="form-row col-lg-12 col-md-12 col-xs-12 margine-b-20">
-                        <a href="{% url 'send_daily_forecast_to_user'%}" class='btn main-button btn-block normal-text' >Send weather forecast to my mobile phone now</a>
+                        <a href="{% url 'send_daily_forecast_to_user'%}" class='btn main-button btn-block normal-text' >Send weather forecast now!</a>
                     </div>
                     {% if user.is_superuser %}
                         <div class="form-row col-lg-12 col-md-12 col-xs-12 margine-t-20 margine-b-20 bckg-dark">
@@ -117,9 +117,9 @@
                                 <a href="{% url 'update_index_statuses' %}" class="btn main-button btn-block normal-text">Update main page weather conditions now</a>
                             </div>
                             <div class="col-lg-12 col-md-12 col-xs-12 margine-b-20">
-                                <a href="{% url 'send_daily_forecast' %}" class="btn main-button btn-block normal-text">Send daily forecast to users *</a>
+                                <a href="{% url 'send_daily_forecast' %}" class="btn main-button btn-block normal-text">Send daily forecast to all users *</a>
                             </div>
-                            <p>* Sent current forecast to all users with approved phone number, have inputed their address, have agnovledged that they wish to receive weather forecast and their forecast time is in the last 30 minutes from now.</p>
+                            <p>* Sent weather forecast SMS to all users with approved phone number, at least basic address info, have approved SMS receival and ave their forecast time set at last 30 minutes from now.</p>
                         </div>
                     {% endif %}
 	            </div>
