@@ -77,8 +77,8 @@ def dashboard_status_processing(**kwargs):
         dashboardStatusMessage = kwargs["dashboardStatus"]
         dashboardStatusColor = kwargs["statusColor"]
     except:
-        dashboardStatusMessage = "Hello and welcome to your dashboard."
-        dashboardStatusColor = "green"
+        dashboardStatusMessage = "Welcome to your dashboard"
+        dashboardStatusColor = green_string
 
 
     return dashboardStatusMessage,dashboardStatusColor,hasMobileNumber, hasMobileNumberMessage, hasMobileNumberStatusColor,\
