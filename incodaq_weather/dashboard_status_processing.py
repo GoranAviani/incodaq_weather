@@ -70,7 +70,7 @@ def dashboard_status_processing(**kwargs):
 
         if ((found_u_p_data.timeWeatherSMS is not None) and (found_u_p_data.timeWeatherSMS is not "")):
             isForecastTimeSet = True
-            isForecastTimeSetMessage = ADDRESS_POSITIVE_STATUS
+            isForecastTimeSetMessage = FORECAST_TIME_POSITIVE_STATUS
             isForecastTimeSetStatusColor = GREEN_STRING
 
         isMobileValidated = found_u_p_data.isMobileValidated 
