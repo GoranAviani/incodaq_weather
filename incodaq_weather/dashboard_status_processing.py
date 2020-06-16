@@ -98,7 +98,7 @@ def dashboard_status_processing(**kwargs):
         dashboardStatusColor = GREEN_STRING
 
 
-    return dashboardStatusMessage,dashboardStatusColor,hasMobileNumber, hasMobileNumberMessage, hasMobileNumberStatusColor,\
+    return dashboardStatusMessage, dashboardStatusColor, hasMobileNumber, hasMobileNumberMessage, hasMobileNumberStatusColor,\
         hasCityCountry, hasCityCountryMessage, hasCityCountryStatusColor, \
         hasAddress, hasAddressMessage, hasAddressStatusColor, \
         isMobileValidated, isMobileValidatedMessage, isMobileValidatedStatusColor, \
