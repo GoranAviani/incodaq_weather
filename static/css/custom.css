@@ -7,6 +7,16 @@
     font-size: 15px;
 }
 
+.text-size-20{
+    font-size: 20px;
+}
+.text-size-30{
+    font-size: 30px;
+}
+.color-white{
+    color:#fff
+}
+
 
   .main-button {
     padding: 5px 25px;
