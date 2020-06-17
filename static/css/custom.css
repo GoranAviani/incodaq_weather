@@ -64,6 +64,15 @@
      margin-left: 10px;
  }
 
+    .margine-r-10{
+     margin-left: 10px;
+ }
+      .margine-r-20{
+     margin-left: 20px;
+ }
+        .margine-r-30{
+     margin-left: 30px;
+ }
 
   .bckg-dark{
       background: #1e202b;
