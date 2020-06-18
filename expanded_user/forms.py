@@ -39,7 +39,8 @@ class user_profile_form(forms.ModelForm):
         attrs={'class': 'form-control'}))
     userCountry = forms.CharField(label='', widget=forms.TextInput(
         attrs={'class': 'form-control'}))
-    userTimeZone = forms.ChoiceField(required=False, widget=forms.Select, choices=WORLD_TIME_ZONES, )
+    userTimeZone = forms.ChoiceField(required=False, widget=forms.Select(
+        attrs={'class': 'form-control'}), choices=WORLD_TIME_ZONES, )
 
     class Meta:
         model = custom_user
