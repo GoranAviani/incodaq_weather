@@ -29,6 +29,8 @@ class user_profile_form(forms.ModelForm):
         attrs={'readonly': 'readonly', 'class': 'form-control'}))
     email = forms.EmailField(label='', widget=forms.TextInput(
         attrs={'class': 'form-control'}))
+    first_name = forms.CharField(label='', widget=forms.TextInput(
+        attrs={'class': 'form-control'}))
     last_name = forms.CharField(label='', widget=forms.TextInput(
         attrs={'class': 'form-control'}))
     userAddress = forms.CharField(label='', widget=forms.TextInput(
