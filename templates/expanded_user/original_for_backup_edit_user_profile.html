@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+{% block content %}
+    <!-- Main container start -->
+<div class="container margine-b-50">
+	<div class="row text-center">
+	    <div class="col-lg-10 offset-lg-1  col-md-10 offset-md-1 col-xs-12">
+	        <div class="card" data-bg-color="#323544">
+	            <div class="card-body">
+	                <div class="dashboard-title">
+	                    <div class="title-text">User profile</div>
+	                </div>
+                    </br>
+                    {% if userProfileMessage %}
+                        <h2 style="color: {{messageColor}}"> {{ userProfileMessage }}</h2>
+                    {% endif %}
+                    </br>
+                    </br>
+
+
+	                <div class="login-form mt-4 col-lg-10 offset-lg-1">
+	                    <form method="post">
+                        {% csrf_token %}
+                            <div class="form-row margine-b-10">
+                                <div class="form-group col-md-12 col-lg-12">
+                                     <div class="text-left ">
+                                        User:
+                                     </div>
+                                    <div class="text-left ">
+                                         <la id="first_name" class="input-field1">{{profileFormData.username}}</la>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row margine-b-10">
+                                <div class="form-group col-md-12 col-lg-12">
+                                     <div class="text-left ">
+                                        First name:
+                                     </div>
+                                    <div class="text-left ">
+                                         <la id="first_name" class="input-field1">{{profileFormData.first_name}}</la>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row margine-b-10">
+                                <div class="form-group col-md-12 col-lg-12">
+                                     <div class="text-left">
+                                        Last name:
+                                     </div>
+                                    <div class="text-left ">
+                                         <la id="first_name" class="input-field1">{{profileFormData.last_name}}</la>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row margine-b-10">
+                                <div class="form-group col-md-12 col-lg-12">
+                                     <div class="text-left ">
+                                        Email:
+                                     </div>
+                                    <div class="text-left ">
+                                         <la id="first_name" class="input-field1">{{profileFormData.email}}</la>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row margine-b-10">
+                                <div class="form-group col-md-12 col-lg-12">
+                                     <div class="text-left ">
+                                        Address:
+                                     </div>
+                                    <div class="text-left ">
+                                         <la id="first_name" class="input-field1">{{profileFormData.userAddress}}</la>
+                                    <br/>
+                                    Please type in Address if you want to get a better weather forecast*
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row margine-b-10">
+                                <div class="form-group col-md-12 col-lg-12">
+                                     <div class="text-left">
+                                         City:
+                                     </div>
+                                    <div class="text-left ">
+                                         <la id="first_name" class="input-field1">{{profileFormData.userCity}}</la>
+                                    </div>
+                                    Please type in City if you want to get a weather forecast* **
+                                </div>
+                            </div>
+                            <div class="form-row margine-b-10">
+                                <div class="form-group col-md-12 col-lg-12">
+                                     <div class="text-left ">
+                                        Country:
+                                     </div>
+                                    <div class="text-left ">
+                                         <la id="first_name" class="input-field1">{{profileFormData.userCountry}}</la>
+                                    </div>
+                                    Please type in Country if you want to get a weather forecast* **
+                                </div>
+                            </div>
+                            <div class="form-row margine-b-10">
+                                <div class="form-group col-md-12 col-lg-12">
+                                     <div class="text-left ">
+                                       Time zone:
+                                     </div>
+                                    <div class="text-left ">
+                                         <la id="first_name" class="input-field1">{{profileFormData.userTimeZone}}</la>
+                                    </div>
+                                </div>
+                            </div>
+                            * This field provides a more accurate weather forecast.
+                            <br/>
+                            ** Mandatory field.
+                            </br>
+                            </br>
+                            </br>
+                            <div class="form-row ">
+                                <button type="submit" class="btn main-button btn-block normal-text ">Submit</button>
+                            </div>
+                        </form>
+
+                        </br>
+                        <div class="form-row col-lg-12 col-md-12 col-xs-12 margine-b-20">
+                            <a href="{% url 'edit_user_password'%}" class='btn main-button btn-block normal-text' >Change password</a>
+                        </div>
+                        </br>
+                        </br>
+                        <div class="form-row col-lg-12 col-md-12 col-xs-12 margine-b-20">
+                            <a href="{% url 'index'%}" class='btn main-button btn-block normal-text' >Back</a>
+                        </div>
+                        </br>
+                        </br>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+</div>
+{% endblock %}
