@@ -97,13 +97,13 @@
                         </div>
 
                     <div class="form-row col-lg-12 col-md-12 col-xs-12 margine-b-20 margine-t-20">
-                        <a href="{% url 'edit_user_profile' %}" class='btn main-button btn-block normal-text' >User profile settings</a>
+                        <a href="{% url 'edit_user_profile' %}" class='btn main-button btn-block normal-text' >User profile</a>
                     </div>
                     <div class="form-row col-lg-12 col-md-12 col-xs-12 margine-b-20">
-                        <a href="{% url 'edit_mobile_phone'%}" class='btn main-button btn-block normal-text' >Mobile phone settings</a>
+                        <a href="{% url 'edit_mobile_phone'%}" class='btn main-button btn-block normal-text' >Mobile phone</a>
                     </div>
                     <div class="form-row col-lg-12 col-md-12 col-xs-12 margine-b-20 margine-t-20">
-                        <a href="{% url 'send_daily_forecast_to_user'%}" class='btn main-button btn-block normal-text font-weight-bold' >Send weather forecast now!</a>
+                        <a href="{% url 'send_daily_forecast_to_user'%}" class='btn main-button btn-block normal-text font-weight-bold' >Send text message now!</a>
                     </div>
                     {% if user.is_superuser %}
                         <div class="form-row col-lg-12 col-md-12 col-xs-12 margine-t-20 margine-b-20 bckg-dark">
