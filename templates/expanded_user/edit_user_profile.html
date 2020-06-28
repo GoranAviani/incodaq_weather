@@ -15,8 +15,6 @@
                     {% endif %}
                     </br>
                     </br>
-
-
 	                <div class="login-form mt-4 col-lg-10 offset-lg-1">
 	                    <form method="post">
                         {% csrf_token %}
@@ -116,22 +114,14 @@
                                     </div>
                                 </div>
                             </div>
-
-                            </br>
-                            </br>
-                            </br>
-                            <div class="form-row col-lg-12 col-md-12 col-xs-12 margine-b-20">
+                            <div class="form-row col-lg-12 col-md-12 col-xs-12 margine-b-30 margine-t-50">
                                 <button type="submit" class="btn main-button btn-block normal-text ">Save</button>
                             </div>
                         </form>
-
-                        </br>
-                        <div class="form-row col-lg-12 col-md-12 col-xs-12 margine-b-20">
+                        <div class="form-row col-lg-12 col-md-12 col-xs-12 margine-b-30">
                             <a href="{% url 'edit_user_password'%}" class='btn main-button btn-block normal-text' >Change password</a>
                         </div>
-                        </br>
-                        </br>
-                        <div class="form-row col-lg-12 col-md-12 col-xs-12 margine-b-20">
+                        <div class="form-row col-lg-12 col-md-12 col-xs-12 margine-b-30">
                             <a href="{% url 'index'%}" class='btn main-button btn-block normal-text' >Back</a>
                         </div>
                         </br>

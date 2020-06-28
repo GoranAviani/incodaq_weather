@@ -61,8 +61,20 @@
   .margine-t-20{
      margin-top: 20px;
  }
+.margine-t-30{
+     margin-top: 30px;
+ }
+.margine-t-40{
+     margin-top: 40px;
+ }
+.margine-t-50{
+     margin-top: 50px;
+ }
   .margine-b-20{
      margin-bottom: 20px;
+ }
+    .margine-b-30{
+     margin-bottom: 30px;
  }
   .margine-b-50{
      margin-bottom: 50px;
@@ -119,6 +131,8 @@
   text-align: right; }
 .text-left {
   text-align: left; }
+.text-center {
+  text-align: center; }
 
 
 
