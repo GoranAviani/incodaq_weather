@@ -18,23 +18,11 @@
                             <div class="form-row margine-b-10">
                                 <div class="form-group col-md-offset-1 col-lg-offset-1 col-md-10 col-lg-10">
                                     <div class="form-row col-md-12">
-                                        <div class="text-size-20 color-white col-md-3">
+                                        <div class="text-size-20 color-white col-md-5">
                                             Country code:
                                         </div>
-                                        <div class="col-md-9">
+                                        <div class="text-left col-md-7">
                                              <la id="first_name" class="input-field">{{user_phone_form_data.phoneCountryCode}}</la>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                             <div class="form-row margine-b-10">
-                                <div class="form-group col-md-offset-1 col-lg-offset-1 col-md-10 col-lg-10">
-                                    <div class="form-row col-md-12">
-                                        <div class="text-size-20 color-white col-md-3">
-                                            Phone number:
-                                        </div>
-                                        <div class="col-md-9">
-                                           <la id="first_name" class="input-field">{{user_phone_form_data.phoneNumber}}</la>
                                         </div>
                                     </div>
                                 </div>
@@ -42,10 +30,23 @@
                             <div class="form-row margine-b-10">
                                 <div class="form-group col-md-offset-1 col-lg-offset-1 col-md-10 col-lg-10">
                                     <div class="form-row col-md-12">
-                                        <div class="text-size-20 color-white col-md-3">
-                                            Time to receive text message:
+                                        <div class="text-size-20 color-white col-md-5">
+                                            Phone number:
                                         </div>
-                                        <div class="col-md-9">
+                                        <div class="col-md-7">
+                                           <la id="first_name" class="input-field">{{user_phone_form_data.phoneNumber}}</la>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                             </br>
+                            <div class="form-row margine-b-10">
+                                <div class="form-group col-md-offset-1 col-lg-offset-1 col-md-10 col-lg-10">
+                                    <div class="form-row col-md-12">
+                                        <div class="text-size-20 color-white col-md-12">
+                                            Daily time of receival of the mobile text message:
+                                        </div>
+                                        <div class="col-md-12">
                                              <la id="first_name" class="input-field1">{{user_phone_form_data.timeWeatherSMS}}</la>
                                         </div>
                                     </div>
@@ -53,22 +54,31 @@
                             </div>
                             </br>
                             </br>
-                             <div class="form-row margine-b-10">
+                            </br>
+                            <div class="form-row margine-b-10">
                                 <div class="form-group col-md-offset-1 col-lg-offset-1 col-md-10 col-lg-10">
                                     <div class="form-row col-md-12">
-                                        <div class="text-size-20 color-white col-md-9">
-                                            Do you want to receive weather SMS to your mobile: **
+                                        <div class="text-size-20 color-white col-md-12">
+                                            Are you sure you want to receive weather SMS to your mobile: **
                                         </div>
-                                        <div class="col-md-9">
+                                        <div class="col-md-12">
                                             <la id="first_name" class="input-field1">{{user_phone_form_data.wantsToReceiveWeatherSMS}}</la>                                        </div>
                                         </div>
                                     </div>
                                 </div>
+                            </br>
+                            </br>
+                            </br>
+                            <div class="form-row ">
+                                <button type="submit" class="btn main-button btn-block normal-text ">Save</button>
                             </div>
-
-
-
-
+                        </br>
+                        </br>
+                            <div class="form-row">
+                                <a href="{% url 'index'%}" class='btn main-button btn-block normal-text' >Back</a>
+                            </div>
+                            </div>
+                        </form>
                     </div>
 
 
@@ -78,20 +88,10 @@
                              <br/>
                             ** If you want to receive your SMS weather forecast you need to approve it by ticking this box.
                             <br/>
-                            </br>
-                            </br>
-                            </br>
-                            <div class="form-row ">
-                                <button type="submit" class="btn main-button btn-block normal-text ">Save</button>
-                            </div>
-                        </form>
-                        </br>
-                        </br>
-                        <div class="form-row">
-                            <a href="{% url 'index'%}" class='btn main-button btn-block normal-text' >Back to Index</a>
-                        </div>
-                        </br>
-                        </br>
+
+
+
+
 	                </div>
 	            </div>
 	        </div>
