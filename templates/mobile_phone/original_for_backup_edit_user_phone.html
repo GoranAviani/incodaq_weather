@@ -7,10 +7,13 @@
 	        <div class="card" data-bg-color="#323544">
 	            <div class="card-body">
 	                <div class="dashboard-title">
-	                    <div class="title-text">Mobile phone</div>
+	                    <div class="title-text">User phone settings</div>
 	                </div>
                     </br>
                     </br>
+                    <div class="col-lg-4 offset-lg-4  col-md-4 offset-md-4 col-xs-12">
+                        User:  {{user.username}}
+                    </div>
 	                <div class="login-form mt-4 col-lg-10 offset-lg-1">
 	                    <form method="post">
                         {% csrf_token %}
