@@ -11,49 +11,69 @@
 	                </div>
                     </br>
                     </br>
-	                <div class="login-form mt-4 col-lg-10 offset-lg-1">
+
+                    <div class="login-form mt-4 col-lg-10 offset-lg-1">
 	                    <form method="post">
                         {% csrf_token %}
                             <div class="form-row margine-b-10">
-                                <div class="form-group col-md-12 col-lg-12">
-                                     <div class="text-left ">
-                                        Mobile phone country code: *
-                                     </div>
-                                    <div class="text-left ">
-                                         <la id="first_name" class="input-field1">{{user_phone_form_data.phoneCountryCode}}</la>
+                                <div class="form-group col-md-offset-1 col-lg-offset-1 col-md-10 col-lg-10">
+                                    <div class="form-row col-md-12">
+                                        <div class="text-size-20 color-white col-md-3">
+                                            Country code:
+                                        </div>
+                                        <div class="col-md-9">
+                                             <la id="first_name" class="input-field">{{user_phone_form_data.phoneCountryCode}}</la>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                             <div class="form-row margine-b-10">
+                                <div class="form-group col-md-offset-1 col-lg-offset-1 col-md-10 col-lg-10">
+                                    <div class="form-row col-md-12">
+                                        <div class="text-size-20 color-white col-md-3">
+                                            Phone number:
+                                        </div>
+                                        <div class="col-md-9">
+                                           <la id="first_name" class="input-field">{{user_phone_form_data.phoneNumber}}</la>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-row margine-b-10">
-                                <div class="form-group col-md-12 col-lg-12">
-                                     <div class="text-left">
-                                        Mobile phone number: *
-                                     </div>
-                                    <div class="text-left ">
-                                         <la id="first_name" class="input-field1">{{user_phone_form_data.phoneNumber}}</la>
+                                <div class="form-group col-md-offset-1 col-lg-offset-1 col-md-10 col-lg-10">
+                                    <div class="form-row col-md-12">
+                                        <div class="text-size-20 color-white col-md-3">
+                                            Time to receive text message:
+                                        </div>
+                                        <div class="col-md-9">
+                                             <la id="first_name" class="input-field1">{{user_phone_form_data.timeWeatherSMS}}</la>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-row margine-b-10">
-                                <div class="form-group col-md-12 col-lg-12">
-                                     <div class="text-left ">
-                                        Do you want to receive weather SMS to your mobile: **
-                                     </div>
-                                    <div class="text-left ">
-                                         <la id="first_name" class="input-field1">{{user_phone_form_data.wantsToReceiveWeatherSMS}}</la>
+                            </br>
+                            </br>
+                             <div class="form-row margine-b-10">
+                                <div class="form-group col-md-offset-1 col-lg-offset-1 col-md-10 col-lg-10">
+                                    <div class="form-row col-md-12">
+                                        <div class="text-size-20 color-white col-md-9">
+                                            Do you want to receive weather SMS to your mobile: **
+                                        </div>
+                                        <div class="col-md-9">
+                                            <la id="first_name" class="input-field1">{{user_phone_form_data.wantsToReceiveWeatherSMS}}</la>                                        </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-row margine-b-10">
-                                <div class="form-group col-md-12 col-lg-12">
-                                     <div class="text-left ">
-                                        Set your time to receive weather forecast:
-                                     </div>
-                                    <div class="text-left ">
-                                         <la id="first_name" class="input-field1">{{user_phone_form_data.timeWeatherSMS}}</la>
-                                    </div>
-                                </div>
-                            </div>
+
+
+
+
+                    </div>
+
+
+
+
                             * Required fields in order to receive weather forecast.
                              <br/>
                             ** If you want to receive your SMS weather forecast you need to approve it by ticking this box.
