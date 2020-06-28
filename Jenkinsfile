@@ -13,11 +13,11 @@ node {
          stage 'Deploy'
             sh 'chmod +x ./deployment/deploy_prod.sh'
             sh './deployment/deploy_prod.sh'
-      
+
     }
 
     catch (err) {
-        
+
         throw err
     }
 
