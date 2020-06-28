@@ -1,5 +1,4 @@
 {% extends 'base.html' %}
-
 {% block content %}
 <div class="container margine-b-50">
 	<div class="row text-center">
@@ -39,12 +38,12 @@
                                     </div>
                                 </div>
                             </div>
-                             </br>
+                            </br>
                             <div class="form-row margine-b-10">
                                 <div class="form-group col-md-offset-1 col-lg-offset-1 col-md-10 col-lg-10">
                                     <div class="form-row col-md-12">
                                         <div class="text-size-20 color-white col-md-12">
-                                            Daily time of receival of the mobile text message:
+                                            Set receival time of the daily mobile text message:
                                         </div>
                                         <div class="col-md-12">
                                              <la id="first_name" class="input-field1">{{user_phone_form_data.timeWeatherSMS}}</la>
@@ -59,7 +58,7 @@
                                 <div class="form-group col-md-offset-1 col-lg-offset-1 col-md-10 col-lg-10">
                                     <div class="form-row col-md-12">
                                         <div class="text-size-20 color-white col-md-12">
-                                            Are you sure you want to receive weather SMS to your mobile: **
+                                            Please approve that you want to receive daily forecast messages to your phone:
                                         </div>
                                         <div class="col-md-12">
                                             <la id="first_name" class="input-field1">{{user_phone_form_data.wantsToReceiveWeatherSMS}}</la>                                        </div>
@@ -72,34 +71,16 @@
                             <div class="form-row ">
                                 <button type="submit" class="btn main-button btn-block normal-text ">Save</button>
                             </div>
-                        </br>
-                        </br>
+                            </br>
+                            </br>
                             <div class="form-row">
                                 <a href="{% url 'index'%}" class='btn main-button btn-block normal-text' >Back</a>
                             </div>
-                            </div>
                         </form>
                     </div>
-
-
-
-
-                            * Required fields in order to receive weather forecast.
-                             <br/>
-                            ** If you want to receive your SMS weather forecast you need to approve it by ticking this box.
-                            <br/>
-
-
-
-
-	                </div>
 	            </div>
 	        </div>
 	    </div>
 	</div>
 </div>
-
-
-
-
 {% endblock %}
