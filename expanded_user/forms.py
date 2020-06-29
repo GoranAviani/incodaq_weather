@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from .models import custom_user
 from incodaq_weather.choice import WORLD_TIME_ZONES
+from django.contrib.auth.forms import PasswordChangeForm
 
 
 class user_signup_form(UserCreationForm):
@@ -60,3 +61,14 @@ class custom_user_change_form(UserChangeForm):
     class Meta:
         model = custom_user
         fields = ('username', 'email')
+
+
+class PasswordChangeCustomForm(PasswordChangeForm):
+    old_password = forms.CharField(required=True,
+                        widget=forms.PasswordInput(attrs={'class': 'form-control'}))
+    new_password1 = forms.CharField(required=True,
+                      widget=forms.PasswordInput(attrs={
+                        'class': 'form-control'}))
+    new_password2 = forms.CharField(required=True,
+                      widget=forms.PasswordInput(attrs={
+                        'class': 'form-control'}))
