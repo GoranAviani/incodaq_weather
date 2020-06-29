@@ -7,7 +7,7 @@ from django.shortcuts import redirect
 from .forms import (
     user_signup_form,
     user_profile_form,
-    
+    PasswordChangeCustomForm,
 )
 
 from django.contrib.auth import (
@@ -18,7 +18,6 @@ from django.contrib.auth import (
 )
 
 
-from django.contrib.auth.forms import PasswordChangeForm
 from weather.views import get_string_for_forecast
 from api_relay.views import get_user_lat_long_api
 from .models import custom_user
@@ -198,8 +197,7 @@ def edit_user_profile(request):
 def edit_user_password(request):
     if request.user.is_authenticated:
         if request.method == 'POST':
-            password_form_data = PasswordChangeForm(data = request.POST, user = request.user)  
-            #PasswordChangeForm  is inbuilt in Django
+            password_form_data = PasswordChangeCustomForm(data=request.POST, user=request.user)
             currentUser = request.user
             if password_form_data.is_valid():
                 password_form_data.save()
@@ -260,14 +258,14 @@ def edit_user_password(request):
                     newPasswordError = ""
 
 
-                password_form_data = PasswordChangeForm(user = request.user)
+                password_form_data = PasswordChangeCustomForm(user=request.user)
                 changePasswordStatus = oldPasswordError + newPasswordError
                 statusColor = "red"
                 return render (request, 'expanded_user/change_user_password.html', {'password_form_data' : password_form_data, 'changePasswordStatus' : changePasswordStatus, 'statusColor': statusColor})
         else:
-            password_form_data = PasswordChangeForm(user = request.user)
+            password_form_data = PasswordChangeCustomForm(user=request.user)
             changePasswordStatus = "Hey " + request.user.username + ", please fill the fields bellow to change your password."
             statusColor = "green"
-            return render (request, 'expanded_user/change_user_password.html', {'password_form_data' : password_form_data, 'changePasswordStatus': changePasswordStatus, 'statusColor': statusColor })
+            return render(request, 'expanded_user/change_user_password.html', {'password_form_data' : password_form_data, 'changePasswordStatus': changePasswordStatus, 'statusColor': statusColor })
     else:
         return render(request,'index.html') 
