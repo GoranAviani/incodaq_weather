@@ -66,20 +66,20 @@ class custom_user_change_form(UserChangeForm):
 class PasswordChangeCustomForm(PasswordChangeForm):
     error_css_class = 'has-error'
     error_messages = {'password_incorrect':
-                  "Το παλιό συνθηματικό δεν είναι σωστό. Προσπαθείστε   ξανά."}
+                  "The old password is not correct, try again.."}
     old_password = forms.CharField(required=True,
                         widget=forms.PasswordInput(attrs={'class': 'form-control'}),
                         error_messages = {
-                            'required': 'Το συνθηματικό δε μπορεί να είναι κενό'}
+                            'required': 'The password cannot be blank.'}
                         )
 
     new_password1 = forms.CharField(required=True,
                       widget=forms.PasswordInput(attrs={
                         'class': 'form-control'}),
                       error_messages={
-                        'required': 'Το συνθηματικό δε μπορεί να είναι κενό'})
+                        'required': 'The password cannot be blank..'})
     new_password2 = forms.CharField(required=True,
                       widget=forms.PasswordInput(attrs={
                         'class': 'form-control'}),
                       error_messages={
-                        'required': 'Το συνθηματικό δε μπορεί να είναι κενό'})
+                        'required': 'The password cannot be blank..'})
