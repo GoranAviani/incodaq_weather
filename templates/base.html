@@ -46,8 +46,6 @@
                             <li class="menu-item"><a href="{% url 'logout' %}">Sign out</a></li>
                         {% else %}
                             <li class="menu-item"><a href="{% url 'login' %}">Sign in</a></li>
-                            <li class="menu-item"><a href="{% url 'social:begin' 'google-oauth2' %}">Sign in with Google</a></li>
-                            <li class="menu-item"><a href="{% url 'signup' %}">Sign up</a></li>
                         {% endif %}
                     </ul> <!-- .menu -->
                 </div> <!-- .main-navigation -->
