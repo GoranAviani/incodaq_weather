@@ -1,0 +1,127 @@
+<!-- templates/base.html -->
+{% load static %}
+{% load staticfiles %}
+
+ <!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1">
+
+		<title>Incodaq Weather</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+		<!-- Loading third party fonts -->
+		<link href="http://fonts.googleapis.com/css?family=Roboto:300,400,700|" rel="stylesheet" type="text/css">
+		<script src="https://kit.fontawesome.com/207f5a397a.js" crossorigin="anonymous"></script>
+        <!-- Loading main css file -->
+        <link type="text/css" href="{% static 'css/style.css' %}" rel="stylesheet">
+        <link type="text/css" href="{% static 'css/custom.css' %}" rel="stylesheet">
+
+		<!--[if lt IE 9]>
+		<script src="js/ie-support/html5.js"></script>
+		<script src="js/ie-support/respond.js"></script>
+		<![endif]-->
+
+	</head>
+
+    <div class="site-content">
+        <div class="site-header">
+            <div class="container">
+                <a href="{% url 'index' %}" class="branding">
+                    <canvas class="partly-cloudy-day logo" width="80" height="80"></canvas>
+                    <div class="logo-type">
+                        <h1 class="site-title">Incodaq Weather</h1>
+                        <small class="site-description">Weather in your pocket</small>
+                    </div>
+                </a>
+                <!-- Default snippet for navigation -->
+                <div class="main-navigation">
+                    <button type="button" class="menu-toggle"><i class="fa fa-bars"></i></button>
+                    <ul class="menu">
+                        <li class="menu-item current-menu-item"><a href="{% url 'index' %}">Home</a></li>
+                        <li class="menu-item"><a href="">News</a></li>
+                        {% if user.is_authenticated %}
+                            <li class="menu-item"><a href="{% url 'logout' %}">Sign out</a></li>
+                        {% else %}
+                            <li class="menu-item"><a href="{% url 'login' %}">Sign in</a></li>
+                            <li class="menu-item"><a href="{% url 'social:begin' 'google-oauth2' %}">Sign in with Google</a></li>
+                            <li class="menu-item"><a href="{% url 'signup' %}">Sign up</a></li>
+                        {% endif %}
+                    </ul> <!-- .menu -->
+                </div> <!-- .main-navigation -->
+                <div class="mobile-navigation"></div>
+            </div>
+        </div> <!-- .site-header -->
+    </div>
+
+
+<main>
+    {% block content %}
+    {% endblock %}
+</main>
+
+    <script src="{% static 'js/jquery-1.11.1.min.js' %}"></script>
+    <script src="{% static 'js/plugins.js' %}"></script>
+    <script src="{% static 'js/app.js' %}"></script>
+    <script src="{% static 'js/skycons.js' %}"></script>
+        <script>
+
+              var icons = new Skycons({
+          "monochrome": false
+        }),
+        list = [
+           "clear-day",
+            "clear-night",
+            "partly-cloudy-day",
+            "partly-cloudy-night",
+            "cloudy",
+            "rain",
+            "showers-day",
+            "showers-night",
+            "sleet",
+            "rain-snow",
+            "rain-snow-showers-day",
+            "rain-snow-showers-night",
+            "snow",
+            "snow-showers-day",
+            "snow-showers-night",
+            "wind",
+            "fog",
+            "thunder",
+            "thunder-rain",
+            "thunder-showers-day",
+            "thunder-showers-night",
+            "hail"
+        ],
+        i;
+
+      for (i = list.length; i--;) {
+        var weatherType = list[i],
+          elements = document.getElementsByClassName(weatherType);
+        for (e = elements.length; e--;) {
+          icons.set(elements[e], weatherType);
+        }
+      }
+
+      icons.play();
+    </script>
+
+
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="col-md-12 col-lg-12 col-xs-12 text-center">
+                <div class="social-links">
+                    <a href="https://github.com/GoranAviani"><i class="fab fa-github"></i></a>
+                    <a href="https://www.freecodecamp.org/news/author/goran/"><i class="fab fa-free-code-camp"></i></a>
+                    <a href="https://medium.com/@goranaviani"><i class="fab fa-medium"></i></a>
+                    <a href="https://www.linkedin.com/in/goran-aviani/"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+            <p class="colophon col-md-12 col-xs-12 col-lg-12 text-center margine-t-10" >An open source portfolio project by Goran Aviani</p>
+        </div>
+    </footer> <!-- .site-footer -->
+</html>
