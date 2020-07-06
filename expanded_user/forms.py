@@ -28,15 +28,15 @@ class user_signup_form(UserCreationForm):
 class user_profile_form(forms.ModelForm):
     username = forms.CharField(label='', widget=forms.TextInput(
         attrs={'readonly': 'readonly', 'class': 'form-control'}))
-    email = forms.EmailField(label='', widget=forms.TextInput(
+    email = forms.EmailField(required=False,label='', widget=forms.TextInput(
         attrs={'class': 'form-control'}))
-    first_name = forms.CharField(label='', widget=forms.TextInput(
+    first_name = forms.CharField(required=False,label='', widget=forms.TextInput(
         attrs={'class': 'form-control'}))
-    last_name = forms.CharField(label='', widget=forms.TextInput(
+    last_name = forms.CharField(required=False,label='', widget=forms.TextInput(
         attrs={'class': 'form-control'}))
-    userAddress = forms.CharField(label='', widget=forms.TextInput(
+    userAddress = forms.CharField(required=False,label='', widget=forms.TextInput(
         attrs={'class': 'form-control'}))
-    userCity = forms.CharField(label='', widget=forms.TextInput(
+    userCity = forms.CharField(required=False,label='', widget=forms.TextInput(
         attrs={'class': 'form-control'}))
     userTimeZone = forms.ChoiceField(required=False, widget=forms.Select(
         attrs={'class': 'form-control'}), choices=WORLD_TIME_ZONES, )

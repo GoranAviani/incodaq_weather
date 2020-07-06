@@ -107,19 +107,35 @@ def get_mobile_phone(user_phone_instance):
 
 
 def process_forecast_api_message(**kwargs):
+    """
+    This function caters for weather processing for different stakeholders:
+    text message,
+    default index cities with basic forceast,
+    default index cities with advanced forecast,
+    index/dashboard searsh bar forecast
+
+    :param kwargs:
+    :return:
+    """
     typeOfCall = kwargs["typeOfCall"]
 
     if typeOfCall == "sms_message":
         apiResponse = kwargs["apiResponse"]
         forecastLocation = kwargs["forecastLocation"]
+        current_temperature = str(round(apiResponse["currently"]["temperature"]))
+        daily_temp_lowest = str(round(apiResponse["daily"]["data"][0]["temperatureLow"]))
+        daily_temp_highest = str(round(apiResponse["daily"]["data"][0]["temperatureHigh"]))
+        current_summary = apiResponse["currently"]["summary"]
+        daily_summary = apiResponse["hourly"]["summary"]
 
-        processedMessage = ("Forecast for {}! Now: {}C. Low: {}C, High: {}C. {}Incodaq Weather"
+        processedMessage = ("Forecast for {}: Now: {} degrees and {}. Low: {}, High: {}. {} Incodaq Weather"
             .format(
             forecastLocation,
-            str(round(apiResponse["currently"]["temperature"])),
-            str(round(apiResponse["daily"]["data"][0]["temperatureLow"])),
-            str(round(apiResponse["daily"]["data"][0]["temperatureHigh"])),
-            str(apiResponse["hourly"]["summary"])))
+            current_temperature,
+            current_summary,
+            daily_temp_lowest,
+            daily_temp_highest,
+            daily_summary))
 
 
         return "success", processedMessage
