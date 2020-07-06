@@ -107,6 +107,16 @@ def get_mobile_phone(user_phone_instance):
 
 
 def process_forecast_api_message(**kwargs):
+    """
+    This function caters for weather processing for different stakeholders:
+    text message,
+    default index cities with basic forceast,
+    default index cities with advanced forecast,
+    index/dashboard searsh bar forecast
+
+    :param kwargs:
+    :return:
+    """
     typeOfCall = kwargs["typeOfCall"]
 
     if typeOfCall == "sms_message":
