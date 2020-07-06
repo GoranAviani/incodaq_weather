@@ -3,132 +3,147 @@
 {% load static %}
 {% load staticfiles %}
 
-
-
 {% block content %}
-
 <main class="main-content">
-
-        <div class="container search-box margine-b-110">
-            <form class="find-location" method="post">
-              {% csrf_token %}
-                <div>
+    <div class="container search-box margine-b-110">
+        <form class="find-location" method="post">
+          {% csrf_token %}
+            <div>
                 {{searchBarInputForm.searchBarInput}}
                 <button type="submit" class="input-group-addon height-45" value="Find"><i class="fas fa-search"></i></button>
-                </div>
-                <script src='https://www.google.com/recaptcha/api.js'></script>
-                <div class="g-recaptcha" data-sitekey="6LfSUcwUAAAAAC22nUBRuG2Ez0M2pv73GiCzblJj"></div>
-
-            </form>
-        </div>
-
-    <div class="forecast-table">
-            <div class="forecast-container">
-                {% if defaultCitiesTemp %}
-                    {% for x in defaultCitiesTemp %}
-                        <div class="forecast">
-                            <div class="forecast-header">
-                                <h2>{{x.city}}</h2>
-                            </div> <!-- .forecast-header -->
-                            <div class="forecast-content">
-                                    <canvas class={{x.iconDesc}} width="80" height="80"></canvas>
-                            </div>
-                            <div class="forecast-content">
-                                <div class="degree">{{x.temp}}<sup>o</sup>C</div>
-                            </div>
-                        </div>
-                    {% endfor %}
-                {% endif %}
             </div>
+            <script src='https://www.google.com/recaptcha/api.js'></script>
+            <div class="g-recaptcha" data-sitekey="6LfSUcwUAAAAAC22nUBRuG2Ez0M2pv73GiCzblJj"></div>
+        </form>
+    </div>
+    <div class="forecast-table">
+        <div class="forecast-container">
+            {% if defaultCitiesTemp %}
+                {% for x in defaultCitiesTemp %}
+                    <div class="forecast">
+                        <div class="forecast-header">
+                            <h2>{{x.city}}</h2>
+                        </div> <!-- .forecast-header -->
+                        <div class="forecast-content">
+                                <canvas class={{x.iconDesc}} width="80" height="80"></canvas>
+                        </div>
+                        <div class="forecast-content">
+                            <div class="degree">{{x.temp}}<sup>o</sup>C</div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
         </div>
     </div>
     <div class="fullwidth-block " data-bg-color="#262936">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-xs-12">
-                    <h2 class="section-title">Forecast</h2>
+                    <h2 class="section-title">
+                        Forecast
+                    </h2>
                     <ul class="arrow-feature">
                         <li>
-                            <h3>Receive your forecast directly to you mobile phone</h3>
-                          <ul class="arrow-feature">
-                            <li>Choose a time to receive daily forecast messages</li>
-                            <li>Global weather coverage</li>
-                            <li>Weather prediction for your exact location</li>
-</ul>
+                            <h3>
+                                Receive your forecast directly to you mobile phone
+                            </h3>
+                            <ul class="arrow-feature">
+                                <li>
+                                    Choose a time to receive daily forecast messages
+                                </li>
+                                <li>
+                                    Global weather coverage
+                                </li>
+                                <li>
+                                    Weather prediction for your exact location
+                                </li>
+                            </ul>
                         </li>
                     </ul>
                 </div>
                 <div class="col-md-6 col-xs-12">
-                    <h2 class="section-title">Features</h2>
+                    <h2 class="section-title">
+                        Features
+                    </h2>
                     <ul class="arrow-feature">
                         <li>
-                            <h3>Incodaq Weather gives you access to</h3>
+                            <h3>
+                                Incodaq Weather gives you access to
+                            </h3>
                         <ul class="arrow-feature">
-                            <li>Free daily weather forecast text messages.</li>
-                            <li>Free on demand forecast text messages sent directly from the dashboard.</li>
-                            <li>Search that displays weather for any location in the world.</li>
-                            <li>User selected time to receive free weather forecast text messages.</li>
-                            <li>Weatjer forecast text messages contain current temperature, daily minimum and maximum temperature and a custom tailored daily forecast.</li>
-                            <li>Increased forecast accuracy providing the user's city or address.</li>
-                            <li>Dashboard with statuses and helpful explanations.</li>
+                            <li>
+                                Free daily weather forecast text messages.
+                            </li>
+                            <li>
+                                Free on demand forecast text messages sent directly from the dashboard.
+                            </li>
+                            <li>
+                                Search that displays weather for any location in the world.
+                            </li>
+                            <li>
+                                User selected time to receive free weather forecast text messages.
+                            </li>
+                            <li>
+                                Weatjer forecast text messages contain current temperature, daily minimum and maximum temperature and a custom tailored daily forecast.</li>
+                            <li>
+                                Increased forecast accuracy providing the user's city or address.
+                            </li>
+                            <li>
+                                Dashboard with statuses and helpful explanations.
+                            </li>
                         </ul>
-                            <p></p>
+                        <p></p>
                         </li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
-
-
-
-
-
-        <div class="fullwidth-block" >
-					<div class="container">
-						<div class="row">
-							<div class="col-xs-12 col-md-4 col-lg-4">
-								<div class="news">
-									<div class="date">
-                                        Technologies
-                                    </div>
-									<h3>
-                                        <a href="#">Technology stack used to build Incodaq Weather </a>
-                                    </h3>
-									<p>
-                                        Django2
-                                    </p>
-                                    <p>
-                                        PostgreSQL
-                                    </p>
-                                    <p>
-                                        RabbitMQ
-                                    </p>
-                                    <p>
-                                        Celery
-                                    </p>
-                                    <p></p>
-                                    <p></p>
-                                    <p></p>
-                                    <p></p>
-                                </div>
-							</div>
-							<div class="col-xs-12 col-md-6 col-lg4">
-								<div class="news">
-									<div class="date">
-                                        Deployment
-                                    </div>
-									<h3>
-                                        <a href="#">The way Incodaq Weather is deployed</a>
-                                    </h3>
-									<p>
-                                        The project is deployed using Jenkins for Continuous deployment.
-                                    </p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+    <div class="fullwidth-block" >
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-md-6 col-lg-6">
+                    <div class="news">
+                        <div class="date">
+                            Technologies
+                        </div>
+                        <h3>
+                            <a href="#">Technology stack used to build Incodaq Weather </a>
+                        </h3>
+                        <p>
+                            Django2
+                        </p>
+                        <p>
+                            PostgreSQL
+                        </p>
+                        <p>
+                            RabbitMQ
+                        </p>
+                        <p>
+                            Celery
+                        </p>
+                        <p></p>
+                        <p></p>
+                        <p></p>
+                        <p></p>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-6 col-lg-6">
+                    <div class="news">
+                        <div class="date">
+                            Deployment
+                        </div>
+                        <h3>
+                            <a href="#">The way Incodaq Weather is deployed</a>
+                        </h3>
+                        <p>
+                            The project is deployed using Jenkins for Continuous deployment.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
     </main> <!-- .main-content -->
