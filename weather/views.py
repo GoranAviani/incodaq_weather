@@ -296,4 +296,7 @@ def send_daily_forecast_to_user(request):
     user = request.user
     typeOfRequest = "manualWeatherRequest"
     statusMessage = send_daily_forecast(user, typeOfRequest)
-    return HttpResponse('Forecast status message: {} Message for user: {}'.format(statusMessage, user.username))
+    return render(request, 'weather/manual_forecast_status.html',
+                  {'statusMessage': statusMessage, 'username': user.username})
+
+    #return HttpResponse('Forecast status message: {} Message for user: {}'.format(statusMessage, user.username))
