@@ -289,11 +289,14 @@ def send_daily_forecast_to_all(request):
     # statusMessage = send_daily_forecast(user, typeOfRequest)
     # status message is not really used for now but can be used to print a list
     # of users and who got sms and who not with a reason why not
-    return HttpResponse('Daily forecast has been sent to all users.')
+    statusMessage = 'Daily forecast has been sent to all users.'
+    return render(request, 'weather/manual_forecast_status.html',
+                  {'statusMessage': statusMessage})
 
 
 def send_daily_forecast_to_user(request):
     user = request.user
     typeOfRequest = "manualWeatherRequest"
     statusMessage = send_daily_forecast(user, typeOfRequest)
-    return HttpResponse('Forecast status message: {} Message for user: {}'.format(statusMessage, user.username))
+    return render(request, 'weather/manual_forecast_status.html',
+                  {'statusMessage': statusMessage, 'username': user.username})

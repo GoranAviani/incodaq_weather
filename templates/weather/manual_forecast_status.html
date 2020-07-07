@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+    <!-- Main container start -->
+<div class="container margine-b-50">
+	<div class="row text-center">
+	    <div class="col-lg-10 offset-lg-1  col-md-10 offset-md-1 col-xs-12">
+	        <div class="card" data-bg-color="#323544">
+	            <div class="card-body">
+	                <div class="dashboard-title">
+	                    <div class="title-text">Text message status</div>
+	                </div>
+                    </br>
+
+                        <h2> {{ statusMessage }}</h2>
+
+                    </br>
+                    </br>
+	                <div class="login-form mt-4 col-lg-10 offset-lg-1">
+
+                        <div class="form-row col-lg-12 col-md-12 col-xs-12 margine-b-30">
+                            <a href="{% url 'index'%}" class='btn main-button btn-block normal-text' >Back</a>
+                        </div>
+                        </br>
+                        </br>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+</div>
+{% endblock %}
