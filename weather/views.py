@@ -137,7 +137,6 @@ def process_forecast_api_message(**kwargs):
             daily_temp_highest,
             daily_summary))
 
-
         return "success", processedMessage
     elif typeOfCall == "default_cities_basic_forecast":
         apiResponse = kwargs["apiResponse"]
@@ -154,19 +153,6 @@ def process_forecast_api_message(**kwargs):
         currentlyIcon = apiResponse["currently"]["icon"]
         hourlyIcon = apiResponse["hourly"]["icon"]
 
-        #TODO make hourly icon forecast
-      #  processedMessage = ("Forecast for {}!, Now its : {}C. With a low of: {}C, "
-          #                  "and a high of: {}C. Currently it is: {} and during the day: {}"
-        #                    "UV index is: {}"
-       #     .format(
-       #     forecastLocation,
-       #     str(round(apiResponse["currently"]["temperature"])),
-       #     str(round(apiResponse["daily"]["data"][0]["temperatureLow"])),
-       #     str(round(apiResponse["daily"]["data"][0]["temperatureHigh"])),
-       #     str(apiResponse["currently"]["summary"]),
-       #     str(apiResponse["hourly"]["summary"]),
-       #     str(apiResponse["currently"]["uvIndex"])
-       # ))
         processedMessage = {
         "currentlyTemp": str(round(apiResponse["currently"]["temperature"]))
         , "dailyLow": str(round(apiResponse["daily"]["data"][0]["temperatureLow"]))
@@ -184,9 +170,14 @@ def process_forecast_api_message(**kwargs):
         return "error", ""
 
 
-# This function witll return user mobile if user is approved and
-# wants to receive weather forecast
 def get_user_mobile_and_check_time(user, typeOfRequest):
+    """
+    # This function witll return user mobile if user is approved and
+    # wants to receive weather forecast
+    :param user:
+    :param typeOfRequest:
+    :return:
+    """
     try:
         user_phone_instance = user_phone.objects.get(userMobilePhone=user)
     except:

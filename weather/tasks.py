@@ -52,13 +52,12 @@ def get_user_weather_forecast_dark_sky(**kwargs):
 @shared_task
 def get_periodic_forecast_for_default_cities(*args, **kwargs):
     from .views import process_forecast_api_message
-    # result = {}
     result = []
-    for x in INDEX_PAGE_CITIES:
-        for k, v in x.items():
-            city = k
-            lat = v["lat"]
-            lon = v["lon"]
+    for city_info in INDEX_PAGE_CITIES:
+        for city_name, city_position in city_info.items():
+            city = city_name
+            lat = city_position["lat"]
+            lon = city_position["lon"]
 
             params = {'units': "si", "exclude": "minutely,hourly,daily,alerts,flags"}
 
@@ -66,8 +65,8 @@ def get_periodic_forecast_for_default_cities(*args, **kwargs):
             apiEndpoint = darkSkyToken + "/" + lat + "," + lon
             fullAPIUrl = apiUrl + apiEndpoint
             apiResponse = requests.get(fullAPIUrl, params=params)
-            if apiResponse.status_code in (400, 401, 402, 403, 404):
-                logging.getLogger("darksky_error_logger").error("Dark Sky 40x response: %s", apiResponse.json())
+            if apiResponse.status_code not in (200):
+                logging.getLogger("darksky_error_logger").error("Dark Sky failed response: %s", apiResponse.json())
                 break
             else:
                 logging.getLogger("darksky_info_logger").info("Dark Sky successful response: %s", apiResponse.json())
@@ -78,8 +77,6 @@ def get_periodic_forecast_for_default_cities(*args, **kwargs):
             processedStatus, processedTemp, processedIconDesc = process_forecast_api_message(**data)
             processedTemp = rounding_number(processedTemp)
 
-            # Template
-            # {'city': city, 'temp': processedTemp, 'iconDesc': processedIconText}
             result.append({'city': city, 'temp': processedTemp, 'iconDesc': processedIconDesc})
 
     for x in result:
