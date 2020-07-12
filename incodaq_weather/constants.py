@@ -15,3 +15,6 @@ MOBILE_NUMBER_POSITIVE_STATUS = "You have inputed a mobile number"
 FORECAST_TIME_POSITIVE_STATUS = "Forecast time is set"
 MOBILE_NUMBER_POSITIVE_NEGATIVE_STATUS = "your mobile phone has been validated"
 SMS_MESSAGE_POSITIVE_STATUS = "You have selected to receive forecast text messages"
+
+
+API_URLS = {'darksky_forecast': "https://api.darksky.net/forecast/"}

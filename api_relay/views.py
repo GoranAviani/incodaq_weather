@@ -4,6 +4,7 @@ from django.shortcuts import render
 from django.shortcuts import render
 from incodaq_weather.local_settings import locationiqTokenKey, darkSkyToken, twilioAccountSid, twilioAuthToken, myTwilioTelephone
 from django.conf import settings
+from incodaq_weather.constants import API_URLS
 
 import os
 import logging
@@ -51,7 +52,7 @@ def get_user_weather_forecast_api(**kwargs):
         params["params"] = kwargs["params"]
     except:
         return "error"
-    apiUrl = {"apiUrl": "https://api.darksky.net/forecast/"}
+    apiUrl = {"apiUrl": API_URLS['darksky_forecast']}
     apiEndpoint = {"apiEndpoint": darkSkyToken + "/" + userLen +","+userLong}
     result = make_request(**apiUrl, **apiEndpoint, **paramsData, **getPost, **params, **sourceOfCall)
     #TODO add requst status code
