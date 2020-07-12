@@ -24,7 +24,7 @@ def get_user_lat_long_api(stringToSend):
     sourceOfCall = {"sourceOfCall": "locationiq"}
     paramsData = {"paramsData": "params"}
     getPost = {"getPost": "get"}
-    apiUrl = {"apiUrl": "https://eu1.locationiq.com/v1/"}
+    apiUrl = {"apiUrl": API_URLS['locationiq_v1']}
     apiEndpoint = {"apiEndpoint": "search.php"}
     params =  {"params":{'key': locationiqTokenKey,
         'q': stringToSend,
@@ -67,7 +67,7 @@ def send_sms_message_api(userMobileNumber, processedForecastMessage):
 def get_recaptcha_api(recaptcha_response):
     ''' Begin reCAPTCHA validation '''
     sourceOfCall = {"sourceOfCall": "rechaptcha"}
-    apiUrl = {"apiUrl": "https://www.google.com/"}
+    apiUrl = {"apiUrl": API_URLS['google']}
     apiEndpoint = {"apiEndpoint": "recaptcha/api/siteverify"}
     paramsData = {"paramsData": "data"}
     getPost = {"getPost": "post"}
