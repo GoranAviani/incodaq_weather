@@ -15,3 +15,8 @@ MOBILE_NUMBER_POSITIVE_STATUS = "You have inputed a mobile number"
 FORECAST_TIME_POSITIVE_STATUS = "Forecast time is set"
 MOBILE_NUMBER_POSITIVE_NEGATIVE_STATUS = "your mobile phone has been validated"
 SMS_MESSAGE_POSITIVE_STATUS = "You have selected to receive forecast text messages"
+
+
+API_URLS = {'darksky_forecast': "https://api.darksky.net/forecast/{}/{},{}",
+            'locationiq_v1':"https://eu1.locationiq.com/v1/search.php",
+            'google_recaptcha': "https://www.google.com/recaptcha/api/siteverify"}
