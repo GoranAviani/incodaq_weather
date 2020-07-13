@@ -18,5 +18,5 @@ SMS_MESSAGE_POSITIVE_STATUS = "You have selected to receive forecast text messag
 
 
 API_URLS = {'darksky_forecast': "https://api.darksky.net/forecast/{}/{},{}",
-            'locationiq_v1':"https://eu1.locationiq.com/v1/",
+            'locationiq_v1':"https://eu1.locationiq.com/v1/search.php",
             'google_recaptcha': "https://www.google.com/recaptcha/api/siteverify"}
