@@ -42,22 +42,27 @@ def get_user_lat_long_api(stringToSend):
         return "Can not retrieve latitude and longitude for this place...","",""
 
 def get_user_weather_forecast_api(**kwargs):
-    sourceOfCall = {"sourceOfCall": "darksky"}
-    paramsData = {"paramsData": "params"}
-    getPost = {"getPost": "get"}
+    """
+
+    :param kwargs:
+    :return:
+    """
     try:
         userLen = kwargs["userLat"]
         userLong = kwargs["userLong"]
-        params = {}
-        params["params"] = kwargs["params"]
+        params = kwargs["params"]
     except:
         return "error"
-    apiUrl = {"apiUrl": API_URLS['darksky_forecast']}
-    apiEndpoint = {"apiEndpoint": darkSkyToken + "/" + userLen +","+userLong}
-    result = make_request(**apiUrl, **apiEndpoint, **paramsData, **getPost, **params, **sourceOfCall)
+    make_request_parameters = {
+        "apiUrl": API_URLS['darksky_forecast'].format(darkSkyToken, userLen, userLong),
+        "sourceOfCall": "darksky",
+        "paramsData": "params",
+        "getPost": "get",
+        "params": params
+    }
+    result = make_request(**make_request_parameters)
     #TODO add requst status code
     # depreciated due to make_requests
-    #result = make_request_params(**apiUrl, **apiEndpoint, **params)
 
     return result
 
