@@ -19,20 +19,11 @@ def make_request(**kwargs):
             info_logger = "locationiq_info_logger"
             error_logger = "locationiq_error_logger"
     except:
-        logging.getLogger("error_logger").error("make_request made without source of call: %s", kwargs)
-
-
+        logging.getLogger("error_logger").error("make_request made without sourceOfCall: %s", kwargs)
 
 
     try:
-        apiUrl = kwargs["apiUrl"]
-    except:
-        return "error"
-
-    try:
-        apiEndpoint = kwargs["apiEndpoint"]
-        # Add an endpoint to the api
-        fullAPIUrl = apiUrl + apiEndpoint
+        fullAPIUrl = kwargs["apiUrl"]
     except:
         return "error"
 

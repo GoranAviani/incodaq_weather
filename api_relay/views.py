@@ -17,7 +17,7 @@ import logging
 # Create your views here.
 #This is the place where api functions are getting called from
 
-from .making_requests import make_request_params, twilio_api, make_request
+from .making_requests import twilio_api, make_request
 
 #returning users latitude and longitude
 def get_user_lat_long_api(stringToSend):
@@ -66,15 +66,16 @@ def send_sms_message_api(userMobileNumber, processedForecastMessage):
 
 def get_recaptcha_api(recaptcha_response):
     ''' Begin reCAPTCHA validation '''
+
+
     sourceOfCall = {"sourceOfCall": "rechaptcha"}
-    apiUrl = {"apiUrl": API_URLS['google']}
-    apiEndpoint = {"apiEndpoint": "recaptcha/api/siteverify"}
+    apiUrl = {"apiUrl": API_URLS['google_recaptcha']}
     paramsData = {"paramsData": "data"}
     getPost = {"getPost": "post"}
     data = {"data": {
                 'secret': settings.GOOGLE_RECAPTCHA_SECRET_KEY,
                 'response': recaptcha_response
             }}
-    result = make_request(**apiUrl, **apiEndpoint, **paramsData, **getPost, **data, **sourceOfCall)
+    result = make_request(**apiUrl, **paramsData, **getPost, **data, **sourceOfCall)
     return result
     ''' End reCAPTCHA validation '''
